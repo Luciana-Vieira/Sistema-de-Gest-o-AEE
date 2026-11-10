@@ -1,0 +1,16 @@
+# Sobe o sistema com os dados num volume. Uso: docker compose up -d --build
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      DATA_DIR: /data
+      NODE_ENV: production
+    volumes:
+      - vertice-data:/data
+    restart: unless-stopped
+volumes:
+  vertice-data:

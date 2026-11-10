@@ -1,0 +1,1894 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: navy brand band with gold rule; view tabs; filter strip; work area per view (board trays, backlog sections, timeline grid, calendar grid, analytics panels); card detail in a right drawer. */
+:root {
+  --navy: #0D1B3D; --teal: #108C8C; --teal-2: #8ED0D0; --gold: #E3B23C;
+  --paper: #f2f2f2; --tray: #e3e8ee; --card: #ffffff; --raise: #f6f8fa;
+  --ink: #0D1B3D; --ink-2: #435069; --muted: #687490; --line: #d6dce5; --line-2: #c0c8d4;
+  --accent: #108C8C; --accent-ink: #0b6b6b; --accent-soft: #dcf0f0; --on-accent: #ffffff;
+  --head: #0D1B3D; --on-head: #ffffff; --head-2: #8ED0D0;
+  --btn: #0D1B3D; --on-btn: #ffffff;
+  --crit: #d03b3b; --crit-ink: #b42318; --crit-soft: #fdecea;
+  --warn: #fab219; --warn-ink: #8a5600; --warn-soft: #fff4d9;
+  --good: #0ca30c; --good-ink: #006300;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
+  --grid: #e1e0d9; --axis: #c3c2b7; --shadow: 0 1px 0 rgba(13,27,61,.05), 0 1px 3px rgba(13,27,61,.1);
+  --f-display: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Montserrat", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #081128; --tray: #0f1b38; --card: #14234a; --raise: #1a2c57;
+  --ink: #eef2f8; --ink-2: #b5c0d6; --muted: #8a97b4; --line: #22345f; --line-2: #2f4474;
+  --accent: #3fb8b8; --accent-ink: #8ED0D0; --accent-soft: #0f3a48; --on-accent: #081128;
+  --head: #050c1f; --on-head: #ffffff; --head-2: #8ED0D0;
+  --btn: #8ED0D0; --on-btn: #0D1B3D;
+  --crit-ink: #ff8a80; --crit-soft: #3a1c22; --warn-ink: #fab219; --warn-soft: #362a10; --good-ink: #3ccf3c;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --grid: #24314f; --axis: #3a4a70; --shadow: 0 1px 0 rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.3); color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --paper: #081128; --tray: #0f1b38; --card: #14234a; --raise: #1a2c57;
+  --ink: #eef2f8; --ink-2: #b5c0d6; --muted: #8a97b4; --line: #22345f; --line-2: #2f4474;
+  --accent: #3fb8b8; --accent-ink: #8ED0D0; --accent-soft: #0f3a48; --on-accent: #081128;
+  --head: #050c1f; --on-head: #ffffff; --head-2: #8ED0D0;
+  --btn: #8ED0D0; --on-btn: #0D1B3D;
+  --crit-ink: #ff8a80; --crit-soft: #3a1c22; --warn-ink: #fab219; --warn-soft: #362a10; --good-ink: #3ccf3c;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --grid: #24314f; --axis: #3a4a70; --shadow: 0 1px 0 rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.45; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--head); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; }
+.band { background: var(--head); color: var(--on-head); border-bottom: 3px solid var(--gold); }
+.band-in { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; padding-block: 9px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand .mark { width: 38px; height: 38px; border-radius: 50%; background: #ffffff; display: grid; place-items: center; flex: none; }
+.brand .wm { display: flex; flex-direction: column; line-height: 1.05; }
+.brand .wm small { font-size: 9px; font-weight: 500; letter-spacing: .32em; color: var(--head-2); }
+.brand .wm b { font-family: var(--f-display); font-weight: 800; font-size: 17px; letter-spacing: .06em; }
+.brand .wm i { font-style: normal; font-size: 9.5px; font-weight: 600; letter-spacing: .14em; color: var(--gold); text-transform: uppercase; }
+.board-btn { display: flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; background: rgba(255,255,255,.08); color: var(--on-head); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: 6px 10px; }
+.board-btn:hover { background: rgba(255,255,255,.14); }
+.board-btn .bname { font-weight: 700; font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 46vw; }
+.band .bkey { background: var(--gold); color: var(--navy); }
+.bkey { font-family: var(--f-mono); font-size: 11px; font-weight: 500; padding: 1px 6px; border-radius: 4px; background: var(--accent-soft); color: var(--accent-ink); white-space: nowrap; }
+.spacer { flex: 1; }
+.band .btn { background: transparent; color: var(--on-head); border-color: rgba(255,255,255,.28); }
+.band .btn:hover { background: rgba(255,255,255,.1); }
+.tabbar { background: var(--card); border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tabs { display: flex; gap: 4px; }
+.tabs button { border: 0; background: transparent; padding: 10px 12px 9px; font-weight: 600; font-size: 13.5px; color: var(--ink-2); border-bottom: 3px solid transparent; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+
+.btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line-2); background: var(--card); border-radius: 7px; padding: 6px 11px; font-weight: 600; font-size: 13px; white-space: nowrap; }
+.btn:hover { background: var(--raise); }
+.btn.primary { background: var(--btn); color: var(--on-btn); border-color: var(--btn); }
+.btn.primary:hover { opacity: .9; }
+.btn.teal { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn.ghost { border-color: transparent; background: transparent; }
+.btn.ghost:hover { background: var(--tray); }
+.btn.danger { color: var(--crit-ink); }
+.btn.sm { padding: 3px 8px; font-size: 12.5px; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.iconbtn { border: 0; background: transparent; border-radius: 6px; padding: 4px 6px; color: var(--muted); line-height: 1; }
+.iconbtn:hover { background: var(--line); color: var(--ink); }
+.iconbtn[disabled] { opacity: .35; cursor: not-allowed; }
+
+.notice { font-size: 13px; padding-block: 7px; background: var(--accent-soft); color: var(--ink); border-bottom: 1px solid var(--line); }
+.notice.err { background: var(--crit-soft); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.f { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.f > span { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.field, .filters select, .filters input { border: 1px solid var(--line-2); background: var(--card); border-radius: 7px; padding: 5px 8px; min-width: 0; font-size: 13px; }
+.filters select { max-width: 160px; }
+.filters input[type=search] { width: 200px; }
+.active-n { font-size: 12px; color: var(--accent-ink); font-weight: 700; padding-bottom: 6px; }
+
+.ribbon { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; padding-block: 10px 0; }
+.ribbon .sp { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 7px 12px; min-width: 0; }
+.ribbon .sp b { font-weight: 700; }
+.prog { width: 120px; height: 6px; border-radius: 3px; background: var(--tray); overflow: hidden; display: inline-block; }
+.prog > i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+.wall { overflow-x: auto; padding-block: 14px 28px; }
+.lane { margin-bottom: 14px; }
+.lane-h { display: flex; align-items: center; gap: 8px; padding: 2px 4px 8px; position: sticky; left: 0; width: max-content; }
+.lane-h h3 { font-size: 13.5px; font-weight: 700; }
+.lane-h .n { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.lists { display: flex; gap: 12px; align-items: flex-start; width: max-content; }
+.list { width: 284px; flex: none; background: var(--tray); border-radius: 12px; display: flex; flex-direction: column; max-width: 84vw; border: 1.5px solid transparent; }
+.list.overwip { border-color: var(--crit); }
+.list-h { display: flex; align-items: center; gap: 8px; padding: 10px 8px 4px 12px; }
+.list-h h3 { font-weight: 700; font-size: 14px; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.list-h .count { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.list-h .count.over { color: var(--crit-ink); font-weight: 600; }
+.list-sub { margin: 0 12px 4px; font-size: 11px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.list-sub span { display: inline-flex; align-items: center; gap: 4px; }
+.wipwarn { color: var(--crit-ink); font-weight: 600; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: inline-block; }
+.list-body { display: flex; flex-direction: column; gap: 8px; padding: 4px 8px 8px; min-height: 28px; }
+.list-body.over { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px; }
+.drop-mark { height: 3px; border-radius: 2px; background: var(--gold); margin: -2px 0; }
+.add-card { margin: 0 8px 10px; text-align: left; border: 0; background: transparent; color: var(--ink-2); padding: 6px 8px; border-radius: 7px; font-weight: 500; }
+.add-card:hover { background: var(--line); color: var(--ink); }
+.new-list { width: 250px; flex: none; border: 1.5px dashed var(--line-2); background: transparent; border-radius: 12px; padding: 12px; color: var(--ink-2); text-align: left; font-weight: 600; }
+.new-list:hover { border-color: var(--accent); color: var(--accent-ink); }
+.inline-add { display: flex; flex-direction: column; gap: 6px; margin: 0 8px 10px; }
+.inline-add textarea, .inline-add input { width: 100%; border: 1px solid var(--accent); border-radius: 8px; padding: 8px; background: var(--card); resize: vertical; }
+.row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+.card { position: relative; background: var(--card); border-radius: 8px; box-shadow: var(--shadow); padding: 9px 10px 8px; cursor: pointer; border: 1px solid transparent; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.card:hover { border-color: var(--line-2); }
+.card.dragging { opacity: .4; }
+.card.overdue { border-color: var(--crit); }
+.card.soon { border-color: var(--warn); }
+.card.blocked { padding-top: 14px; }
+.hazard { position: absolute; left: 0; right: 0; top: 0; height: 6px; background: repeating-linear-gradient(135deg, var(--crit) 0 7px, var(--card) 7px 13px); }
+.c-top { display: flex; align-items: center; gap: 6px; font-size: 11px; min-width: 0; }
+.c-top .key { font-family: var(--f-mono); color: var(--muted); }
+.card h4 { font-weight: 600; font-size: 13.5px; line-height: 1.35; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.lbl { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 1px 7px 1px 5px; border-radius: 99px; background: var(--raise); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.epic-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--ink-2); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.epic-chip i { width: 4px; height: 12px; border-radius: 2px; flex: none; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 4px; background: var(--raise); color: var(--ink-2); white-space: nowrap; }
+.c-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.c-meta .m { display: inline-flex; align-items: center; gap: 3px; }
+.pts { font-family: var(--f-mono); font-size: 11px; min-width: 20px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--tray); color: var(--ink-2); display: inline-grid; place-items: center; }
+.due { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 0 6px; border-radius: 4px; white-space: nowrap; }
+.due.overdue { background: var(--crit-soft); color: var(--crit-ink); font-weight: 700; }
+.due.soon { background: var(--warn-soft); color: var(--warn-ink); font-weight: 700; }
+.due.done { color: var(--good-ink); }
+.blk { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--crit-ink); }
+.aging { font-size: 11px; color: var(--muted); }
+.aging.old { color: var(--warn-ink); font-weight: 600; }
+.avatar { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 10.5px; font-weight: 700; background: var(--navy); color: #ffffff; flex: none; }
+.prio, .tico { display: inline-flex; flex: none; }
+.empty-list { font-size: 12px; color: var(--muted); padding: 4px 4px 6px; }
+
+.scrim { position: fixed; inset: 0; background: rgba(5,12,31,.5); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(760px, 100vw); z-index: 41; background: var(--card); box-shadow: -8px 0 30px rgba(0,0,0,.2); display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer-h { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.drawer-b { overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 20px; }
+.title-in { width: 100%; font-family: var(--f-display); font-weight: 800; font-size: 21px; border: 1px solid transparent; border-radius: 8px; padding: 4px 6px; background: transparent; }
+.title-in:hover, .title-in:focus { border-color: var(--line-2); background: var(--card); }
+.grid-f { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 12px; }
+.fl { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.fl > span { font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.fl .field, .fl select, .fl input, .fl textarea { width: 100%; }
+textarea.field { resize: vertical; min-height: 70px; line-height: 1.45; }
+.sec { display: flex; flex-direction: column; gap: 8px; }
+.sec-h { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+.sec-h h3 { font-size: 14.5px; font-weight: 800; }
+.sec-h .n { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.lblpick { display: flex; flex-wrap: wrap; gap: 6px; }
+.lblpick button { border: 1px solid var(--line-2); background: var(--card); border-radius: 99px; font-size: 12px; padding: 2px 9px 2px 6px; display: inline-flex; align-items: center; gap: 5px; }
+.lblpick button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+.blockbox { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.blockbox.on { border-color: var(--crit); background: var(--crit-soft); }
+.check { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+.items { display: flex; flex-direction: column; gap: 6px; }
+.item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; min-width: 0; flex-wrap: wrap; }
+.item .grow { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.item a { color: var(--accent-ink); }
+.ck { display: flex; align-items: flex-start; gap: 8px; padding: 3px 0; }
+.ck input[type=checkbox] { margin-top: 3px; accent-color: var(--teal); }
+.ck .t { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.ck.done .t { text-decoration: line-through; color: var(--muted); }
+.comment { border-left: 2px solid var(--line-2); padding: 2px 0 2px 10px; }
+.comment .meta, .hist .meta { font-size: 12px; color: var(--muted); }
+.comment p { margin: 2px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.hist { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.hist li { list-style: none; display: grid; grid-template-columns: 12px 1fr; gap: 8px; }
+.hist ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.hist .tick { width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 5px; }
+.err-text { color: var(--crit-ink); font-size: 12px; }
+.hint { color: var(--muted); font-size: 12px; }
+.ro-banner { font-size: 12px; background: var(--raise); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; color: var(--ink-2); }
+
+.modal { position: fixed; z-index: 41; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(780px, calc(100vw - 24px)); max-height: calc(100vh - 32px); display: flex; flex-direction: column; background: var(--card); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.modal.sm { width: min(460px, calc(100vw - 24px)); }
+.modal-h { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.modal-h h2 { font-size: 18px; font-weight: 800; flex: 1; }
+.modal-b { padding: 16px 18px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+.subtabs { display: flex; gap: 4px; flex-wrap: wrap; padding: 8px 18px 0; border-bottom: 1px solid var(--line); }
+.subtabs button { border: 0; background: transparent; padding: 7px 10px; border-bottom: 3px solid transparent; color: var(--ink-2); font-weight: 600; font-size: 13px; }
+.subtabs button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+.cfg-row { display: grid; grid-template-columns: auto 1fr auto auto; gap: 8px; align-items: center; }
+.cfg-row .field { width: 100%; }
+.cfg-row .swatches { grid-column: 2 / -1; }
+.swatches { display: flex; gap: 3px; flex-wrap: wrap; }
+.sw { width: 18px; height: 18px; border-radius: 50%; border: 2px solid transparent; padding: 0; }
+.sw[aria-pressed="true"] { border-color: var(--ink); }
+
+.pop { position: absolute; z-index: 45; background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.2); padding: 6px; min-width: 230px; max-width: min(360px, calc(100vw - 24px)); max-height: 70vh; overflow-y: auto; }
+.pop .mi { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; border: 0; background: transparent; padding: 7px 9px; border-radius: 6px; }
+.pop .mi:hover { background: var(--raise); }
+.pop .mi.cur { background: var(--accent-soft); }
+.pop hr { border: 0; border-top: 1px solid var(--line); margin: 5px 0; }
+.pop .ph { padding: 6px 9px 2px; }
+
+.toast { position: fixed; z-index: 50; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--navy); color: #ffffff; padding: 8px 14px; border-radius: 8px; font-size: 13px; box-shadow: 0 8px 24px rgba(0,0,0,.25); max-width: calc(100vw - 32px); border-left: 3px solid var(--gold); }
+
+.empty { max-width: 540px; margin: 48px auto; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.empty h2 { font-weight: 800; font-size: 24px; }
+.empty p { color: var(--ink-2); margin: 0; }
+
+.bk { padding-block: 16px 40px; display: flex; flex-direction: column; gap: 16px; }
+.bk-sec { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.bk-sec.active { border-color: var(--accent); }
+.bk-sec.drop { outline: 2px dashed var(--gold); outline-offset: -2px; }
+.bk-h { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; padding: 10px 14px; background: var(--raise); border-bottom: 1px solid var(--line); }
+.bk-h h3 { font-size: 15px; font-weight: 800; }
+.bk-h .meta { font-size: 12px; color: var(--muted); }
+.state { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; }
+.state.active { background: var(--accent-soft); color: var(--accent-ink); }
+.state.planned { background: var(--tray); color: var(--ink-2); }
+.goal { padding: 8px 14px 4px; font-size: 12.5px; color: var(--ink-2); }
+.bk-rows { display: flex; flex-direction: column; min-height: 36px; }
+.bk-row { display: grid; grid-template-columns: 20px 74px minmax(0, 1fr) 128px 28px 20px 30px 70px 128px; gap: 8px; align-items: center; padding: 6px 14px; border-top: 1px solid var(--line); cursor: pointer; }
+.bk-row:first-child { border-top: 0; }
+.bk-row:hover { background: var(--raise); }
+.bk-row.done .tt b { color: var(--muted); text-decoration: line-through; }
+.bk-row .tt { min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 1px; }
+.bk-row .tt b { font-weight: 600; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bk-row select { width: 100%; font-size: 12px; padding: 3px 4px; }
+.bk-foot { display: flex; gap: 8px; padding: 8px 14px; border-top: 1px solid var(--line); align-items: center; flex-wrap: wrap; }
+.bk-foot input { flex: 1; min-width: 160px; }
+.epics { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+.epic { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; position: relative; overflow: hidden; }
+.epic:hover { border-color: var(--line-2); }
+.epic .top-line { position: absolute; left: 0; right: 0; top: 0; height: 4px; }
+.epic b { font-weight: 700; font-size: 13.5px; }
+.epic .prog { width: 100%; }
+@media (max-width: 760px) {
+  .bk-row { grid-template-columns: 20px minmax(0, 1fr) 28px 30px; }
+  .bk-row .c-key, .bk-row .c-st, .bk-row .c-pr, .bk-row .c-due, .bk-row .c-sp { display: none; }
+}
+
+.tl-wrap { padding-block: 14px 40px; display: flex; flex-direction: column; gap: 10px; }
+.tl { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.tl-inner { position: relative; }
+.tl-row { display: flex; min-height: 34px; border-top: 1px solid var(--line); }
+.tl-row.head { border-top: 0; background: var(--raise); min-height: 42px; }
+.tl-row.group .tl-lab { font-weight: 700; }
+.tl-lab { width: 270px; flex: none; position: sticky; left: 0; z-index: 2; background: var(--card); border-right: 1px solid var(--line); padding: 6px 10px; display: flex; align-items: center; gap: 6px; font-size: 12.5px; min-width: 0; cursor: pointer; }
+.tl-row.head .tl-lab { background: var(--raise); cursor: default; }
+.tl-lab .mono { white-space: nowrap; }
+.tl-lab .tx { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.tl-lab.child { padding-left: 26px; }
+.tl-track { position: relative; flex: none; }
+.tl-bar { position: absolute; top: 8px; height: 18px; border-radius: 5px; font-size: 11px; color: #ffffff; padding: 0 6px; white-space: nowrap; overflow: hidden; display: flex; align-items: center; cursor: pointer; }
+.tl-bar.epicbar { top: 6px; height: 22px; font-weight: 700; }
+.tl-bar.overdue { box-shadow: 0 0 0 2px var(--crit); }
+.tl-bar.done { opacity: .55; }
+.tl-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(0,0,0,.2); }
+.tl-bar span { position: relative; }
+.tl-today { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--gold); z-index: 1; pointer-events: none; }
+.tl-mon { position: absolute; top: 4px; font-size: 11px; font-weight: 700; color: var(--ink); white-space: nowrap; padding-left: 4px; border-left: 1px solid var(--line-2); }
+.tl-day { position: absolute; bottom: 3px; font-size: 10px; color: var(--muted); font-family: var(--f-mono); }
+
+.cal-wrap { padding-block: 14px 40px; display: flex; flex-direction: column; gap: 10px; }
+.cal-nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cal-nav h2 { font-size: 18px; font-weight: 800; min-width: 170px; text-transform: capitalize; }
+.cal-scroll { overflow-x: auto; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(98px, 1fr)); min-width: 700px; background: var(--line); gap: 1px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.cal .dow { background: var(--raise); font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; }
+.cal .day { background: var(--card); min-height: 104px; padding: 5px 6px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cal .day.out { background: var(--raise); }
+.cal .day.out .dn { color: var(--muted); }
+.cal .day.today .dn { background: var(--gold); color: var(--navy); }
+.cal .dn { font-size: 12px; font-weight: 700; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; }
+.cal .ev { font-size: 11px; padding: 2px 5px; border-radius: 4px; background: var(--raise); border: 0; border-left: 3px solid var(--accent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; text-align: left; width: 100%; }
+.cal .ev.overdue { border-left-color: var(--crit); background: var(--crit-soft); }
+.cal .ev.soon { border-left-color: var(--warn); background: var(--warn-soft); }
+.cal .ev.done { border-left-color: var(--good); color: var(--muted); text-decoration: line-through; }
+.cal .spm { font-size: 10px; font-weight: 700; color: var(--accent-ink); }
+.cal .more { font-size: 11px; color: var(--muted); }
+
+.bi { padding-block: 16px 40px; display: flex; flex-direction: column; gap: 16px; }
+.bi-ctl { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; }
+.seg { display: flex; gap: 2px; background: var(--tray); border-radius: 8px; padding: 3px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; border-radius: 6px; padding: 4px 10px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.kpi .v { font-weight: 800; font-size: 28px; line-height: 1.1; }
+.kpi .v small { font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 3px; }
+.kpi .d { font-size: 11.5px; color: var(--muted); }
+.kpi.crit .v { color: var(--crit-ink); }
+.kpi.warn .v { color: var(--warn-ink); }
+.kpi .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; }
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); gap: 12px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel.wide { grid-column: 1 / -1; }
+.panel-h { display: flex; align-items: baseline; gap: 4px 8px; flex-wrap: wrap; }
+.panel-h h3 { font-weight: 800; font-size: 15px; flex: 1; min-width: 0; }
+.panel-h .sub { font-size: 12px; color: var(--muted); }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.legend i.ln { height: 2px; border-radius: 1px; width: 14px; }
+.legend i.ln.dash { background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px); }
+.hb { display: grid; grid-template-columns: minmax(80px, 34%) 1fr; gap: 7px 10px; align-items: center; }
+.hb .lab { font-size: 12.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hb .track { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.hb .bar { display: flex; gap: 2px; height: 16px; min-width: 0; }
+.hb .seg2 { height: 100%; min-width: 3px; }
+.hb .seg2:last-child { border-radius: 0 4px 4px 0; }
+.hb .val { font-size: 12px; color: var(--ink-2); font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hb .pair { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.hb .pair .bar { height: 10px; }
+.hb .pair .seg2 { border-radius: 0 4px 4px 0; }
+.cols { position: relative; height: 180px; display: flex; align-items: flex-end; gap: 3px; padding-left: 28px; border-bottom: 1px solid var(--axis); }
+.cols .gl { position: absolute; left: 28px; right: 0; border-top: 1px solid var(--grid); font-size: 10px; }
+.cols .gl span { position: absolute; left: -28px; top: -7px; width: 24px; text-align: right; color: var(--muted); font-family: var(--f-mono); }
+.cols .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative; min-width: 0; }
+.cols .col .b { width: 100%; max-width: 34px; background: var(--s1); border-radius: 4px 4px 0 0; }
+.cols .col:hover .b { filter: brightness(1.1); }
+.xlabels { display: flex; gap: 3px; padding-left: 28px; font-size: 10px; color: var(--muted); font-family: var(--f-mono); }
+.xlabels span { flex: 1; min-width: 0; white-space: nowrap; display: flex; justify-content: center; }
+svg.ch { width: 100%; height: auto; display: block; overflow: visible; }
+svg.ch text { fill: var(--muted); font-family: var(--f-mono); font-size: 10px; }
+svg.ch .gl { stroke: var(--grid); stroke-width: 1; }
+svg.ch .ax { stroke: var(--axis); stroke-width: 1; }
+svg.ch .hit { fill: transparent; }
+svg.ch .hit:hover { fill: color-mix(in srgb, var(--ink) 6%, transparent); }
+.tbl-wrap { overflow-x: auto; }
+table.t { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.t th { text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
+table.t td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.t td.num, table.t th.num { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+table.t tr.click { cursor: pointer; }
+table.t tr.click:hover td { background: var(--raise); }
+details.tv summary { font-size: 12px; color: var(--accent-ink); cursor: pointer; font-weight: 600; }
+.nodata { font-size: 13px; color: var(--muted); padding: 10px 0; }
+.tip { position: fixed; z-index: 60; pointer-events: none; background: var(--navy); color: #ffffff; font-size: 12px; padding: 5px 8px; border-radius: 6px; max-width: 280px; white-space: pre-line; }
+.foot { padding-block: 18px 26px; color: var(--muted); font-size: 11.5px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.foot b { color: var(--ink-2); letter-spacing: .12em; font-size: 10.5px; }
+
+@media (max-width: 640px) {
+  .top { position: static; }
+  .board-btn .bname { max-width: 52vw; }
+  .filters select { max-width: 150px; }
+  .filters .f.q { flex: 1 1 100%; }
+  .filters input[type=search] { width: 100%; }
+  .cfg-row { grid-template-columns: auto 1fr auto; }
+  .brand .wm i { display: none; }
+  .tl-lab { width: 170px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .drawer { animation: slidein .18s ease-out; }
+  @keyframes slidein { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+<div id="app"></div>
+<div id="tip" class="tip" hidden></div>
+
+<script>
+function buildSample(now) {
+  const DAY = 864e5;
+  const base = new Date(now); base.setHours(9, 0, 0, 0);
+  const at = (d, h) => new Date(base.getTime() + d * DAY + (h || 0) * 36e5).toISOString();
+  const ymd = d => { const x = new Date(base.getTime() + d * DAY); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); };
+  const board = {
+    id: 'ex-planejamento', name: 'Exemplo · Planejamento letivo 2027', key: 'PLN', archived: false,
+    createdAt: at(-60), createdBy: 'exemplo', othersRole: 'edit', members: {},
+    statuses: [
+      { id: 'st-todo', name: 'A fazer', color: 1, cat: 'todo' },
+      { id: 'st-doing', name: 'Em andamento', color: 2, cat: 'doing' },
+      { id: 'st-review', name: 'Em revisão', color: 7, cat: 'doing' },
+      { id: 'st-done', name: 'Concluído', color: 6, cat: 'done' }
+    ],
+    priorities: [
+      { id: 'pr-crit', name: 'Crítica', color: 8, icon: 'up3' },
+      { id: 'pr-high', name: 'Alta', color: 2, icon: 'up2' },
+      { id: 'pr-med', name: 'Média', color: 4, icon: 'mid' },
+      { id: 'pr-low', name: 'Baixa', color: 1, icon: 'down1' }
+    ],
+    labels: [
+      { id: 'lb-ped', name: 'Pedagógico', color: 1 },
+      { id: 'lb-adm', name: 'Administrativo', color: 5 },
+      { id: 'lb-fin', name: 'Financeiro', color: 4 },
+      { id: 'lb-com', name: 'Comunicação', color: 3 }
+    ],
+    team: ['Ana', 'Bruno', 'Carla', 'Rafael'],
+    lists: [
+      { id: 'ls-backlog', name: 'Backlog', order: 1, archived: false, status: '', wip: 0, dod: '' },
+      { id: 'ls-todo', name: 'A fazer', order: 2, archived: false, status: 'st-todo', wip: 0, dod: 'Responsável, prazo e estimativa definidos.' },
+      { id: 'ls-doing', name: 'Em andamento', order: 3, archived: false, status: 'st-doing', wip: 4, dod: 'Trabalho iniciado e horas registradas.' },
+      { id: 'ls-review', name: 'Em revisão', order: 4, archived: false, status: 'st-review', wip: 3, dod: 'Revisado por outra pessoa da equipe.' },
+      { id: 'ls-done', name: 'Concluído', order: 5, archived: false, status: 'st-done', wip: 0, dod: 'Entregue e comunicado aos envolvidos.' }
+    ],
+    sprints: [
+      { id: 'sp-1', name: 'Sprint 1', goal: 'Fechar inventário e calendário no site', start: ymd(-42), end: ymd(-29), state: 'closed', committed: 5, completedPts: 5, closedAt: at(-29, 8) },
+      { id: 'sp-2', name: 'Sprint 2', goal: 'Calendário de avaliações e orçamento de materiais', start: ymd(-28), end: ymd(-15), state: 'closed', committed: 11, completedPts: 8, closedAt: at(-15, 8) },
+      { id: 'sp-3', name: 'Sprint 3', goal: 'Matrículas abertas e orçamento aprovado', start: ymd(-14), end: ymd(3), state: 'active', committed: 0, completedPts: 0, closedAt: '' },
+      { id: 'sp-4', name: 'Sprint 4', goal: 'Preparar o início do ano letivo', start: ymd(4), end: ymd(17), state: 'planned', committed: 0, completedPts: 0, closedAt: '' }
+    ]
+  };
+  const LIST = { 'st-todo': 'ls-todo', 'st-doing': 'ls-doing', 'st-review': 'ls-review', 'st-done': 'ls-done' };
+  const SN = { 'st-todo': 'A fazer', 'st-doing': 'Em andamento', 'st-review': 'Em revisão', 'st-done': 'Concluído' };
+  const PN = { 'pr-crit': 'Crítica', 'pr-high': 'Alta', 'pr-med': 'Média', 'pr-low': 'Baixa' };
+  // n, title, type, status, who, prio, due, est, spent, labels, created, completed, pts, sprint, epic, extra
+  const rows = [
+    ['e1', 'Calendário e matrículas 2027', 'epic', 'st-doing', 'Ana', 'pr-high', 20, 0, 0, ['lb-com'], -50, null, 0, '', '', { start: -45, color: 3 }],
+    ['e2', 'Formação e currículo', 'epic', 'st-doing', 'Carla', 'pr-med', 30, 0, 0, ['lb-ped'], -48, null, 0, '', '', { start: -36, color: 1 }],
+    ['e3', 'Infraestrutura e contratos', 'epic', 'st-doing', 'Rafael', 'pr-high', 22, 0, 0, ['lb-adm'], -56, null, 0, '', '', { start: -55, color: 2 }],
+    [1, 'Definir calendário de avaliações', 'story', 'st-done', 'Ana', 'pr-high', -20, 6, 7, ['lb-ped'], -45, -22, 5, 'sp-2', 'e1'],
+    [2, 'Levantar orçamento de materiais', 'task', 'st-done', 'Bruno', 'pr-med', -15, 4, 3, ['lb-fin'], -40, -16, 3, 'sp-2', 'e3'],
+    [3, 'Montar cronograma de reuniões pedagógicas', 'task', 'st-done', 'Carla', 'pr-med', -10, 3, 5, ['lb-ped'], -35, -9, 2, 'sp-3', 'e2'],
+    [4, 'Revisar regimento interno', 'story', 'st-done', 'Rafael', 'pr-low', -6, 8, 10, ['lb-adm'], -30, -4, 5, 'sp-3', 'e3'],
+    [5, 'Publicar edital de matrícula', 'story', 'st-done', 'Ana', 'pr-crit', -3, 5, 4, ['lb-com', 'lb-adm'], -25, -2, 3, 'sp-3', 'e1'],
+    [6, 'Atualizar planos de aula do 1º bimestre', 'story', 'st-review', 'Carla', 'pr-high', 2, 10, 8, ['lb-ped'], -20, null, 8, 'sp-3', 'e2', { start: -12 }],
+    [7, 'Contratar fornecedor de uniformes', 'task', 'st-doing', 'Bruno', 'pr-high', -2, 6, 3, ['lb-fin', 'lb-adm'], -18, null, 3, 'sp-3', 'e3', { start: -9, blocked: true, blockReason: 'Aguardando a aprovação do orçamento anual pela direção.', deps: ['ex-c9'] }],
+    [8, 'Configurar sistema de notas', 'story', 'st-doing', 'Rafael', 'pr-med', 6, 12, 5, ['lb-adm'], -14, null, 8, 'sp-3', 'e3', { start: -6 }],
+    [9, 'Aprovar orçamento anual', 'task', 'st-doing', 'Ana', 'pr-crit', -1, 3, 1, ['lb-fin'], -16, null, 2, 'sp-3', 'e3', { start: -8 }],
+    [10, 'Preparar formação de professores', 'story', 'st-todo', 'Carla', 'pr-med', 12, 8, 0, ['lb-ped'], -10, null, 5, 'sp-4', 'e2', { start: 5 }],
+    [11, 'Organizar reunião de pais', 'task', 'st-todo', 'Ana', 'pr-high', 3, 4, 0, ['lb-com'], -7, null, 2, 'sp-3', 'e1', { start: 0, checklist: [['Reservar o auditório', true], ['Enviar convite às famílias', true], ['Preparar apresentação', false], ['Imprimir lista de presença', false]] }],
+    [12, 'Comprar livros paradidáticos', 'task', 'st-todo', 'Bruno', 'pr-low', 20, 2, 0, ['lb-fin', 'lb-ped'], -6, null, 1, 'sp-4', 'e3', { start: 8, deps: ['ex-c9'] }],
+    [13, 'Criar trilha de recuperação paralela', 'story', 'st-todo', '', 'pr-med', null, 16, 0, ['lb-ped'], -5, null, 13, '', 'e2', { list: 'ls-backlog' }],
+    [14, 'Mapear necessidades de AEE', 'story', 'st-todo', 'Carla', 'pr-high', 25, 6, 0, ['lb-ped'], -4, null, 5, '', 'e2', { list: 'ls-backlog', start: 15 }],
+    [15, 'Revisar contratos de prestadores', 'task', 'st-review', 'Rafael', 'pr-med', -4, 5, 6, ['lb-adm', 'lb-fin'], -22, null, 3, 'sp-3', 'e3', { start: -11 }],
+    [16, 'Planejar semana de acolhimento', 'story', 'st-todo', 'Ana', 'pr-med', 9, 6, 0, ['lb-ped', 'lb-com'], -3, null, 5, 'sp-4', 'e1', { start: 4 }],
+    [17, 'Inventariar laboratório de ciências', 'task', 'st-done', 'Rafael', 'pr-low', -36, 4, 4, ['lb-adm'], -55, -38, 3, 'sp-1', 'e3'],
+    [18, 'Atualizar site com o calendário', 'task', 'st-done', 'Bruno', 'pr-med', -28, 2, 3, ['lb-com'], -50, -30, 2, 'sp-1', 'e1'],
+    [19, 'Definir turmas e horários', 'story', 'st-done', 'Carla', 'pr-high', -12, 8, 9, ['lb-ped'], -28, -12, 5, 'sp-3', 'e1'],
+    [20, 'Enviar comunicado de início das aulas', 'task', 'st-done', 'Ana', 'pr-med', 0, 1, 1, ['lb-com'], -8, -1, 1, 'sp-3', 'e1'],
+    [21, 'Corrigir notas duplicadas no boletim', 'bug', 'st-doing', 'Rafael', 'pr-high', 1, 3, 2, ['lb-adm'], -4, null, 2, 'sp-3', 'e3', { start: -3 }],
+    [22, 'Revisar plano de Ciências', 'subtask', 'st-doing', 'Carla', 'pr-high', 1, 3, 2, ['lb-ped'], -9, null, 0, 'sp-3', '', { parent: 'ex-c6', start: -5 }],
+    [23, 'Revisar plano de Geografia', 'subtask', 'st-todo', 'Carla', 'pr-med', 2, 3, 0, ['lb-ped'], -9, null, 0, 'sp-3', '', { parent: 'ex-c6' }]
+  ];
+  const descs = {
+    1: 'Fechar as datas de provas, simulados e recuperações dos quatro bimestres.',
+    7: 'Cotar com três fornecedores e fechar contrato antes do início das aulas.',
+    9: 'Consolidar as despesas previstas e levar para aprovação da direção.',
+    6: 'Ajustar os planos ao novo calendário e à matriz de habilidades.',
+    e1: 'Tudo o que envolve calendário escolar, matrículas e comunicação com as famílias.',
+    e2: 'Planos de aula, formação docente e trilhas de aprendizagem.',
+    e3: 'Orçamento, contratos, compras e sistemas administrativos.'
+  };
+  const sp3 = board.sprints[2];
+  const cards = rows.map((r, i) => {
+    const [n, title, type, st, who, pr, due, est, spent, labels, cr, co, pts, sprint, epic, extra] = r;
+    const x = extra || {};
+    const id = typeof n === 'string' ? 'ex-' + n : 'ex-c' + n;
+    const hist = [{ at: at(cr), by: 'exemplo', field: 'created', from: '', to: 'A fazer' }];
+    const end = co != null ? co : 0;
+    if (type !== 'epic') {
+      if (st !== 'st-todo') hist.push({ at: at(cr + (end - cr) * 0.3, 2), by: 'exemplo', field: 'status', from: 'A fazer', to: 'Em andamento' });
+      if (st === 'st-review') hist.push({ at: at(cr + (end - cr) * 0.75, 3), by: 'exemplo', field: 'status', from: 'Em andamento', to: 'Em revisão' });
+      if (st === 'st-done') hist.push({ at: at(co, 5), by: 'exemplo', field: 'status', from: 'Em andamento', to: 'Concluído' });
+    } else hist.push({ at: at(cr + 5, 1), by: 'exemplo', field: 'status', from: 'A fazer', to: 'Em andamento' });
+    if (n === 9) hist.push({ at: at(-5, 1), by: 'exemplo', field: 'due', from: ymd(-8), to: ymd(-1) });
+    if (n === 7) hist.push({ at: at(-3, 4), by: 'exemplo', field: 'blocked', from: 'Não', to: 'Sim' });
+    if (n === 15) hist.push({ at: at(-9, 2), by: 'exemplo', field: 'priority', from: 'Baixa', to: PN[pr] });
+    hist.sort((a, b) => a.at < b.at ? -1 : 1);
+    const comments = [];
+    if (n === 7) comments.push({ id: 'cm1', by: 'exemplo', at: at(-3, 5), text: 'Já temos duas cotações. Falta a liberação do orçamento para fechar.' });
+    if (n === 6) comments.push({ id: 'cm2', by: 'exemplo', at: at(-2, 1), text: 'Faltam os planos de Ciências e Geografia para revisão.' });
+    const atts = n === 1 ? [{ id: 'at1', name: 'Calendário escolar (link de exemplo)', url: 'https://www.gov.br/mec/pt-br', by: 'exemplo', at: at(-30) }] : [];
+    const worklog = [];
+    if (spent > 0) {
+      const parts = spent > 3 ? [Math.ceil(spent / 2), spent - Math.ceil(spent / 2)] : [spent];
+      const s0 = x.start != null ? x.start : cr + 1;
+      parts.forEach((h, k) => worklog.push({ id: 'wl' + k, by: 'exemplo', at: at(Math.min(s0 + k * 2, end), 6), date: ymd(Math.min(s0 + k * 2, end)), hours: h, note: k ? 'Continuação' : 'Início do trabalho' }));
+    }
+    const checklist = (x.checklist || []).map((c, k) => ({ id: 'ck' + k, text: c[0], done: c[1] }));
+    if (sprint === 'sp-3' && type !== 'epic') sp3.committed += pts;
+    return {
+      id, boardId: board.id, listId: x.list || (type === 'epic' ? 'ls-backlog' : LIST[st]), order: (i + 1) * 10,
+      num: typeof n === 'string' ? 100 + Number(n.slice(1)) : n, type, parentId: x.parent || (epic ? 'ex-' + epic : ''),
+      color: x.color || 0, title, description: descs[n] || '', assignee: who, priority: pr, due: due == null ? '' : ymd(due),
+      start: x.start != null ? ymd(x.start) : '', labels, estimate: est, spent, points: pts, sprintId: sprint,
+      status: st, blocked: !!x.blocked, blockReason: x.blockReason || '', deps: x.deps || [], links: [],
+      checklist, worklog, comments, attachments: atts, history: hist, archived: false,
+      createdAt: at(cr), createdBy: 'exemplo', completedAt: co != null ? at(co, 5) : ''
+    };
+  });
+  cards.find(c => c.id === 'ex-c8').links = [{ type: 'relates', id: 'ex-c21' }];
+  return { boards: [board], cards };
+}
+if (typeof module !== 'undefined') module.exports = buildSample;
+
+(function () {
+'use strict';
+const DAY = 864e5;
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const uid = p => (p || '') + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const clone = o => JSON.parse(JSON.stringify(o));
+const nowISO = () => new Date().toISOString();
+const sc = n => 'var(--s' + (n || 1) + ')';
+const ROLE_RANK = { none: 0, view: 1, edit: 2, admin: 3 };
+const ROLE_LABEL = { none: 'Sem acesso', view: 'Visualizar', edit: 'Editar', admin: 'Administrar' };
+const CAT_LABEL = { todo: 'A fazer', doing: 'Em andamento', done: 'Concluído' };
+const FIELD_LABEL = { status: 'Status', assignee: 'Responsável', priority: 'Prioridade', due: 'Prazo', blocked: 'Bloqueio', created: 'Criado', list: 'Lista', sprint: 'Sprint', type: 'Tipo', parent: 'Épico/pai', points: 'Pontos' };
+const TYPES = { epic: { name: 'Épico', color: 7 }, story: { name: 'História', color: 3 }, task: { name: 'Tarefa', color: 1 }, bug: { name: 'Bug', color: 8 }, subtask: { name: 'Subtarefa', color: 1 } };
+const TYPE_ORDER = ['story', 'task', 'bug', 'subtask', 'epic'];
+const FIB = [0, 1, 2, 3, 5, 8, 13, 21];
+const EMPTY_F = () => ({ q: '', assignee: '', type: '', sprint: '', due: '', priority: '', status: '', label: '', epic: '' });
+const LOGO = '<svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3.5l1.7 3.4 3.7.5-2.7 2.6.7 3.7L24 11.9l-3.4 1.8.7-3.7-2.7-2.6 3.7-.5z" fill="#E3B23C"/><circle cx="24" cy="19.5" r="3.7" fill="#0D1B3D"/><path d="M17.3 33.5c0-5.2 3-8.8 6.7-8.8s6.7 3.6 6.7 8.8z" fill="#0D1B3D"/><circle cx="13.6" cy="23" r="3.1" fill="#108C8C"/><path d="M8 34.2c0-4.3 2.5-7.4 5.6-7.4s5.6 3.1 5.6 7.4z" fill="#108C8C"/><circle cx="34.4" cy="23" r="3.1" fill="#E3B23C"/><path d="M28.8 34.2c0-4.3 2.5-7.4 5.6-7.4s5.6 3.1 5.6 7.4z" fill="#E3B23C"/><path d="M3.5 35.2c7.2-2.6 14.3-2.1 20.5 1.6 6.2-3.7 13.3-4.2 20.5-1.6v4.3c-7.2-2.6-14.3-2.1-20.5 1.6-6.2-3.7-13.3-4.2-20.5-1.6z" fill="#0D1B3D"/></svg>';
+
+const S = {
+  mode: 'loading', db: null, user: null, assets: null, downloads: null, me: null, isOwner: true, canWrite: true,
+  boards: new Map(), cards: new Map(), names: {}, askedNames: new Set(),
+  boardId: null, view: 'board', stale: false, loaded: { b: false, c: false }, fatal: '',
+  filters: EMPTY_F(), moreF: false, swim: 'none', saved: [],
+  bi: { scope: 'current', preset: '30', from: '', to: '', sprint: '' },
+  tl: { zoom: 'week' }, cal: null, tlToday: 0,
+  openCard: null, cardErr: {}, modal: null, adding: null, drawerDirty: false
+};
+try { const v = JSON.parse(localStorage.getItem('vertice-planner-ui') || '{}'); ['boardId', 'view', 'swim'].forEach(k => { if (v[k]) S[k] = v[k]; }); if (v.bi) Object.assign(S.bi, v.bi); if (v.tl) Object.assign(S.tl, v.tl); if (Array.isArray(v.saved)) S.saved = v.saved; } catch (e) {}
+function saveUI() { try { localStorage.setItem('vertice-planner-ui', JSON.stringify({ boardId: S.boardId, view: S.view, swim: S.swim, bi: S.bi, tl: S.tl, saved: S.saved })); } catch (e) {} }
+
+/* ---------- normalize ---------- */
+function normBoard(d, id) {
+  const b = Object.assign({ name: 'Quadro', key: 'QDR', archived: false, othersRole: 'view', members: {}, statuses: [], priorities: [], labels: [], team: [], lists: [], sprints: [] }, d, { id: id || d.id });
+  b.lists = (b.lists || []).map(l => Object.assign({ wip: 0, dod: '', status: '', archived: false }, l));
+  b.sprints = (b.sprints || []).map(s => Object.assign({}, s)); b.labels = (b.labels || []).slice(); b.team = (b.team || []).slice(); b.members = Object.assign({}, b.members || {});
+  return b;
+}
+function normCard(d, id) {
+  return Object.assign({ type: 'task', parentId: '', color: 0, title: '', description: '', assignee: '', priority: '', due: '', start: '', labels: [], estimate: 0, spent: 0, points: 0, sprintId: '', status: '', blocked: false, blockReason: '', deps: [], links: [], checklist: [], worklog: [], comments: [], attachments: [], history: [], archived: false, completedAt: '' }, d, { id: id || d.id });
+}
+
+/* ---------- dates ---------- */
+function today0() { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+function parseYMD(s) { if (!s) return null; const [y, m, d] = String(s).slice(0, 10).split('-').map(Number); return y ? new Date(y, m - 1, d) : null; }
+function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function isoDay(iso) { return iso ? ymd(new Date(iso)) : ''; }
+function fmtD(s) { const d = parseYMD(s); if (!d) return ''; const y = d.getFullYear() !== new Date().getFullYear(); return d.toLocaleDateString('pt-BR', y ? { day: '2-digit', month: '2-digit', year: '2-digit' } : { day: '2-digit', month: 'short' }).replace('.', ''); }
+function fmtDT(iso) { if (!iso) return ''; const d = new Date(iso); return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
+function daysUntil(s) { const d = parseYMD(s); return d ? Math.round((d - today0()) / DAY) : null; }
+function fmtNum(n, dec) { const p = Math.pow(10, dec || 0); return (Math.round(n * p) / p).toLocaleString('pt-BR'); }
+const addDays = (d, n) => new Date(d.getTime() + n * DAY);
+
+/* ---------- model helpers ---------- */
+const boardOf = c => S.boards.get(c.boardId);
+const statusOf = (b, id) => (b && b.statuses || []).find(s => s.id === id);
+const prioOf = (b, id) => (b && b.priorities || []).find(p => p.id === id);
+const catOf = c => { const s = statusOf(boardOf(c), c.status); return s ? s.cat : 'todo'; };
+const isDone = c => catOf(c) === 'done';
+function dueState(c) { if (isDone(c) || !c.due) return ''; const n = daysUntil(c.due); return n < 0 ? 'overdue' : n <= 3 ? 'soon' : ''; }
+function cardKey(c) { const b = boardOf(c); return (b ? b.key : '—') + '-' + (c.num || '?'); }
+function epicOf(c) { if (!c || c.type === 'epic') return null; let p = S.cards.get(c.parentId), guard = 0; while (p && p.type !== 'epic' && guard++ < 4) p = S.cards.get(p.parentId); return p && p.type === 'epic' && !p.archived ? p : null; }
+const sprintOf = c => { const b = boardOf(c); return b && c.sprintId ? (b.sprints || []).find(s => s.id === c.sprintId) : null; };
+const activeSprint = b => (b && b.sprints || []).find(s => s.state === 'active');
+const childrenOf = id => [...S.cards.values()].filter(x => x.parentId === id && !x.archived && x.type !== 'epic');
+function lastTouch(c) { let t = c.createdAt || ''; (c.history || []).forEach(h => { if (h.at > t) t = h.at; }); return t; }
+function idleDays(c) { const t = lastTouch(c); return t ? Math.floor((Date.now() - new Date(t)) / DAY) : 0; }
+function roleFor(b) {
+  if (!b) return 'none';
+  if (S.mode !== 'db' || S.isOwner) return 'admin';
+  if (S.me && b.createdBy === S.me) return 'admin';
+  const r = S.me && b.members && b.members[S.me];
+  return r || b.othersRole || 'view';
+}
+const can = (b, need) => ROLE_RANK[roleFor(b)] >= ROLE_RANK[need] && (need === 'view' || S.canWrite);
+const visibleBoards = () => [...S.boards.values()].filter(b => roleFor(b) !== 'none').sort((a, z) => (a.createdAt || '') < (z.createdAt || '') ? -1 : 1);
+const curBoard = () => S.boards.get(S.boardId);
+function nameOf(id) { if (!id) return 'Alguém'; if (id === 'exemplo') return 'Exemplo'; if (id === 'local') return 'Você'; if (id === S.me) return S.names[id] || 'Você'; return S.names[id] || 'Alguém'; }
+const myId = () => S.mode === 'db' ? (S.me || 'anon') : 'local';
+function initials(n) { const p = String(n || '').trim().split(/\s+/); return (((p[0] || '')[0] || '') + ((p[1] || '')[0] || '')).toUpperCase(); }
+function makeKey(name) { const w = String(name || 'Q').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); const k = w.length > 1 ? w.slice(0, 3).map(x => x[0]).join('') : (w[0] || 'QDR').slice(0, 3); return k.padEnd(3, 'X'); }
+function defaultBoard(name, key) {
+  return normBoard({
+    id: uid('b-'), name, key: key || makeKey(name), createdAt: nowISO(), createdBy: myId(), othersRole: 'view', members: {},
+    statuses: [{ id: uid('st-'), name: 'A fazer', color: 1, cat: 'todo' }, { id: uid('st-'), name: 'Em andamento', color: 2, cat: 'doing' }, { id: uid('st-'), name: 'Concluído', color: 6, cat: 'done' }],
+    priorities: [{ id: uid('pr-'), name: 'Alta', color: 8, icon: 'up2' }, { id: uid('pr-'), name: 'Média', color: 4, icon: 'mid' }, { id: uid('pr-'), name: 'Baixa', color: 1, icon: 'down1' }],
+    labels: [], team: [], lists: [], sprints: []
+  });
+}
+
+/* ---------- storage ---------- */
+const pend = {}, running = {};
+function put(col, obj) {
+  (col === 'boards' ? S.boards : S.cards).set(obj.id, obj);
+  scheduleRender();
+  if (S.mode === 'local') { persistLocal(); return; }
+  if (S.mode !== 'db') return;
+  const key = col + '/' + obj.id;
+  pend[key] = obj;
+  if (!running[key]) flush(col, key);
+}
+async function flush(col, key) {
+  running[key] = true;
+  while (pend[key]) {
+    const o = pend[key]; delete pend[key];
+    try { await S.db.collection(col).doc(o.id).set(o); }
+    catch (e) {
+      let err = e;
+      if (e && e.code === 'unavailable') { await new Promise(r => setTimeout(r, 600 + Math.random() * 800)); try { await S.db.collection(col).doc(o.id).set(o); continue; } catch (e2) { err = e2; } }
+      toast(writeError(err));
+    }
+  }
+  running[key] = false;
+}
+function writeError(e) {
+  const c = e && e.code;
+  if (c === 'quota_exceeded') return 'O espaço de dados do planner está cheio. Arquive ou remova itens antigos para continuar.';
+  if (c === 'revoked' || c === 'not_granted') return 'Seu acesso para editar mudou. Recarregue para ver a versão atual.';
+  if (c === 'invalid_argument') return 'Não foi possível salvar: o cartão ficou grande demais. Reduza a descrição ou os comentários.';
+  return 'Não foi possível salvar agora. Tente de novo em instantes.';
+}
+function persistLocal() { try { localStorage.setItem('vertice-planner-local-v2', JSON.stringify({ boards: [...S.boards.values()], cards: [...S.cards.values()] })); } catch (e) {} }
+function startLocal() {
+  S.mode = 'local';
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem('vertice-planner-local-v2') || 'null'); } catch (e) {}
+  if (!data || !data.boards) data = buildSample(new Date());
+  data.boards.forEach(b => S.boards.set(b.id, normBoard(b)));
+  data.cards.forEach(c => S.cards.set(c.id, normCard(c)));
+  S.loaded = { b: true, c: true };
+  pickBoard(); render();
+}
+async function boot() {
+  render();
+  const cl = window.claude;
+  if (!cl || typeof cl.use !== 'function') { startLocal(); return; }
+  let db = null, user = null, assets = null, downloads = null;
+  try { [db, user, assets, downloads] = await Promise.all([cl.use('db'), cl.use('user'), cl.use('assets'), cl.use('downloads')]); } catch (e) {}
+  if (!db) { startLocal(); return; }
+  Object.assign(S, { mode: 'db', db, user, assets, downloads });
+  if (user) {
+    try { S.me = await user.id(); } catch (e) {}
+    try { S.isOwner = !!(await user.isOwner()); } catch (e) { S.isOwner = false; }
+    try { const w = await user.can('data.write'); S.canWrite = w !== false; } catch (e) {}
+  } else S.isOwner = false;
+  const timer = setTimeout(() => { if (!S.loaded.b || !S.loaded.c) { S.stale = true; render(); } }, 10000);
+  const onErr = e => { clearTimeout(timer); S.fatal = e && e.code === 'revoked' ? 'Seu acesso a este planner mudou.' : 'Não foi possível carregar os dados do planner. Recarregue a página para tentar de novo.'; S.loaded = { b: true, c: true }; render(); };
+  const ready = () => { if (S.loaded.b && S.loaded.c) { clearTimeout(timer); S.stale = false; } };
+  db.collection('boards').onSnapshot(snap => {
+    S.boards = new Map(snap.docs.map(d => [d.id, normBoard(d.data(), d.id)]));
+    if (!snap.metadata.fromCache) S.loaded.b = true; ready();
+    pickBoard(); resolveNames(); scheduleRender();
+  }, onErr);
+  db.collection('cards').onSnapshot(snap => {
+    S.cards = new Map(snap.docs.map(d => [d.id, normCard(d.data(), d.id)]));
+    if (!snap.metadata.fromCache) S.loaded.c = true; ready();
+    resolveNames(); scheduleRender();
+  }, onErr);
+}
+async function resolveNames() {
+  if (!S.user) return;
+  const ids = new Set();
+  S.boards.forEach(b => { if (b.createdBy) ids.add(b.createdBy); Object.keys(b.members || {}).forEach(i => ids.add(i)); });
+  S.cards.forEach(c => ['history', 'comments', 'attachments', 'worklog'].forEach(k => (c[k] || []).forEach(h => ids.add(h.by))));
+  if (S.me) ids.add(S.me);
+  const need = [...ids].filter(i => i && i !== 'exemplo' && i !== 'local' && !S.askedNames.has(i));
+  if (!need.length) return;
+  need.forEach(i => S.askedNames.add(i));
+  try { const ps = await S.user.profiles(need); Object.keys(ps || {}).forEach(i => { if (ps[i] && ps[i].name) S.names[i] = ps[i].name; }); scheduleRender(); } catch (e) {}
+}
+function pickBoard() {
+  const vis = visibleBoards().filter(b => !b.archived);
+  const cur = S.boards.get(S.boardId);
+  if (!cur || cur.archived || roleFor(cur) === 'none') S.boardId = vis.length ? vis[0].id : null;
+}
+
+/* ---------- mutations ---------- */
+function histPush(c, field, from, to) { c.history = c.history || []; c.history.push({ at: nowISO(), by: myId(), field, from: String(from == null ? '' : from), to: String(to == null ? '' : to) }); if (c.history.length > 300) c.history = c.history.slice(-300); }
+function applyStatus(c, b, stId, opts) {
+  if (c.status === stId) return;
+  const from = statusOf(b, c.status), to = statusOf(b, stId);
+  histPush(c, 'status', from ? from.name : '', to ? to.name : '');
+  c.status = stId;
+  if (to && to.cat === 'done') { if (!c.completedAt) c.completedAt = nowISO(); } else c.completedAt = '';
+  if (!(opts && opts.keepList) && c.type !== 'epic') {
+    const curList = (b.lists || []).find(l => l.id === c.listId);
+    if (!curList || curList.status !== stId) {
+      const target = (b.lists || []).find(l => !l.archived && l.status === stId);
+      if (target) { c.listId = target.id; c.order = maxOrder(target.id) + 10; }
+    }
+  }
+}
+function maxOrder(listId) { let m = 0; S.cards.forEach(c => { if (c.listId === listId && !c.archived && c.order > m) m = c.order; }); return m; }
+function nextNum(boardId) { let m = 0; S.cards.forEach(c => { if (c.boardId === boardId && (c.num || 0) > m && (c.num || 0) < 100000) m = c.num; }); return m + 1; }
+function firstList(b) { return (b.lists || []).filter(l => !l.archived).sort((a, z) => a.order - z.order)[0]; }
+function createCard(b, listId, title, extra) {
+  listId = listId || (firstList(b) || {}).id || '';
+  const list = (b.lists || []).find(l => l.id === listId);
+  const st = (list && list.status) || ((b.statuses.find(s => s.cat === 'todo') || b.statuses[0] || {}).id) || '';
+  const c = normCard({ id: uid('c-'), boardId: b.id, listId, order: maxOrder(listId) + 10, num: nextNum(b.id), title, priority: (b.priorities[Math.floor(b.priorities.length / 2)] || {}).id || '', status: st, createdAt: nowISO(), createdBy: myId() });
+  Object.assign(c, extra || {});
+  const s = statusOf(b, c.status);
+  c.history = [{ at: c.createdAt, by: myId(), field: 'created', from: '', to: s ? s.name : '' }];
+  if (s && s.cat === 'done') c.completedAt = c.createdAt;
+  put('cards', c);
+  return c;
+}
+const LANE_FIELD = { assignee: 'assignee', priority: 'priority', epic: 'parentId', type: 'type' };
+function moveCard(id, listId, beforeId, lane) {
+  const c = clone(S.cards.get(id)); const b = boardOf(c);
+  if (!b || !can(b, 'edit')) return;
+  const sibs = [...S.cards.values()].filter(x => x.listId === listId && !x.archived && x.id !== id).sort((a, z) => a.order - z.order);
+  let idx = beforeId ? sibs.findIndex(x => x.id === beforeId) : sibs.length; if (idx < 0) idx = sibs.length;
+  const prev = sibs[idx - 1], next = sibs[idx];
+  c.order = prev && next ? (prev.order + next.order) / 2 : prev ? prev.order + 10 : next ? next.order - 10 : 10;
+  if (c.listId !== listId) {
+    const fromL = b.lists.find(l => l.id === c.listId), toL = b.lists.find(l => l.id === listId);
+    c.listId = listId;
+    if (toL && toL.status && toL.status !== c.status) applyStatus(c, b, toL.status, { keepList: true });
+    else if (fromL && toL) histPush(c, 'list', fromL.name, toL.name);
+  }
+  if (lane && LANE_FIELD[lane.by] && !(lane.by === 'epic' && c.type === 'subtask')) {
+    const f = LANE_FIELD[lane.by], v = lane.val === '__none' ? '' : lane.val;
+    if (c[f] !== v) {
+      if (f === 'assignee') histPush(c, 'assignee', c.assignee || 'Sem responsável', v || 'Sem responsável');
+      if (f === 'priority') histPush(c, 'priority', (prioOf(b, c.priority) || {}).name, (prioOf(b, v) || {}).name);
+      if (f === 'parentId') histPush(c, 'parent', (S.cards.get(c.parentId) || {}).title || 'Sem épico', (S.cards.get(v) || {}).title || 'Sem épico');
+      if (f === 'type') histPush(c, 'type', TYPES[c.type].name, TYPES[v].name);
+      c[f] = v;
+    }
+  }
+  put('cards', c);
+}
+function setCardField(id, f, v) {
+  const c = clone(S.cards.get(id)); const b = boardOf(c);
+  if (!b || !can(b, 'edit')) return;
+  S.cardErr = {};
+  if (f === 'title') { v = String(v).trim(); if (!v) { S.cardErr.title = 'O título é obrigatório.'; renderDrawer(true); return; } c.title = v; }
+  else if (f === 'status') applyStatus(c, b, v);
+  else if (f === 'listId') { moveCard(id, v, null); return; }
+  else if (f === 'assignee') { if (c.assignee === v) return; histPush(c, 'assignee', c.assignee || 'Sem responsável', v || 'Sem responsável'); c.assignee = v; }
+  else if (f === 'priority') { if (c.priority === v) return; histPush(c, 'priority', (prioOf(b, c.priority) || {}).name, (prioOf(b, v) || {}).name); c.priority = v; }
+  else if (f === 'due') { if (c.due === v) return; if (v && c.start && v < c.start) { S.cardErr.due = 'O prazo não pode ser antes do início.'; renderDrawer(true); return; } histPush(c, 'due', c.due ? fmtD(c.due) : 'Sem prazo', v ? fmtD(v) : 'Sem prazo'); c.due = v; }
+  else if (f === 'start') { if (v && c.due && v > c.due) { S.cardErr.due = 'O início não pode ser depois do prazo.'; renderDrawer(true); return; } c.start = v; }
+  else if (f === 'estimate' || f === 'spent') { const n = Math.max(0, parseFloat(String(v).replace(',', '.')) || 0); c[f] = Math.round(n * 10) / 10; }
+  else if (f === 'points') { const n = Number(v) || 0; if (c.points !== n) histPush(c, 'points', c.points || 0, n); c.points = n; }
+  else if (f === 'blocked') { if (c.blocked === v) return; histPush(c, 'blocked', c.blocked ? 'Sim' : 'Não', v ? 'Sim' : 'Não'); c.blocked = v; if (!v) c.blockReason = ''; }
+  else if (f === 'blockReason') c.blockReason = String(v).trim();
+  else if (f === 'description') c.description = v;
+  else if (f === 'archived') c.archived = v;
+  else if (f === 'type') {
+    if (c.type === v) return;
+    histPush(c, 'type', TYPES[c.type].name, TYPES[v].name); c.type = v;
+    if (v === 'epic') { c.parentId = ''; c.sprintId = ''; if (!c.color) c.color = 7; }
+    if (v !== 'subtask' && c.parentId && (S.cards.get(c.parentId) || {}).type !== 'epic') c.parentId = '';
+    if (v === 'subtask' && c.parentId && (S.cards.get(c.parentId) || {}).type === 'epic') c.parentId = '';
+  }
+  else if (f === 'parentId') { if (c.parentId === v) return; histPush(c, 'parent', (S.cards.get(c.parentId) || {}).title || 'Nenhum', (S.cards.get(v) || {}).title || 'Nenhum'); c.parentId = v; }
+  else if (f === 'sprintId') { if (c.sprintId === v) return; histPush(c, 'sprint', (sprintOf(c) || {}).name || 'Backlog', ((b.sprints || []).find(s => s.id === v) || {}).name || 'Backlog'); c.sprintId = v; }
+  else if (f === 'color') c.color = Number(v);
+  put('cards', c);
+}
+function mutateCard(id, fn) { const o = S.cards.get(id); if (!o || !can(boardOf(o), 'edit')) return; const c = clone(o); fn(c); put('cards', c); }
+function mutateBoard(id, fn, need) { const o = S.boards.get(id); if (!o || !can(o, need || 'admin')) return; const b = clone(o); fn(b); put('boards', b); }
+function duplicateCard(id) {
+  const o = S.cards.get(id); const b = boardOf(o); if (!can(b, 'edit')) return null;
+  const todo = (b.statuses.find(s => s.cat === 'todo') || b.statuses[0] || {}).id;
+  const todoList = (b.lists.find(l => !l.archived && l.status === todo) || {}).id;
+  return createCard(b, o.type === 'epic' ? o.listId : (todoList || null), o.title + ' (cópia)', clone({ type: o.type, parentId: o.parentId, description: o.description, assignee: o.assignee, priority: o.priority, due: o.due, start: o.start, labels: o.labels, estimate: o.estimate, points: o.points, sprintId: o.sprintId, checklist: (o.checklist || []).map(k => Object.assign({}, k, { id: uid('ck-'), done: false })), color: o.color, status: todo || o.status }));
+}
+function sprintPoints(b, sid, onlyDone) { let n = 0; S.cards.forEach(c => { if (c.boardId === b.id && c.sprintId === sid && !c.archived && c.type !== 'epic' && (!onlyDone || isDone(c))) n += c.points || 0; }); return n; }
+
+/* ---------- filters ---------- */
+function passFilters(c, b) {
+  const f = S.filters;
+  if (f.q) { const q = f.q.toLowerCase(); if (!(c.title || '').toLowerCase().includes(q) && !(c.description || '').toLowerCase().includes(q) && !cardKey(c).toLowerCase().includes(q)) return false; }
+  if (f.assignee) { if (f.assignee === '__none') { if (c.assignee) return false; } else if (c.assignee !== f.assignee) return false; }
+  if (f.type && c.type !== f.type) return false;
+  if (f.sprint) { const s = sprintOf(c); if (f.sprint === 'active') { if (!s || s.state !== 'active') return false; } else if (f.sprint === '__none') { if (s) return false; } else if (!s || s.name !== f.sprint) return false; }
+  if (f.priority && (prioOf(b, c.priority) || {}).name !== f.priority) return false;
+  if (f.status && (statusOf(b, c.status) || {}).name !== f.status) return false;
+  if (f.label && !(c.labels || []).some(l => ((b.labels || []).find(x => x.id === l) || {}).name === f.label)) return false;
+  if (f.epic) { const e = c.type === 'epic' ? c : epicOf(c); if (f.epic === '__none') { if (e && c.type !== 'epic') return false; } else if (!e || e.title !== f.epic) return false; }
+  if (f.due) {
+    const ds = dueState(c), n = c.due ? daysUntil(c.due) : null;
+    if (f.due === 'overdue' && ds !== 'overdue') return false;
+    if (f.due === 'soon' && ds !== 'soon') return false;
+    if (f.due === 'week' && (isDone(c) || n == null || n < 0 || n > 7)) return false;
+    if (f.due === 'none' && c.due) return false;
+    if (f.due === 'blocked' && !c.blocked) return false;
+    if (f.due === 'attention' && !(ds || (c.blocked && !isDone(c)))) return false;
+    if (f.due === 'stale' && (isDone(c) || idleDays(c) < 7)) return false;
+    if (f.due === 'open' && isDone(c)) return false;
+  }
+  return true;
+}
+const activeFilterCount = () => Object.values(S.filters).filter(Boolean).length;
+
+/* ---------- icons ---------- */
+const I = {
+  cal: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2 7h12M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.6"/></svg>',
+  clock: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  chat: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 3h11v8H7l-3 2.5V11H2.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  clip: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 4.5l-5 5a1.8 1.8 0 002.5 2.5l5.5-5.5a3 3 0 00-4.2-4.2L3.8 7.8a4.2 4.2 0 006 6l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  link: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.8 2.8 0 014 4l-1 1M9 11.5l-1 1a2.8 2.8 0 01-4-4l1-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  lock: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.8"/></svg>',
+  warn: '<svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l7 12.5H1z" fill="currentColor"/><path d="M8 6v4M8 11.6v.2" stroke="var(--card)" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  check: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 8.2l2 2 4-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  sub: '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 2v8a2 2 0 002 2h6M9.5 9.5L12 12l-2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  more: '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="8" r="1.4" fill="currentColor"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><circle cx="12.5" cy="8" r="1.4" fill="currentColor"/></svg>',
+  x: '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  down: '<svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>',
+  gear: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="2.4" stroke="currentColor" stroke-width="1.6"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  pulse: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 8.5h3l2-5 3 9 2-4h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  star: '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.3l-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="currentColor"/></svg>',
+  board: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="2" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="2" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11.5" y="2" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>',
+  list: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 4h9M5 8h9M5 12h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="2.2" cy="4" r="1" fill="currentColor"/><circle cx="2.2" cy="8" r="1" fill="currentColor"/><circle cx="2.2" cy="12" r="1" fill="currentColor"/></svg>',
+  gantt: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h6M5 8h7M3 12h9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  chart: '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 14h12M4 11V7M8 11V3M12 11V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+function typeIcon(t, size) {
+  const T = TYPES[t] || TYPES.task, z = size || 15, col = sc(T.color);
+  const inner = t === 'epic' ? '<path d="M9 3.5L5.5 9h3l-1 4L11 7.5H8z" fill="#fff"/>'
+    : t === 'story' ? '<path d="M5.5 4h5v8.5L8 10.8l-2.5 1.7z" fill="#fff"/>'
+    : t === 'bug' ? '<circle cx="8" cy="8.5" r="3" fill="#fff"/><path d="M8 5.5v6" stroke="' + col + '" stroke-width="1"/>'
+    : t === 'subtask' ? '<rect x="4" y="4" width="4.5" height="4.5" rx="1" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="7.5" y="7.5" width="4.5" height="4.5" rx="1" fill="#fff"/>'
+    : '<path d="M5 8.2l2 2 4-4.4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+  return `<span class="tico" title="${T.name}"><svg width="${z}" height="${z}" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3.5" fill="${col}"/>${inner}</svg></span>`;
+}
+function prioIcon(p) {
+  if (!p) return '';
+  const col = sc(p.color);
+  const ch = (y, up) => `<path d="${up ? `M3 ${y + 4}l5-4 5 4` : `M3 ${y}l5 4 5-4`}" stroke="${col}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  let body = '';
+  if (p.icon === 'up3') body = ch(1, 1) + ch(5, 1) + ch(9, 1);
+  else if (p.icon === 'up2') body = ch(3, 1) + ch(7, 1);
+  else if (p.icon === 'up1') body = ch(5, 1);
+  else if (p.icon === 'down1') body = ch(6, 0);
+  else if (p.icon === 'down2') body = ch(4, 0) + ch(8, 0);
+  else body = `<path d="M3 6h10M3 10h10" stroke="${col}" stroke-width="2" stroke-linecap="round"/>`;
+  return `<span class="prio" title="Prioridade: ${esc(p.name)}"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">${body}</svg></span>`;
+}
+const PRIO_ICONS = [['up3', 'Máxima'], ['up2', 'Alta'], ['up1', 'Acima da média'], ['mid', 'Média'], ['down1', 'Baixa'], ['down2', 'Mínima']];
+
+/* ---------- render shell ---------- */
+let rq = 0;
+function scheduleRender() { if (rq) return; rq = requestAnimationFrame(() => { rq = 0; render(); }); }
+const VIEWS = [['board', 'Quadro', 'board'], ['backlog', 'Backlog e sprints', 'list'], ['timeline', 'Cronograma', 'gantt'], ['calendar', 'Calendário', 'cal'], ['bi', 'Indicadores', 'chart']];
+function render() {
+  const app = $('#app');
+  if (!app.firstChild) app.innerHTML = '<header class="top"><div class="band"><div class="band-in gut" id="topbar"></div></div><div class="tabbar"><nav class="tabs gut" id="tabs" aria-label="Visões"></nav></div></header><div id="notice"></div><div id="filters"></div><main id="main"></main><footer class="foot gut"><b>{{ORG_NOME}}</b><span>{{ORG_SUBTITULO}}</span></footer><div id="layer"></div>';
+  renderTop(); renderNotice();
+  if (!$('#filters').contains(document.activeElement)) renderFilters();
+  const main = $('#main'), sx = main.querySelector('.wall, .tl');
+  const keep = sx ? sx.scrollLeft : null;
+  main.innerHTML = renderMain();
+  const nx = main.querySelector('.wall, .tl');
+  if (nx) { if (keep != null && sx.className === nx.className) nx.scrollLeft = keep; else if (nx.classList.contains('tl')) nx.scrollLeft = Math.max(0, S.tlToday - 300); }
+  if (S.modal) { if (S.modal.rerender) renderModal(); }
+  else if (S.openCard) renderDrawer();
+}
+function renderTop() {
+  const b = curBoard();
+  $('#topbar').innerHTML = `
+    <div class="brand"><span class="mark">${LOGO}</span><span class="wm"><small>{{ORG_MARCA1}}</small><b>{{ORG_MARCA2}}</b><i>Planner de projetos</i></span></div>
+    <button class="board-btn" data-act="boards-menu" aria-haspopup="true" ${S.mode === 'loading' ? 'disabled' : ''}>
+      ${b ? `<span class="bkey">${esc(b.key)}</span><span class="bname">${esc(b.name)}</span>` : '<span class="bname">Escolher quadro</span>'} ${I.down}
+    </button>
+    <span class="spacer"></span>
+    ${b ? `<button class="btn sm" data-act="activity">${I.pulse} Atividade</button><button class="btn sm" data-act="settings">${I.gear} Configurar</button>` : ''}`;
+  $('#tabs').innerHTML = VIEWS.map(([v, l, ic]) => `<button data-act="view" data-v="${v}" aria-pressed="${S.view === v}">${I[ic]}${l}</button>`).join('');
+}
+function renderNotice() {
+  let h = '';
+  if (S.fatal) h = `<div class="notice err gut">${esc(S.fatal)}</div>`;
+  else if (S.stale) h = `<div class="notice gut">Os dados ainda não chegaram do servidor. O que aparece pode estar desatualizado.</div>`;
+  else if (S.mode === 'local') h = `<div class="notice gut">Modo local: os quadros ficam salvos só neste navegador. Abra o planner publicado para trabalhar em equipe.</div>`;
+  else if (S.mode === 'db' && !S.canWrite) h = `<div class="notice gut">Você tem acesso só para visualizar este planner.</div>`;
+  $('#notice').innerHTML = h;
+}
+function scopeBoards() { const vis = visibleBoards().filter(b => !b.archived); if (S.view !== 'bi' || S.bi.scope === 'current') return [curBoard()].filter(Boolean); if (S.bi.scope === 'all') return vis; return [S.boards.get(S.bi.scope) || curBoard()].filter(Boolean); }
+function filterOptions() {
+  const boards = scopeBoards(); const ids = new Set(boards.map(b => b.id));
+  const set = k => { const s = new Set(); boards.forEach(b => (b[k] || []).forEach(x => s.add(x.name))); return [...s]; };
+  const team = new Set(), epics = new Set(), sprints = new Set();
+  boards.forEach(b => { (b.team || []).forEach(t => team.add(t)); (b.sprints || []).forEach(s => sprints.add(s.name)); });
+  S.cards.forEach(c => { if (!ids.has(c.boardId) || c.archived) return; if (c.assignee) team.add(c.assignee); if (c.type === 'epic') epics.add(c.title); });
+  return { status: set('statuses'), priority: set('priorities'), label: set('labels'), team: [...team].sort((a, z) => a.localeCompare(z, 'pt-BR')), epics: [...epics], sprints: [...sprints] };
+}
+function renderFilters() {
+  const el = $('#filters');
+  if (!curBoard() || S.mode === 'loading') { el.innerHTML = ''; return; }
+  const o = filterOptions(), f = S.filters;
+  const sel = (k, label, opts, extra) => `<label class="f"><span>${label}</span><select id="flt-${k}" data-filter="${k}"><option value="">Todos</option>${extra || ''}${opts.map(v => { const [val, lab] = Array.isArray(v) ? v : [v, v]; return `<option value="${esc(val)}" ${f[k] === val ? 'selected' : ''}>${esc(lab)}</option>`; }).join('')}</select></label>`;
+  const dueOpts = [['open', 'Em aberto'], ['attention', 'Atrasados ou bloqueados'], ['overdue', 'Vencidos'], ['soon', 'Vencem em até 3 dias'], ['week', 'Próximos 7 dias'], ['none', 'Sem prazo'], ['blocked', 'Bloqueados'], ['stale', 'Parados há 7+ dias']];
+  const more = S.moreF || f.priority || f.status || f.label || f.epic;
+  el.innerHTML = `<div class="filters gut" role="search">
+    <label class="f q"><span>Buscar</span><input type="search" id="flt-q" data-filter="q" value="${esc(f.q)}" placeholder="Título, descrição ou código"></label>
+    ${sel('assignee', 'Responsável', o.team, `<option value="__none" ${f.assignee === '__none' ? 'selected' : ''}>Sem responsável</option>`)}
+    ${sel('type', 'Tipo', TYPE_ORDER.map(t => [t, TYPES[t].name]))}
+    ${sel('sprint', 'Sprint', o.sprints, `<option value="active" ${f.sprint === 'active' ? 'selected' : ''}>Sprint ativa</option><option value="__none" ${f.sprint === '__none' ? 'selected' : ''}>Sem sprint (backlog)</option>`)}
+    ${sel('due', 'Prazo e situação', dueOpts)}
+    ${more ? sel('priority', 'Prioridade', o.priority) + sel('status', 'Status', o.status) + sel('label', 'Etiqueta', o.label) + sel('epic', 'Épico', o.epics, `<option value="__none" ${f.epic === '__none' ? 'selected' : ''}>Sem épico</option>`) : `<button class="btn ghost sm" data-act="more-filters">+ Mais filtros</button>`}
+    ${S.view === 'board' ? `<label class="f"><span>Raias</span><select id="swim" data-swim="1"><option value="none">Sem raias</option>${[['assignee', 'Por responsável'], ['epic', 'Por épico'], ['priority', 'Por prioridade'], ['type', 'Por tipo']].map(([v, l]) => `<option value="${v}" ${S.swim === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>` : ''}
+    <button class="btn sm" data-act="saved-menu">${I.star} Visões salvas</button>
+    ${activeFilterCount() ? `<span class="active-n">${activeFilterCount()} filtro${activeFilterCount() > 1 ? 's' : ''}</span><button class="btn ghost sm" data-act="clear-filters">Limpar</button>` : ''}
+  </div>`;
+}
+function renderMain() {
+  if (S.mode === 'loading' || (S.mode === 'db' && (!S.loaded.b || !S.loaded.c) && !S.boards.size)) {
+    return `<div class="empty gut"><span class="eyebrow">Carregando</span><h2>Buscando seus quadros</h2><p>Quadros, sprints e cartões aparecem aqui assim que os dados chegarem.</p></div>`;
+  }
+  const b = curBoard();
+  if (!b) {
+    const canCreate = S.mode !== 'db' || S.canWrite;
+    return `<div class="empty gut"><span class="eyebrow">Nenhum quadro</span><h2>Comece pelo primeiro quadro</h2><p>Um quadro reúne listas, cartões e sprints de um projeto. Depois você configura status, prioridades e quem tem acesso.</p>${canCreate ? '<button class="btn primary" data-act="new-board">Criar quadro</button>' : ''}</div>`;
+  }
+  if (S.view === 'bi') return renderBI();
+  if (S.view === 'backlog') return renderBacklog(b);
+  if (S.view === 'timeline') return renderTimeline(b);
+  if (S.view === 'calendar') return renderCalendar(b);
+  return renderBoard(b);
+}
+
+/* ---------- board view ---------- */
+function laneDefs(b, cards) {
+  const by = S.swim;
+  if (by === 'assignee') { const s = new Set([...(b.team || [])]); cards.forEach(c => c.assignee && s.add(c.assignee)); return [...[...s].map(n => ({ val: n, name: n })), { val: '__none', name: 'Sem responsável' }]; }
+  if (by === 'priority') return b.priorities.map(p => ({ val: p.id, name: p.name, icon: prioIcon(p) })).concat([{ val: '__none', name: 'Sem prioridade' }]);
+  if (by === 'type') return TYPE_ORDER.filter(t => t !== 'epic').map(t => ({ val: t, name: TYPES[t].name, icon: typeIcon(t) }));
+  if (by === 'epic') return [...S.cards.values()].filter(c => c.boardId === b.id && c.type === 'epic' && !c.archived).map(e => ({ val: e.id, name: e.title, color: e.color || 7 })).concat([{ val: '__none', name: 'Sem épico' }]);
+  return null;
+}
+function laneOf(c) {
+  const by = S.swim;
+  if (by === 'assignee') return c.assignee || '__none';
+  if (by === 'priority') return c.priority || '__none';
+  if (by === 'type') return c.type;
+  if (by === 'epic') { const e = epicOf(c); return e ? e.id : '__none'; }
+  return '';
+}
+function renderBoard(b) {
+  const edit = can(b, 'edit');
+  const lists = (b.lists || []).filter(l => !l.archived).sort((a, z) => a.order - z.order);
+  const all = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && c.type !== 'epic');
+  const shown = all.filter(c => passFilters(c, b));
+  const wipCount = {}; all.forEach(c => { wipCount[c.listId] = (wipCount[c.listId] || 0) + 1; });
+  const sp = activeSprint(b);
+  let ribbon = '';
+  if (sp) { const tot = sprintPoints(b, sp.id), done = sprintPoints(b, sp.id, true); const left = daysUntil(sp.end); ribbon = `<div class="ribbon gut"><div class="sp"><span class="state active">Sprint ativa</span><b>${esc(sp.name)}</b>${sp.goal ? `<span class="hint">${esc(sp.goal)}</span>` : ''}<span class="hint">${fmtD(sp.start)} a ${fmtD(sp.end)} · ${left < 0 ? `terminou há ${-left} dia(s)` : left === 0 ? 'termina hoje' : `faltam ${left} dia(s)`}</span><span class="prog" title="${done} de ${tot} pontos concluídos"><i style="width:${tot ? (done / tot) * 100 : 0}%"></i></span><span class="mono hint">${done}/${tot} pts</span><button class="btn ghost sm" data-act="filter-active">${S.filters.sprint === 'active' ? 'Mostrar tudo' : 'Só a sprint'}</button></div></div>`; }
+  const lanes = laneDefs(b, shown);
+  const listCol = (l, cs, lane, showHead) => {
+    const st = statusOf(b, l.status), n = wipCount[l.id] || 0, over = l.wip && n > l.wip;
+    const addKey = l.id + '|' + (lane ? lane.val : '');
+    const adding = S.adding && S.adding.type === 'card' && S.adding.key === addKey;
+    return `<section class="list ${over ? 'overwip' : ''}" data-list="${l.id}" aria-label="${esc(l.name)}">
+      <div class="list-h"><h3>${esc(l.name)}</h3><span class="count ${over ? 'over' : ''}" title="${l.wip ? 'Cartões na lista / limite de WIP' : 'Cartões na lista'}">${lane ? cs.length + ' de ' : ''}${n}${l.wip ? '/' + l.wip : ''}</span>${edit && showHead ? `<button class="iconbtn" data-act="list-menu" data-id="${l.id}" aria-label="Opções da lista ${esc(l.name)}">${I.more}</button>` : ''}</div>
+      ${showHead && (st || l.dod || over) ? `<div class="list-sub">${st ? `<span><i class="dot" style="background:${sc(st.color)}"></i>Ao entrar: ${esc(st.name)}</span>` : ''}${l.dod ? `<span data-tip="Pronto quando: ${esc(l.dod)}">${I.check} Definição de pronto</span>` : ''}${over ? `<span class="wipwarn">${I.warn} Limite de WIP excedido</span>` : ''}</div>` : ''}
+      <div class="list-body" data-drop="${l.id}" ${lane ? `data-lane="${esc(lane.val)}"` : ''}>${cs.map(c => cardTile(c, b, edit)).join('') || (activeFilterCount() && !lane ? '<div class="empty-list">Nenhum cartão com estes filtros.</div>' : '')}</div>
+      ${edit ? (adding ? `<form class="inline-add" data-form="add-card" data-list="${l.id}" data-lane="${esc(lane ? lane.val : '')}"><textarea id="new-card" rows="2" placeholder="Título do cartão" required></textarea><div class="row"><button class="btn primary sm">Adicionar cartão</button><button type="button" class="btn ghost sm" data-act="cancel-add">Cancelar</button></div></form>` : `<button class="add-card" data-act="add-card" data-key="${esc(addKey)}">+ Adicionar cartão</button>`) : ''}
+    </section>`;
+  };
+  const sortCs = cs => cs.sort((a, z) => a.order - z.order);
+  let body;
+  if (!lanes) {
+    const by = {}; shown.forEach(c => (by[c.listId] = by[c.listId] || []).push(c));
+    const addingList = S.adding && S.adding.type === 'list';
+    const newList = edit ? (addingList ? `<form class="list inline-add" style="padding:10px 0 0" data-form="add-list"><input id="new-list" placeholder="Nome da lista" required><div class="row"><button class="btn primary sm">Adicionar lista</button><button type="button" class="btn ghost sm" data-act="cancel-add">Cancelar</button></div></form>` : `<button class="new-list" data-act="add-list">+ Adicionar lista</button>`) : '';
+    body = `<div class="lists">${lists.map(l => listCol(l, sortCs(by[l.id] || []), null, true)).join('')}${newList}</div>`;
+  } else {
+    let first = true;
+    body = lanes.map(ln => {
+      const cs = shown.filter(c => laneOf(c) === ln.val);
+      if (!cs.length && (ln.val === '__none' || activeFilterCount())) return '';
+      const by = {}; cs.forEach(c => (by[c.listId] = by[c.listId] || []).push(c));
+      const h = `<div class="lane"><div class="lane-h">${ln.icon || (ln.color ? `<i class="dot" style="background:${sc(ln.color)}"></i>` : S.swim === 'assignee' && ln.val !== '__none' ? `<span class="avatar">${esc(initials(ln.name))}</span>` : '')}<h3>${esc(ln.name)}</h3><span class="n">${cs.length}</span></div><div class="lists">${lists.map(l => listCol(l, sortCs(by[l.id] || []), ln, first)).join('')}</div></div>`;
+      first = false; return h;
+    }).join('') || '<div class="nodata">Nenhum cartão com estes filtros.</div>';
+  }
+  return `${edit ? '' : `<div class="gut" style="padding-top:12px"><div class="ro-banner">Você pode visualizar este quadro, mas não editar.</div></div>`}${ribbon}<div class="wall gut">${body}</div>`;
+}
+function cardTile(c, b, edit) {
+  const ds = dueState(c), done = isDone(c), st = statusOf(b, c.status), p = prioOf(b, c.priority), ep = epicOf(c), par = c.type === 'subtask' ? S.cards.get(c.parentId) : null;
+  const labels = (c.labels || []).map(id => (b.labels || []).find(l => l.id === id)).filter(Boolean);
+  const ck = c.checklist || [], ckDone = ck.filter(x => x.done).length;
+  const subs = c.type !== 'subtask' ? childrenOf(c.id) : [];
+  const idle = done ? 0 : idleDays(c);
+  const dueTxt = ds === 'overdue' ? `${I.warn} Venceu ${fmtD(c.due)}` : ds === 'soon' ? `${I.clock} ${daysUntil(c.due) === 0 ? 'Vence hoje' : 'Vence ' + fmtD(c.due)}` : `${I.cal} ${fmtD(c.due)}`;
+  const nl = (c.deps || []).length + (c.links || []).length;
+  return `<article class="card ${ds} ${c.blocked ? 'blocked' : ''}" data-card="${c.id}" ${edit ? 'draggable="true"' : ''} tabindex="0" aria-label="${esc(cardKey(c) + ' ' + c.title)}">
+    ${c.blocked ? '<div class="hazard" aria-hidden="true"></div>' : ''}
+    <div class="c-top">${typeIcon(c.type)}${prioIcon(p)}<span class="key">${esc(cardKey(c))}</span>${st ? `<span class="pill" style="margin-left:auto"><i class="dot" style="background:${sc(st.color)}"></i>${esc(st.name)}</span>` : ''}</div>
+    ${ep && S.swim !== 'epic' ? `<span class="epic-chip"><i style="background:${sc(ep.color || 7)}"></i>${esc(ep.title)}</span>` : ''}
+    ${par ? `<span class="epic-chip">${I.sub} ${esc(cardKey(par))} · ${esc(par.title)}</span>` : ''}
+    <h4>${esc(c.title)}</h4>
+    ${labels.length ? `<div class="chips">${labels.map(l => `<span class="lbl"><i class="dot" style="background:${sc(l.color)}"></i>${esc(l.name)}</span>`).join('')}</div>` : ''}
+    <div class="c-meta">
+      ${c.blocked ? `<span class="blk">${I.lock} Bloqueado</span>` : ''}
+      ${c.due ? `<span class="due ${done ? 'done' : ds}">${done ? I.cal + ' ' + fmtD(c.due) : dueTxt}</span>` : ''}
+      ${ck.length ? `<span class="m" title="Checklist">${I.check}${ckDone}/${ck.length}</span>` : ''}
+      ${subs.length ? `<span class="m" title="Subtarefas concluídas">${I.sub}${subs.filter(isDone).length}/${subs.length}</span>` : ''}
+      ${c.estimate ? `<span class="m mono" title="Horas realizadas / estimadas">${c.spent ? fmtNum(c.spent, 1) + '/' : ''}${fmtNum(c.estimate, 1)}h</span>` : ''}
+      ${(c.comments || []).length ? `<span class="m" title="Comentários">${I.chat}${c.comments.length}</span>` : ''}
+      ${(c.attachments || []).length ? `<span class="m" title="Anexos">${I.clip}${c.attachments.length}</span>` : ''}
+      ${nl ? `<span class="m" title="Vínculos">${I.link}${nl}</span>` : ''}
+      ${idle >= 7 ? `<span class="aging ${idle >= 14 ? 'old' : ''}" title="Sem movimentação">parado há ${idle}d</span>` : ''}
+      <span style="margin-left:auto;display:inline-flex;gap:6px;align-items:center">${c.points ? `<span class="pts" title="Pontos">${c.points}</span>` : ''}${c.assignee ? `<span class="avatar" title="${esc(c.assignee)}">${esc(initials(c.assignee))}</span>` : ''}</span>
+    </div>
+  </article>`;
+}
+
+/* ---------- backlog & sprints ---------- */
+function renderBacklog(b) {
+  const edit = can(b, 'edit');
+  const cards = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived);
+  const epics = cards.filter(c => c.type === 'epic');
+  const work = cards.filter(c => c.type !== 'epic' && passFilters(c, b));
+  const sprints = (b.sprints || []).filter(s => s.state !== 'closed').sort((a, z) => ((a.state === 'active' ? 0 : 1) - (z.state === 'active' ? 0 : 1)) || ((a.start || '') < (z.start || '') ? -1 : 1));
+  const closed = (b.sprints || []).filter(s => s.state === 'closed').sort((a, z) => (z.end || '') < (a.end || '') ? -1 : 1);
+  const openIds = new Set(sprints.map(s => s.id));
+  const spOpts = cur => `<option value="">Backlog</option>${sprints.map(s => `<option value="${s.id}" ${cur === s.id ? 'selected' : ''}>${esc(s.name)}</option>`).join('')}`;
+  const row = c => {
+    const st = statusOf(b, c.status), p = prioOf(b, c.priority), ep = epicOf(c), ds = dueState(c);
+    return `<div class="bk-row ${isDone(c) ? 'done' : ''}" data-act="open-card" data-id="${c.id}" tabindex="0" ${edit ? `draggable="true" data-bkcard="${c.id}"` : ''}>
+      ${typeIcon(c.type)}<span class="mono hint c-key">${esc(cardKey(c))}</span>
+      <span class="tt"><b>${esc(c.title)}</b>${ep ? `<span class="epic-chip"><i style="background:${sc(ep.color || 7)}"></i>${esc(ep.title)}</span>` : ''}</span>
+      <span class="c-st">${st ? `<span class="pill"><i class="dot" style="background:${sc(st.color)}"></i>${esc(st.name)}</span>` : ''}${c.blocked ? ` <span class="blk">${I.lock}</span>` : ''}</span>
+      <span>${c.assignee ? `<span class="avatar" title="${esc(c.assignee)}">${esc(initials(c.assignee))}</span>` : ''}</span>
+      <span class="c-pr">${prioIcon(p)}</span>
+      <span>${c.points ? `<span class="pts">${c.points}</span>` : '<span class="hint">—</span>'}</span>
+      <span class="c-due">${c.due ? `<span class="due ${isDone(c) ? 'done' : ds}">${fmtD(c.due)}</span>` : ''}</span>
+      <span class="c-sp">${edit ? `<select class="field" id="bs-${c.id}" data-bksprint="${c.id}" aria-label="Mover para sprint">${spOpts(openIds.has(c.sprintId) ? c.sprintId : '')}</select>` : esc((sprintOf(c) || {}).name || 'Backlog')}</span>
+    </div>`;
+  };
+  const sprintSec = s => {
+    const cs = work.filter(c => c.sprintId === s.id).sort((a, z) => (isDone(a) ? 1 : 0) - (isDone(z) ? 1 : 0) || a.order - z.order);
+    const tot = sprintPoints(b, s.id), done = sprintPoints(b, s.id, true);
+    const left = daysUntil(s.end);
+    return `<section class="bk-sec ${s.state}" data-sprint-drop="${s.id}">
+      <div class="bk-h"><h3>${esc(s.name)}</h3><span class="state ${s.state}">${s.state === 'active' ? 'Ativa' : 'Planejada'}</span>
+        <span class="meta">${s.start ? fmtD(s.start) : '?'} a ${s.end ? fmtD(s.end) : '?'}${s.state === 'active' && left != null ? ` · ${left < 0 ? 'passou ' + (-left) + 'd do fim' : 'faltam ' + left + 'd'}` : ''} · ${cs.length} itens · <span class="mono">${done}/${tot} pts</span></span>
+        <span class="spacer"></span>
+        ${edit ? `<button class="btn ghost sm" data-act="edit-sprint" data-id="${s.id}">Editar</button>${s.state === 'active' ? `<button class="btn teal sm" data-act="complete-sprint" data-id="${s.id}">Concluir sprint</button>` : `<button class="btn sm" data-act="start-sprint" data-id="${s.id}">Iniciar sprint</button>`}` : ''}
+      </div>
+      ${s.goal ? `<div class="goal"><b>Meta:</b> ${esc(s.goal)}</div>` : ''}
+      <div class="bk-rows">${cs.map(row).join('') || '<div class="hint" style="padding:10px 14px">Arraste itens do backlog para cá ou use o seletor de sprint em cada linha.</div>'}</div>
+    </section>`;
+  };
+  const backlog = work.filter(c => !openIds.has(c.sprintId) && !(c.sprintId && isDone(c))).sort((a, z) => (isDone(a) ? 1 : 0) - (isDone(z) ? 1 : 0) || a.order - z.order);
+  const epicCard = e => {
+    const kids = cards.filter(c => c.type !== 'epic' && (epicOf(c) || {}).id === e.id);
+    const dn = kids.filter(isDone).length, pts = kids.reduce((a, c) => a + (c.points || 0), 0), ptsD = kids.filter(isDone).reduce((a, c) => a + (c.points || 0), 0);
+    const st = statusOf(b, e.status);
+    return `<div class="epic" data-act="open-card" data-id="${e.id}" tabindex="0"><span class="top-line" style="background:${sc(e.color || 7)}"></span>
+      <div class="row" style="gap:6px">${typeIcon('epic')}<span class="mono hint">${esc(cardKey(e))}</span>${st ? `<span class="pill" style="margin-left:auto">${esc(st.name)}</span>` : ''}</div>
+      <b>${esc(e.title)}</b>
+      <span class="prog"><i style="width:${kids.length ? (dn / kids.length) * 100 : 0}%;background:${sc(e.color || 7)}"></i></span>
+      <span class="hint">${dn}/${kids.length} itens · ${ptsD}/${pts} pts${e.due ? ' · até ' + fmtD(e.due) : ''}</span>
+    </div>`;
+  };
+  return `<div class="bk gut">
+    <div class="sec"><div class="sec-h"><h3>Épicos</h3><span class="n">${epics.length}</span><span class="spacer"></span>${edit ? '<button class="btn sm" data-act="new-epic">+ Épico</button>' : ''}</div>
+      ${epics.length ? `<div class="epics">${epics.map(epicCard).join('')}</div>` : '<span class="hint">Épicos agrupam histórias e tarefas de uma mesma entrega. Crie o primeiro para organizar o roadmap.</span>'}</div>
+    <div class="row"><span class="eyebrow">Sprints</span><span class="spacer"></span>${edit ? '<button class="btn sm" data-act="new-sprint">+ Criar sprint</button>' : ''}<button class="btn sm" data-act="export-csv">Exportar CSV</button></div>
+    ${sprints.map(sprintSec).join('') || '<div class="hint">Nenhuma sprint planejada. Sprints são ciclos curtos (geralmente 2 semanas) com uma meta e um conjunto de itens.</div>'}
+    <section class="bk-sec" data-sprint-drop="">
+      <div class="bk-h"><h3>Backlog</h3><span class="meta">${backlog.length} itens · <span class="mono">${backlog.reduce((a, c) => a + (c.points || 0), 0)} pts</span></span></div>
+      <div class="bk-rows">${backlog.map(row).join('') || '<div class="hint" style="padding:10px 14px">Backlog vazio.</div>'}</div>
+      ${edit ? `<form class="bk-foot" data-form="bk-add"><select class="field" id="bk-type" aria-label="Tipo">${['story', 'task', 'bug'].map(t => `<option value="${t}">${TYPES[t].name}</option>`).join('')}</select><input class="field" id="bk-title" placeholder="Novo item do backlog" required><button class="btn primary sm">Adicionar</button></form>` : ''}
+    </section>
+    ${closed.length ? `<details class="tv"><summary>Sprints concluídas (${closed.length})</summary><div class="tbl-wrap"><table class="t"><thead><tr><th>Sprint</th><th>Período</th><th>Meta</th><th class="num">Compromisso</th><th class="num">Entregue</th></tr></thead><tbody>${closed.map(s => `<tr><td>${esc(s.name)}</td><td class="mono">${fmtD(s.start)} a ${fmtD(s.end)}</td><td>${esc(s.goal || '—')}</td><td class="num">${s.committed || 0} pts</td><td class="num">${s.completedPts || 0} pts</td></tr>`).join('')}</tbody></table></div></details>` : ''}
+  </div>`;
+}
+
+/* ---------- timeline ---------- */
+function renderTimeline(b) {
+  const cards = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && c.type !== 'subtask' && (c.type === 'epic' || passFilters(c, b)));
+  const span = c => { const s = parseYMD(c.start) || parseYMD(isoDay(c.createdAt)); const e = parseYMD(c.due) || (c.completedAt ? parseYMD(isoDay(c.completedAt)) : null) || s; return s && e ? [s <= e ? s : e, e >= s ? e : s] : null; };
+  const epics = cards.filter(c => c.type === 'epic');
+  const kidsOf = e => cards.filter(c => c.type !== 'epic' && (epicOf(c) || {}).id === e.id);
+  const loose = cards.filter(c => c.type !== 'epic' && !epicOf(c));
+  const t0 = today0();
+  let from = addDays(t0, -14), to = addDays(t0, 30);
+  cards.map(span).filter(Boolean).forEach(([s, e]) => { if (s < from) from = s; if (e > to) to = e; });
+  from = addDays(from, -3); to = addDays(to, 5);
+  from = addDays(from, -((from.getDay() + 6) % 7));
+  const days = Math.min(540, Math.round((to - from) / DAY) + 1);
+  const px = S.tl.zoom === 'month' ? 8 : 26;
+  const W = days * px;
+  const x = d => Math.round((d - from) / DAY) * px;
+  const todayX = x(t0); S.tlToday = todayX;
+  const gridBg = S.tl.zoom === 'month' ? '' : `background-image: repeating-linear-gradient(90deg, transparent 0 ${7 * px - 1}px, var(--grid) ${7 * px - 1}px ${7 * px}px);`;
+  let head = '';
+  for (let i = 0; i < days; i++) {
+    const d = addDays(from, i);
+    if (d.getDate() === 1 || i === 0) head += `<span class="tl-mon" style="left:${i * px}px">${(s => s.charAt(0).toUpperCase() + s.slice(1))(d.toLocaleDateString('pt-BR', { month: S.tl.zoom === 'month' ? 'short' : 'long', year: 'numeric' }).replace('.', ''))}</span>`;
+    if (S.tl.zoom === 'week' && d.getDay() === 1) head += `<span class="tl-day" style="left:${i * px + 3}px">${d.getDate()}</span>`;
+  }
+  const bar = (c, isEpic) => {
+    const sp = span(c); if (!sp) return '';
+    const st = statusOf(b, c.status); const left = x(sp[0]), w = Math.max(px, x(sp[1]) - left + px);
+    let fill = 0;
+    if (isEpic) { const kids = kidsOf(c); fill = kids.length ? kids.filter(isDone).length / kids.length : 0; }
+    const col = isEpic ? sc(c.color || 7) : st ? sc(st.color) : 'var(--s1)';
+    const tip = `${cardKey(c)} · ${c.title}\n${sp[0].toLocaleDateString('pt-BR')} → ${sp[1].toLocaleDateString('pt-BR')}${c.assignee ? '\n' + c.assignee : ''}${st ? '\n' + st.name : ''}${isEpic ? '\n' + Math.round(fill * 100) + '% dos itens concluídos' : ''}`;
+    return `<div class="tl-bar ${isEpic ? 'epicbar' : ''} ${dueState(c)} ${isDone(c) ? 'done' : ''}" style="left:${left}px;width:${w}px;background:${col}" data-act="open-card" data-id="${c.id}" data-tip="${esc(tip)}">${isEpic ? `<i class="fill" style="width:${fill * 100}%"></i>` : ''}<span>${w > 70 ? esc(c.title) : ''}</span></div>`;
+  };
+  const track = inner => `<div class="tl-track" style="width:${W}px;${gridBg}"><span class="tl-today" style="left:${todayX}px"></span>${inner}</div>`;
+  const rowH = (c, child, isEpic) => `<div class="tl-row ${isEpic ? 'group' : ''}"><div class="tl-lab ${child ? 'child' : ''}" data-act="open-card" data-id="${c.id}">${typeIcon(c.type, 14)}<span class="mono hint">${esc(cardKey(c))}</span><span class="tx">${esc(c.title)}</span>${c.blocked ? `<span class="blk">${I.lock}</span>` : ''}</div>${track(bar(c, isEpic))}</div>`;
+  const byStart = (a, z) => (a.start || a.due || '9') < (z.start || z.due || '9') ? -1 : 1;
+  let rows = '';
+  epics.forEach(e => { const k = kidsOf(e); if (activeFilterCount() && !k.length) return; rows += rowH(e, false, true); k.sort(byStart).forEach(c => { rows += rowH(c, true, false); }); });
+  if (loose.length) { rows += `<div class="tl-row group"><div class="tl-lab" style="cursor:default"><span class="tx">Sem épico</span></div>${track('')}</div>`; loose.sort(byStart).forEach(c => { rows += rowH(c, true, false); }); }
+  const sprintsBand = (b.sprints || []).filter(s => s.start && s.end).map(s => { const l = x(parseYMD(s.start)), w = x(parseYMD(s.end)) - l + px; return `<div class="tl-bar" style="left:${l}px;width:${w}px;top:8px;height:18px;background:${s.state === 'active' ? 'var(--teal)' : 'var(--line-2)'};color:${s.state === 'active' ? '#ffffff' : 'var(--ink)'}" data-tip="${esc(s.name + ' · ' + fmtD(s.start) + ' a ' + fmtD(s.end) + (s.goal ? '\n' + s.goal : ''))}"><span>${w > 50 ? esc(s.name) : ''}</span></div>`; }).join('');
+  return `<div class="tl-wrap gut">
+    <div class="row"><span class="eyebrow">Escala</span><div class="seg">${[['week', 'Semanas'], ['month', 'Meses']].map(([v, l]) => `<button data-act="tl-zoom" data-v="${v}" aria-pressed="${S.tl.zoom === v}">${l}</button>`).join('')}</div><span class="hint">Cada barra vai do início ao prazo do item; sem início, conta a data de criação. A linha dourada marca hoje.</span></div>
+    ${rows ? `<div class="tl"><div class="tl-inner" style="width:${270 + W}px">
+      <div class="tl-row head"><div class="tl-lab"><span class="eyebrow">Item</span></div><div class="tl-track" style="width:${W}px">${head}</div></div>
+      <div class="tl-row"><div class="tl-lab" style="cursor:default"><span class="eyebrow">Sprints</span></div>${track(sprintsBand)}</div>
+      ${rows}</div></div>` : '<div class="nodata">Nenhum item com os filtros atuais.</div>'}
+  </div>`;
+}
+
+/* ---------- calendar ---------- */
+function renderCalendar(b) {
+  if (!S.cal) { const t = today0(); S.cal = { y: t.getFullYear(), m: t.getMonth() }; }
+  const { y, m } = S.cal;
+  const first = new Date(y, m, 1), start = addDays(first, -((first.getDay() + 6) % 7));
+  const last = new Date(y, m + 1, 0), end = addDays(last, 6 - ((last.getDay() + 6) % 7));
+  const cards = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && c.due && passFilters(c, b));
+  const byDay = {}; cards.forEach(c => (byDay[c.due] = byDay[c.due] || []).push(c));
+  const marks = {}; (b.sprints || []).forEach(s => { if (s.start) (marks[s.start] = marks[s.start] || []).push('Início · ' + s.name); if (s.end) (marks[s.end] = marks[s.end] || []).push('Fim · ' + s.name); });
+  const td = ymd(today0());
+  let cells = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map(d => `<div class="dow">${d}</div>`).join('');
+  for (let d = start; d <= end; d = addDays(d, 1)) {
+    const k = ymd(d), list = (byDay[k] || []).sort((a, z) => (isDone(a) ? 1 : 0) - (isDone(z) ? 1 : 0));
+    cells += `<div class="day ${d.getMonth() !== m ? 'out' : ''} ${k === td ? 'today' : ''}"><span class="dn">${d.getDate()}</span>${(marks[k] || []).map(t => `<span class="spm">${esc(t)}</span>`).join('')}${list.slice(0, 4).map(c => `<button class="ev ${isDone(c) ? 'done' : dueState(c)}" data-act="open-card" data-id="${c.id}" data-tip="${esc(cardKey(c) + ' · ' + c.title + (c.assignee ? '\n' + c.assignee : ''))}">${esc(c.title)}</button>`).join('')}${list.length > 4 ? `<span class="more">+${list.length - 4} itens</span>` : ''}</div>`;
+  }
+  const noDue = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && !c.due && !isDone(c) && passFilters(c, b)).length;
+  return `<div class="cal-wrap gut">
+    <div class="cal-nav"><button class="btn sm" data-act="cal-nav" data-d="-1" aria-label="Mês anterior">‹</button><h2>${esc(first.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }))}</h2><button class="btn sm" data-act="cal-nav" data-d="1" aria-label="Próximo mês">›</button><button class="btn ghost sm" data-act="cal-nav" data-d="0">Hoje</button><span class="spacer"></span><span class="hint">${noDue} item(ns) em aberto sem prazo não aparecem aqui.</span></div>
+    <div class="cal-scroll"><div class="cal">${cells}</div></div>
+  </div>`;
+}
+
+/* ---------- card drawer ---------- */
+function renderDrawer(force) {
+  const layer = $('#layer');
+  const c = S.cards.get(S.openCard);
+  if (!c) { closeDrawer(); return; }
+  const dr = $('#drawer');
+  if (dr && !force && dr.contains(document.activeElement) && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { S.drawerDirty = true; return; }
+  const b = boardOf(c); const edit = can(b, 'edit'); const dis = edit ? '' : 'disabled';
+  const lists = (b.lists || []).filter(l => !l.archived).sort((a, z) => a.order - z.order);
+  const team = [...new Set([...(b.team || []), c.assignee].filter(Boolean))];
+  const opt = (v, l, cur) => `<option value="${esc(v)}" ${String(v) === String(cur) ? 'selected' : ''}>${esc(l)}</option>`;
+  const vis = x => x && !x.archived && boardOf(x) && can(boardOf(x), 'view');
+  const deps = (c.deps || []).map(id => S.cards.get(id)).filter(vis);
+  const links = (c.links || []).map(l => ({ l, d: S.cards.get(l.id) })).filter(o => vis(o.d));
+  const blocking = [...S.cards.values()].filter(x => vis(x) && (x.deps || []).includes(c.id));
+  const linkedBy = [...S.cards.values()].filter(x => vis(x) && (x.links || []).some(l => l.id === c.id));
+  const candidates = [...S.cards.values()].filter(x => x.id !== c.id && vis(x) && !boardOf(x).archived).sort((a, z) => ((a.boardId === c.boardId ? 0 : 1) - (z.boardId === c.boardId ? 0 : 1)) || ((a.num || 0) - (z.num || 0)));
+  const epicsB = [...S.cards.values()].filter(x => x.boardId === b.id && x.type === 'epic' && !x.archived && x.id !== c.id);
+  const parents = [...S.cards.values()].filter(x => x.boardId === b.id && !x.archived && x.type !== 'epic' && x.type !== 'subtask' && x.id !== c.id);
+  const kids = childrenOf(c.id);
+  const sprintsOpen = (b.sprints || []).filter(s => s.state !== 'closed' || s.id === c.sprintId);
+  const ds = dueState(c);
+  const depRow = (d, rm, label) => { const sd = statusOf(boardOf(d), d.status); return `<div class="item">${typeIcon(d.type, 14)}<span class="mono hint">${esc(cardKey(d))}</span><button class="grow btn ghost sm" style="justify-content:flex-start;white-space:normal;text-align:left" data-act="open-card" data-id="${d.id}">${esc(d.title)}</button>${label ? `<span class="hint">${label}</span>` : ''}${sd ? `<span class="pill"><i class="dot" style="background:${sc(sd.color)}"></i>${esc(sd.name)}</span>` : ''}${rm && edit ? `<button class="iconbtn" data-act="${rm}" data-id="${d.id}" aria-label="Remover vínculo">${I.x}</button>` : ''}</div>`; };
+  const ck = c.checklist || [], ckDone = ck.filter(x => x.done).length;
+  const wl = (c.worklog || []).slice().sort((a, z) => (z.date || '') < (a.date || '') ? -1 : 1);
+  const hist = (c.history || []).slice().reverse();
+  const isEpic = c.type === 'epic';
+  const epicKids = isEpic ? [...S.cards.values()].filter(x => !x.archived && x.type !== 'epic' && (epicOf(x) || {}).id === c.id) : [];
+  const openDeps = deps.filter(d => !isDone(d));
+  const html = `<div class="scrim" data-act="close-drawer"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Cartão ${esc(cardKey(c))}">
+    <div class="drawer-h">
+      ${typeIcon(c.type, 18)}<span class="bkey">${esc(cardKey(c))}</span>
+      <span class="hint" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1">${esc(b.name)}</span>
+      ${edit ? `<button class="btn sm" data-act="dup-card">Duplicar</button><button class="btn sm" data-act="archive-card">${c.archived ? 'Restaurar' : 'Arquivar'}</button>` : ''}
+      <button class="iconbtn" data-act="close-drawer" aria-label="Fechar">${I.x}</button>
+    </div>
+    <div class="drawer-b">
+      ${edit ? '' : '<div class="ro-banner">Somente leitura: seu acesso a este quadro é de visualização.</div>'}
+      ${c.archived ? '<div class="ro-banner">Este cartão está arquivado e não aparece nas visões nem nos indicadores.</div>' : ''}
+      ${openDeps.length && !isDone(c) ? `<div class="ro-banner">${I.link} Depende de ${openDeps.length} item(ns) ainda em aberto: ${openDeps.map(d => esc(cardKey(d))).join(', ')}.</div>` : ''}
+      <div class="fl"><input class="title-in" id="cd-title" data-cf="title" value="${esc(c.title)}" aria-label="Título" ${dis}>${S.cardErr.title ? `<span class="err-text">${esc(S.cardErr.title)}</span>` : ''}</div>
+      <div class="grid-f">
+        <label class="fl"><span>Tipo</span><select class="field" id="cd-type" data-cf="type" ${dis}>${TYPE_ORDER.map(t => opt(t, TYPES[t].name, c.type)).join('')}</select></label>
+        <label class="fl"><span>Status</span><select class="field" id="cd-status" data-cf="status" ${dis}>${b.statuses.map(s => opt(s.id, s.name, c.status)).join('')}</select></label>
+        ${isEpic ? `<div class="fl"><span>Cor do épico</span>${swatchesCard(c, dis)}</div>` : `<label class="fl"><span>Lista</span><select class="field" id="cd-list" data-cf="listId" ${dis}>${lists.map(l => opt(l.id, l.name, c.listId)).join('')}</select></label>`}
+        ${c.type === 'subtask' ? `<label class="fl"><span>Item pai</span><select class="field" id="cd-parent" data-cf="parentId" ${dis}><option value="">Nenhum</option>${parents.map(p => opt(p.id, cardKey(p) + ' · ' + p.title, c.parentId)).join('')}</select></label>` : !isEpic ? `<label class="fl"><span>Épico</span><select class="field" id="cd-epic" data-cf="parentId" ${dis}><option value="">Sem épico</option>${epicsB.map(e => opt(e.id, e.title, c.parentId)).join('')}</select></label>` : ''}
+        ${!isEpic ? `<label class="fl"><span>Sprint</span><select class="field" id="cd-sprint" data-cf="sprintId" ${dis}><option value="">Backlog (sem sprint)</option>${sprintsOpen.map(s => opt(s.id, s.name + (s.state === 'active' ? ' (ativa)' : s.state === 'closed' ? ' (concluída)' : ''), c.sprintId)).join('')}</select></label>` : ''}
+        <label class="fl"><span>Responsável</span><select class="field" id="cd-assignee" data-cf="assignee" ${dis}><option value="">Sem responsável</option>${team.map(t => opt(t, t, c.assignee)).join('')}${edit ? '<option value="__add">+ Nova pessoa…</option>' : ''}</select></label>
+        <label class="fl"><span>Prioridade</span><select class="field" id="cd-priority" data-cf="priority" ${dis}>${b.priorities.map(p => opt(p.id, p.name, c.priority)).join('')}</select></label>
+        <label class="fl"><span>Início</span><input type="date" class="field" id="cd-start" data-cf="start" value="${esc(c.start)}" ${dis}></label>
+        <label class="fl"><span>Prazo ${ds === 'overdue' ? '<b style="color:var(--crit-ink)">· vencido</b>' : ds === 'soon' ? '<b style="color:var(--warn-ink)">· vence logo</b>' : ''}</span><input type="date" class="field" id="cd-due" data-cf="due" value="${esc(c.due)}" ${dis}></label>
+        ${!isEpic ? `<label class="fl"><span>Pontos</span><select class="field mono" id="cd-points" data-cf="points" ${dis}>${FIB.map(n => opt(n, n ? n + ' pts' : '—', c.points || 0)).join('')}</select></label>
+        <label class="fl"><span>Estimativa (h)</span><input type="number" min="0" step="0.5" class="field mono" id="cd-est" data-cf="estimate" value="${c.estimate || ''}" placeholder="0" ${dis}></label>` : ''}
+      </div>
+      ${S.cardErr.due ? `<span class="err-text">${esc(S.cardErr.due)}</span>` : ''}
+      <div class="fl"><span>Etiquetas</span>
+        <div class="lblpick">${(b.labels || []).map(l => `<button type="button" data-act="toggle-label" data-id="${l.id}" aria-pressed="${(c.labels || []).includes(l.id)}" ${dis}><i class="dot" style="background:${sc(l.color)}"></i>${esc(l.name)}</button>`).join('') || '<span class="hint">Nenhuma etiqueta neste quadro. Crie em Configurar → Etiquetas.</span>'}</div>
+      </div>
+      <label class="fl"><span>Descrição</span><textarea class="field" id="cd-desc" data-cf="description" rows="4" placeholder="Detalhe o que precisa ser feito e o critério de aceite" ${dis}>${esc(c.description)}</textarea></label>
+
+      ${isEpic ? `<div class="sec"><div class="sec-h"><h3>Itens do épico</h3><span class="n">${epicKids.filter(isDone).length}/${epicKids.length}</span></div>
+        <span class="prog" style="width:100%"><i style="width:${epicKids.length ? epicKids.filter(isDone).length / epicKids.length * 100 : 0}%;background:${sc(c.color || 7)}"></i></span>
+        <div class="items">${epicKids.map(d => depRow(d)).join('') || '<span class="hint">Nenhum item ligado. Escolha este épico no campo "Épico" de uma história ou tarefa.</span>'}</div></div>` : ''}
+
+      ${!isEpic ? `<div class="blockbox ${c.blocked ? 'on' : ''}">
+        <label class="check"><input type="checkbox" id="cd-blocked" data-cf="blocked" ${c.blocked ? 'checked' : ''} ${dis}> <span>${I.lock} Cartão bloqueado por impedimento</span></label>
+        ${c.blocked ? `<label class="fl"><span>Motivo do impedimento</span><textarea class="field" id="cd-reason" data-cf="blockReason" rows="2" placeholder="O que está impedindo o avanço?" ${dis}>${esc(c.blockReason)}</textarea>${!c.blockReason ? '<span class="err-text">Registre o motivo para a equipe saber o que destrava o cartão.</span>' : ''}</label>` : ''}
+      </div>` : ''}
+
+      <div class="sec">
+        <div class="sec-h"><h3>Checklist</h3><span class="n">${ckDone}/${ck.length}</span></div>
+        ${ck.length ? `<span class="prog" style="width:100%"><i style="width:${ckDone / ck.length * 100}%"></i></span>` : ''}
+        <div>${ck.map(k => `<div class="ck ${k.done ? 'done' : ''}"><input type="checkbox" id="ck-${k.id}" data-ck="${k.id}" ${k.done ? 'checked' : ''} ${dis}><label class="t" for="ck-${k.id}">${esc(k.text)}</label>${edit ? `<button class="iconbtn" data-act="rm-ck" data-id="${k.id}" aria-label="Remover item">${I.x}</button>` : ''}</div>`).join('')}</div>
+        ${edit ? `<form class="row" data-form="add-ck"><input class="field" id="ck-new" placeholder="Novo item da checklist" style="flex:1;min-width:0" required><button class="btn sm">Adicionar</button></form>` : ''}
+      </div>
+
+      ${!isEpic && c.type !== 'subtask' ? `<div class="sec">
+        <div class="sec-h"><h3>Subtarefas</h3><span class="n">${kids.filter(isDone).length}/${kids.length}</span></div>
+        <div class="items">${kids.map(d => depRow(d)).join('') || '<span class="hint">Divida o trabalho em subtarefas com responsáveis próprios.</span>'}</div>
+        ${edit ? `<form class="row" data-form="add-sub"><input class="field" id="sub-new" placeholder="Título da subtarefa" style="flex:1;min-width:0" required><button class="btn sm">Criar subtarefa</button></form>` : ''}
+      </div>` : ''}
+
+      <div class="sec">
+        <div class="sec-h"><h3>Vínculos</h3><span class="n">${deps.length + links.length + blocking.length + linkedBy.length}</span></div>
+        <div class="items">
+          ${deps.map(d => depRow(d, 'rm-dep', 'depende de')).join('')}
+          ${links.map(o => depRow(o.d, 'rm-link', o.l.type === 'duplicates' ? 'duplica' : 'relaciona-se')).join('')}
+          ${blocking.map(d => depRow(d, '', 'depende deste')).join('')}
+          ${linkedBy.map(d => depRow(d, '', 'vinculado a este')).join('')}
+          ${!deps.length && !links.length && !blocking.length && !linkedBy.length ? '<span class="hint">Nenhum vínculo.</span>' : ''}
+        </div>
+        ${edit ? `<div class="row"><select class="field" id="lk-type" style="width:auto"><option value="dep">Depende de</option><option value="relates">Relaciona-se com</option><option value="duplicates">Duplica</option></select><select class="field" id="lk-card" style="flex:1;min-width:0"><option value="">Escolha um cartão…</option>${candidates.map(x => `<option value="${x.id}">${esc(cardKey(x) + ' · ' + x.title)}</option>`).join('')}</select><button class="btn sm" data-act="add-link">Vincular</button></div>` : ''}
+      </div>
+
+      ${!isEpic ? `<div class="sec">
+        <div class="sec-h"><h3>Registro de horas</h3><span class="n">${fmtNum(c.spent || 0, 1)}h de ${fmtNum(c.estimate || 0, 1)}h estimadas</span></div>
+        ${c.estimate ? `<span class="prog" style="width:100%" title="Realizado / estimado"><i style="width:${Math.min(100, (c.spent || 0) / c.estimate * 100)}%;${(c.spent || 0) > c.estimate ? 'background:var(--crit)' : ''}"></i></span>` : ''}
+        <div class="items">${wl.map(w => `<div class="item"><span class="mono">${fmtNum(w.hours, 1)}h</span><span class="grow">${esc(w.note || 'Trabalho registrado')}</span><span class="hint">${esc(nameOf(w.by))} · ${fmtD(w.date)}</span>${edit ? `<button class="iconbtn" data-act="rm-wl" data-id="${w.id}" aria-label="Remover registro">${I.x}</button>` : ''}</div>`).join('') || '<span class="hint">Nenhuma hora registrada.</span>'}</div>
+        ${edit ? `<form class="row" data-form="add-wl"><input type="number" class="field mono" id="wl-h" min="0.25" step="0.25" placeholder="Horas" style="width:90px" required><input type="date" class="field" id="wl-d" value="${ymd(today0())}" style="width:150px"><input class="field" id="wl-n" placeholder="O que foi feito" style="flex:1;min-width:120px"><button class="btn sm">Registrar</button></form>` : ''}
+      </div>` : ''}
+
+      <div class="sec">
+        <div class="sec-h"><h3>Anexos</h3><span class="n">${(c.attachments || []).length}</span></div>
+        <div class="items">${(c.attachments || []).map(a => `<div class="item">${I.clip}<a class="grow" href="${esc(a.assetId ? '/_blob/' + a.assetId : a.url)}" target="_blank" rel="noopener">${esc(a.name)}</a><span class="hint">${esc(nameOf(a.by))} · ${fmtDT(a.at)}</span>${edit ? `<button class="iconbtn" data-act="rm-att" data-id="${a.id}" aria-label="Remover anexo">${I.x}</button>` : ''}</div>`).join('') || '<span class="hint">Nenhum anexo.</span>'}</div>
+        ${edit ? `<form class="row" data-form="add-link-att"><input class="field" id="att-name" placeholder="Nome" style="flex:1 1 120px"><input class="field" id="att-url" type="url" placeholder="https://…" style="flex:2 1 180px" required><button class="btn sm">Anexar link</button></form>
+          ${S.assets ? `<label class="btn sm" style="align-self:flex-start">Enviar arquivo<input type="file" id="att-file" hidden></label>` : ''}` : ''}
+      </div>
+
+      <div class="sec">
+        <div class="sec-h"><h3>Comentários</h3><span class="n">${(c.comments || []).length}</span></div>
+        ${(c.comments || []).map(mm => `<div class="comment"><div class="meta">${esc(nameOf(mm.by))} · ${fmtDT(mm.at)}</div><p>${esc(mm.text)}</p></div>`).join('') || '<span class="hint">Nenhum comentário ainda.</span>'}
+        ${edit ? `<form class="fl" data-form="comment"><textarea class="field" id="cd-comment" rows="2" placeholder="Escreva um comentário"></textarea><div class="row"><button class="btn primary sm">Comentar</button></div></form>` : ''}
+      </div>
+
+      <div class="sec hist">
+        <div class="sec-h"><h3>Histórico</h3><span class="n">${hist.length}</span></div>
+        <ul>${hist.map(h => `<li><span class="tick"></span><div><div>${h.field === 'created' ? `Cartão criado${h.to ? ' em <b>' + esc(h.to) + '</b>' : ''}` : `<b>${esc(FIELD_LABEL[h.field] || h.field)}</b>: ${esc(h.from || '—')} → ${esc(h.to || '—')}`}</div><div class="meta">${esc(nameOf(h.by))} · ${fmtDT(h.at)}</div></div></li>`).join('')}</ul>
+        <div class="hint">Criado em ${fmtDT(c.createdAt)}${c.completedAt ? ` · Concluído em ${fmtDT(c.completedAt)}` : ''}</div>
+      </div>
+    </div>
+  </aside>`;
+  const scroll = dr ? $('.drawer-b', dr).scrollTop : 0;
+  const fid = dr && dr.contains(document.activeElement) ? document.activeElement.id : '';
+  layer.innerHTML = html;
+  if (scroll) $('.drawer-b').scrollTop = scroll;
+  if (fid) { const f = document.getElementById(fid); if (f) f.focus({ preventScroll: true }); }
+  S.drawerDirty = false;
+}
+function swatchesCard(c, dis) { return `<span class="swatches">${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `<button type="button" class="sw" style="background:${sc(n)}" data-act="card-color" data-c="${n}" aria-pressed="${(c.color || 7) === n}" aria-label="Cor ${n}" ${dis}></button>`).join('')}</span>`; }
+function openDrawer(id) { S.openCard = id; S.cardErr = {}; S.modal = null; renderDrawer(true); setTimeout(() => { const t = $('#cd-title'); if (t) t.focus({ preventScroll: true }); }, 30); }
+function closeDrawer() { const id = S.openCard; S.openCard = null; S.cardErr = {}; $('#layer').innerHTML = ''; const el = id && document.querySelector(`[data-card="${id}"]`); if (el) el.focus(); }
+
+/* ---------- modals ---------- */
+function openModal(m) { S.modal = m; m.force = true; renderModal(); }
+function closeModal() { const back = S.modal && S.modal.backTo; S.modal = null; $('#layer').innerHTML = ''; if (back) openDrawer(back); }
+function renderModal() {
+  const m = S.modal; if (!m) return;
+  const ae = document.activeElement, layer = $('#layer');
+  if (layer.contains(ae) && ae && /INPUT|TEXTAREA/.test(ae.tagName) && ae.type !== 'checkbox' && !m.force) return;
+  m.force = false;
+  const T = {
+    'new-board': ['Novo quadro', newBoardBody], settings: ['Configurar quadro', settingsBody],
+    confirm: [m.title || 'Confirmar', () => `<p style="margin:0">${esc(m.text)}</p><div class="row" style="justify-content:flex-end"><button class="btn" data-act="close-modal">Cancelar</button><button class="btn primary" data-act="confirm-yes">${esc(m.yes)}</button></div>`],
+    person: ['Nova pessoa na equipe', () => `<form class="fl" data-form="person"><span>Nome da pessoa</span><input class="field" id="person-name" required placeholder="Ex.: Joana Silva"><div class="row" style="justify-content:flex-end;margin-top:8px"><button type="button" class="btn" data-act="close-modal">Cancelar</button><button class="btn primary">Adicionar e atribuir</button></div></form>`],
+    sprint: [m.sprintId ? 'Editar sprint' : 'Nova sprint', sprintBody], complete: ['Concluir sprint', completeBody], activity: ['Atividade do quadro', activityBody],
+    list: ['Configurar lista', listBody],
+    csv: ['Exportar CSV', () => `<p class="hint" style="margin:0">Copie o conteúdo abaixo e cole numa planilha, ou salve como arquivo .csv.</p><textarea class="field mono" id="csv-out" rows="12" readonly>${esc(m.csv)}</textarea><div class="row" style="justify-content:flex-end"><button class="btn primary" data-act="copy-csv">Copiar</button></div>`],
+    'save-view': ['Salvar visão', () => `<form class="fl" data-form="save-view" style="gap:10px"><label class="fl"><span>Nome da visão</span><input class="field" id="sv-name" required placeholder="Ex.: Bloqueados da sprint"></label><span class="hint">Guarda a visão atual e os filtros aplicados, só para você, neste navegador.</span><div class="row" style="justify-content:flex-end"><button type="button" class="btn" data-act="close-modal">Cancelar</button><button class="btn primary">Salvar</button></div></form>`]
+  }[m.type];
+  layer.innerHTML = `<div class="scrim" data-act="close-modal"></div><div class="modal ${['settings', 'activity'].includes(m.type) ? '' : 'sm'}" role="dialog" aria-modal="true" aria-label="${esc(T[0])}">
+    <div class="modal-h"><h2>${esc(T[0])}</h2><button class="iconbtn" data-act="close-modal" aria-label="Fechar">${I.x}</button></div>
+    ${m.type === 'settings' ? settingsTabs(m) : ''}
+    <div class="modal-b">${T[1](m)}</div></div>`;
+}
+function newBoardBody() {
+  return `<form class="fl" data-form="new-board" style="gap:12px">
+    <label class="fl"><span>Nome do quadro</span><input class="field" id="nb-name" required placeholder="Ex.: Colônia de férias 2027"></label>
+    <label class="fl"><span>Código (aparece nos cartões, ex.: COL-12)</span><input class="field mono" id="nb-key" maxlength="6" placeholder="Gerado a partir do nome"></label>
+    <label class="check"><input type="checkbox" id="nb-lists" checked> Criar listas A fazer, Em andamento e Concluído</label>
+    <label class="check"><input type="checkbox" id="nb-sprint"> Já criar a Sprint 1 (2 semanas a partir de hoje)</label>
+    <div class="row" style="justify-content:flex-end"><button type="button" class="btn" data-act="close-modal">Cancelar</button><button class="btn primary">Criar quadro</button></div>
+  </form>`;
+}
+function sprintBody(m) {
+  const b = S.boards.get(m.boardId); const s = (b.sprints || []).find(x => x.id === m.sprintId) || {};
+  const last = (b.sprints || []).map(x => x.end).filter(Boolean).sort().pop();
+  const st = s.start || (last && parseYMD(last) >= today0() ? ymd(addDays(parseYMD(last), 1)) : ymd(today0()));
+  const en = s.end || ymd(addDays(parseYMD(st), 13));
+  return `<form class="fl" data-form="sprint" style="gap:12px">
+    <label class="fl"><span>Nome</span><input class="field" id="sp-name" required value="${esc(s.name || 'Sprint ' + ((b.sprints || []).length + 1))}"></label>
+    <label class="fl"><span>Meta da sprint</span><input class="field" id="sp-goal" value="${esc(s.goal || '')}" placeholder="O que a equipe quer entregar neste ciclo"></label>
+    <div class="row"><label class="fl" style="flex:1"><span>Início</span><input type="date" class="field" id="sp-start" required value="${esc(st)}"></label><label class="fl" style="flex:1"><span>Fim</span><input type="date" class="field" id="sp-end" required value="${esc(en)}"></label></div>
+    <span class="err-text" id="sp-err"></span>
+    <div class="row" style="justify-content:flex-end">${m.sprintId && s.state !== 'active' ? '<button type="button" class="btn danger" data-act="delete-sprint" style="margin-right:auto">Excluir sprint</button>' : ''}<button type="button" class="btn" data-act="close-modal">Cancelar</button><button class="btn primary">Salvar</button></div>
+  </form>`;
+}
+function completeBody(m) {
+  const b = S.boards.get(m.boardId); const s = b.sprints.find(x => x.id === m.sprintId);
+  const cs = [...S.cards.values()].filter(c => c.boardId === b.id && c.sprintId === s.id && !c.archived && c.type !== 'epic');
+  const open = cs.filter(c => !isDone(c)), done = cs.filter(isDone);
+  const next = b.sprints.filter(x => x.state === 'planned');
+  return `<p style="margin:0"><b>${esc(s.name)}</b>: ${done.length} itens concluídos (${done.reduce((a, c) => a + (c.points || 0), 0)} pts) e ${open.length} em aberto (${open.reduce((a, c) => a + (c.points || 0), 0)} pts). O compromisso no início foi de ${s.committed || 0} pts.</p>
+    ${open.length ? `<label class="fl"><span>Mover os itens em aberto para</span><select class="field" id="cs-dest">${next.map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}<option value="">Backlog</option></select></label>` : ''}
+    <div class="row" style="justify-content:flex-end"><button class="btn" data-act="close-modal">Cancelar</button><button class="btn teal" data-act="do-complete">Concluir sprint</button></div>`;
+}
+function listBody(m) {
+  const b = S.boards.get(m.boardId); const l = b.lists.find(x => x.id === m.listId);
+  return `<form class="fl" data-form="list-cfg" style="gap:12px">
+    <label class="fl"><span>Nome</span><input class="field" id="lc-name" required value="${esc(l.name)}"></label>
+    <label class="fl"><span>Limite de WIP (0 = sem limite)</span><input type="number" min="0" class="field mono" id="lc-wip" value="${l.wip || 0}"></label>
+    <span class="hint">O limite de trabalho em andamento evita acúmulo. A lista fica destacada quando passa do limite.</span>
+    <label class="fl"><span>Definição de pronto desta etapa</span><textarea class="field" id="lc-dod" rows="3" placeholder="Ex.: Revisado por outra pessoa da equipe">${esc(l.dod || '')}</textarea></label>
+    <div class="row" style="justify-content:flex-end"><button type="button" class="btn" data-act="close-modal">Cancelar</button><button class="btn primary">Salvar</button></div>
+  </form>`;
+}
+function activityBody(m) {
+  const b = S.boards.get(m.boardId); const ev = [];
+  S.cards.forEach(c => {
+    if (c.boardId !== b.id) return;
+    (c.history || []).forEach(h => ev.push({ at: h.at, by: h.by, c, txt: h.field === 'created' ? 'criou' : `alterou ${(FIELD_LABEL[h.field] || h.field).toLowerCase()}: ${h.from || '—'} → ${h.to || '—'}` }));
+    (c.comments || []).forEach(h => ev.push({ at: h.at, by: h.by, c, txt: 'comentou: “' + String(h.text).slice(0, 90) + (h.text.length > 90 ? '…' : '') + '”' }));
+    (c.worklog || []).forEach(h => ev.push({ at: h.at, by: h.by, c, txt: `registrou ${fmtNum(h.hours, 1)}h` }));
+  });
+  ev.sort((a, z) => a.at < z.at ? 1 : -1);
+  return `<div class="hist"><ul>${ev.slice(0, 80).map(e => `<li><span class="tick"></span><div><div><b>${esc(nameOf(e.by))}</b> ${esc(e.txt)} em <button class="btn ghost sm" data-act="open-card" data-id="${e.c.id}" style="padding:0 4px;white-space:normal;text-align:left">${esc(cardKey(e.c))} ${esc(e.c.title)}</button></div><div class="meta">${fmtDT(e.at)}</div></div></li>`).join('') || '<span class="hint">Nenhuma atividade ainda.</span>'}</ul></div>`;
+}
+const SET_TABS = [['geral', 'Geral'], ['status', 'Fluxo de status'], ['prio', 'Prioridades'], ['labels', 'Etiquetas'], ['team', 'Equipe'], ['access', 'Acesso'], ['arch', 'Arquivados']];
+function settingsTabs(m) { return `<div class="subtabs">${SET_TABS.map(([k, l]) => `<button data-act="set-tab" data-t="${k}" aria-pressed="${m.tab === k}">${l}</button>`).join('')}</div>`; }
+function swatches(kind, id, cur, dis) { return `<span class="swatches">${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `<button type="button" class="sw" style="background:${sc(n)}" data-act="cfg-color" data-kind="${kind}" data-id="${id}" data-c="${n}" aria-pressed="${cur === n}" aria-label="Cor ${n}" ${dis}></button>`).join('')}</span>`; }
+function settingsBody(m) {
+  const b = S.boards.get(m.boardId); if (!b) return '<p>Quadro não encontrado.</p>';
+  const admin = can(b, 'admin'); const dis = admin ? '' : 'disabled';
+  const ro = admin ? '' : '<div class="ro-banner">Somente quem administra o quadro pode alterar estas configurações.</div>';
+  const used = (k, id) => [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && c[k] === id).length;
+  const mv = (kind, id) => admin ? `<button class="iconbtn" data-act="cfg-move" data-kind="${kind}" data-id="${id}" data-d="-1" aria-label="Subir">↑</button><button class="iconbtn" data-act="cfg-move" data-kind="${kind}" data-id="${id}" data-d="1" aria-label="Descer">↓</button>` : '';
+  if (m.tab === 'geral') return `${ro}
+    <label class="fl"><span>Nome</span><input class="field" id="cfg-name" data-cfg="name" value="${esc(b.name)}" ${dis}></label>
+    <label class="fl"><span>Código dos cartões</span><input class="field mono" id="cfg-key" data-cfg="key" maxlength="6" value="${esc(b.key)}" ${dis}></label>
+    <div class="hint">Criado em ${fmtDT(b.createdAt)} por ${esc(nameOf(b.createdBy))}.</div>
+    ${admin ? `<div class="row"><button class="btn danger" data-act="archive-board">${b.archived ? 'Restaurar quadro' : 'Arquivar quadro'}</button><span class="hint">Quadros arquivados saem da lista e dos indicadores, mas podem ser restaurados.</span></div>` : ''}`;
+  if (m.tab === 'status') return `${ro}<p class="hint" style="margin:0">A ordem abaixo é o fluxo do quadro. Status do tipo <b>Concluído</b> registram a data de conclusão. A primeira passagem por um status <b>Em andamento</b> marca o início do cycle time.</p>
+    ${b.statuses.map((s, i) => `<div class="cfg-row"><span class="mono hint">${i + 1}</span><input class="field" id="st-n-${s.id}" data-cfgarr="statuses" data-id="${s.id}" data-k="name" value="${esc(s.name)}" ${dis}>
+      <select class="field" id="st-c-${s.id}" data-cfgarr="statuses" data-id="${s.id}" data-k="cat" ${dis}>${['todo', 'doing', 'done'].map(k => `<option value="${k}" ${s.cat === k ? 'selected' : ''}>${CAT_LABEL[k]}</option>`).join('')}</select>
+      <span class="row" style="gap:2px">${mv('statuses', s.id)}${admin ? `<button class="iconbtn" data-act="cfg-del" data-kind="statuses" data-id="${s.id}" aria-label="Remover" ${used('status', s.id) ? 'disabled title="Há cartões neste status"' : ''}>${I.x}</button>` : ''}</span>
+      ${swatches('statuses', s.id, s.color, dis)}</div>`).join('')}
+    ${admin ? `<button class="btn sm" style="align-self:flex-start" data-act="cfg-add" data-kind="statuses">+ Adicionar status</button>` : ''}
+    <div class="sec-h"><h3>Listas ligadas a status</h3></div>
+    <p class="hint" style="margin:0">Quando um cartão entra numa lista ligada, o status muda junto. Ao mudar o status, o cartão vai para a lista ligada.</p>
+    ${(b.lists || []).filter(l => !l.archived).sort((a, z) => a.order - z.order).map(l => `<label class="cfg-row" style="grid-template-columns:1fr 1fr"><span>${esc(l.name)}</span><select class="field" id="ls-st-${l.id}" data-listst="${l.id}" ${dis}><option value="">Nenhum</option>${b.statuses.map(s => `<option value="${s.id}" ${l.status === s.id ? 'selected' : ''}>${esc(s.name)}</option>`).join('')}</select></label>`).join('')}`;
+  if (m.tab === 'prio') return `${ro}<p class="hint" style="margin:0">Ordene da mais urgente para a menos urgente.</p>
+    ${b.priorities.map(p => `<div class="cfg-row"><span>${prioIcon(p)}</span><input class="field" id="pr-n-${p.id}" data-cfgarr="priorities" data-id="${p.id}" data-k="name" value="${esc(p.name)}" ${dis}>
+      <select class="field" id="pr-i-${p.id}" data-cfgarr="priorities" data-id="${p.id}" data-k="icon" ${dis}>${PRIO_ICONS.map(([v, l]) => `<option value="${v}" ${p.icon === v ? 'selected' : ''}>Ícone: ${l}</option>`).join('')}</select>
+      <span class="row" style="gap:2px">${mv('priorities', p.id)}${admin ? `<button class="iconbtn" data-act="cfg-del" data-kind="priorities" data-id="${p.id}" aria-label="Remover" ${used('priority', p.id) ? 'disabled title="Há cartões com esta prioridade"' : ''}>${I.x}</button>` : ''}</span>
+      ${swatches('priorities', p.id, p.color, dis)}</div>`).join('')}
+    ${admin ? `<button class="btn sm" style="align-self:flex-start" data-act="cfg-add" data-kind="priorities">+ Adicionar prioridade</button>` : ''}`;
+  if (m.tab === 'labels') return `${ro}${(b.labels || []).map(l => `<div class="cfg-row" style="grid-template-columns:auto 1fr auto"><i class="dot" style="background:${sc(l.color)}"></i><input class="field" id="lb-n-${l.id}" data-cfgarr="labels" data-id="${l.id}" data-k="name" value="${esc(l.name)}" ${dis}>${admin ? `<button class="iconbtn" data-act="cfg-del" data-kind="labels" data-id="${l.id}" aria-label="Remover">${I.x}</button>` : '<span></span>'}${swatches('labels', l.id, l.color, dis)}</div>`).join('') || '<span class="hint">Nenhuma etiqueta.</span>'}
+    ${admin ? `<button class="btn sm" style="align-self:flex-start" data-act="cfg-add" data-kind="labels">+ Adicionar etiqueta</button>` : ''}`;
+  if (m.tab === 'team') return `${can(b, 'edit') ? '' : ro}<p class="hint" style="margin:0">Pessoas que podem ser responsáveis por cartões. Não precisam ter acesso ao planner.</p>
+    <div class="items">${(b.team || []).map(t => `<div class="item"><span class="avatar">${esc(initials(t))}</span><span class="grow">${esc(t)}</span><span class="hint">${[...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && c.assignee === t && !isDone(c)).length} em aberto</span>${can(b, 'edit') ? `<button class="iconbtn" data-act="rm-team" data-name="${esc(t)}" aria-label="Remover ${esc(t)}">${I.x}</button>` : ''}</div>`).join('') || '<span class="hint">Ninguém cadastrado ainda.</span>'}</div>
+    ${can(b, 'edit') ? `<form class="row" data-form="add-team"><input class="field" id="team-name" placeholder="Nome" required style="flex:1"><button class="btn sm">Adicionar</button></form>` : ''}`;
+  if (m.tab === 'access') {
+    const mem = Object.entries(b.members || {}); const local = S.mode !== 'db';
+    return `${ro}
+    <label class="fl"><span>Demais pessoas com acesso ao planner</span><select class="field" id="cfg-others" data-cfg="othersRole" ${dis}>${['none', 'view', 'edit'].map(r => `<option value="${r}" ${b.othersRole === r ? 'selected' : ''}>${r === 'none' ? 'Não veem este quadro' : r === 'view' ? 'Podem visualizar' : 'Podem editar'}</option>`).join('')}</select></label>
+    <div class="sec-h"><h3>Membros do quadro</h3><span class="n">${mem.length + 1}</span></div>
+    <div class="items">
+      <div class="item"><span class="grow">${esc(nameOf(b.createdBy))} <span class="hint">· criou o quadro</span></span><span class="pill">Administrar</span></div>
+      ${mem.map(([id, r]) => `<div class="item"><span class="grow">${esc(nameOf(id))}</span><select class="field" id="mem-${esc(id)}" data-member="${esc(id)}" ${dis} style="width:auto">${['view', 'edit', 'admin'].map(x => `<option value="${x}" ${r === x ? 'selected' : ''}>${ROLE_LABEL[x]}</option>`).join('')}</select>${admin ? `<button class="iconbtn" data-act="rm-member" data-id="${esc(id)}" aria-label="Remover membro">${I.x}</button>` : ''}</div>`).join('')}
+    </div>
+    ${admin && !local && S.user ? `<label class="fl"><span>Adicionar pessoa</span><input class="field" id="mem-search" data-search="1" placeholder="Digite um nome"></label><div class="items" id="mem-results"></div>` : ''}
+    ${local ? '<div class="hint">No modo local não há outras pessoas. Os membros ficam disponíveis no planner publicado.</div>' : ''}
+    <div class="hint">Quem é dono do planner sempre administra todos os quadros. Visualizar permite ver cartões e indicadores; Editar permite criar e mover cartões, listas e sprints; Administrar permite também configurar o quadro e o acesso.</div>`;
+  }
+  if (m.tab === 'arch') {
+    const al = (b.lists || []).filter(l => l.archived);
+    const ac = [...S.cards.values()].filter(c => c.boardId === b.id && c.archived);
+    const e = can(b, 'edit');
+    return `<div class="sec-h"><h3>Listas arquivadas</h3><span class="n">${al.length}</span></div>
+      <div class="items">${al.map(l => `<div class="item"><span class="grow">${esc(l.name)}</span>${e ? `<button class="btn sm" data-act="restore-list" data-id="${l.id}">Restaurar</button>` : ''}</div>`).join('') || '<span class="hint">Nenhuma.</span>'}</div>
+      <div class="sec-h"><h3>Cartões arquivados</h3><span class="n">${ac.length}</span></div>
+      <div class="items">${ac.map(c => `<div class="item">${typeIcon(c.type, 14)}<span class="mono hint">${esc(cardKey(c))}</span><span class="grow">${esc(c.title)}</span>${e ? `<button class="btn sm" data-act="restore-card" data-id="${c.id}">Restaurar</button>` : ''}</div>`).join('') || '<span class="hint">Nenhum.</span>'}</div>`;
+  }
+  return '';
+}
+
+/* ---------- popovers ---------- */
+function openPop(anchor, html) {
+  closePop();
+  const p = document.createElement('div'); p.className = 'pop'; p.id = 'pop'; p.innerHTML = html; document.body.appendChild(p);
+  const r = anchor.getBoundingClientRect(); const w = p.offsetWidth;
+  let left = r.left + window.scrollX; left = Math.max(12, Math.min(left, window.scrollX + document.documentElement.clientWidth - w - 12));
+  p.style.left = left + 'px'; p.style.top = (r.bottom + window.scrollY + 6) + 'px';
+  const f = p.querySelector('button,input'); if (f) f.focus();
+}
+function closePop() { const p = $('#pop'); if (p) p.remove(); }
+function boardsMenu(anchor) {
+  const vis = visibleBoards(); const act = vis.filter(b => !b.archived), arch = vis.filter(b => b.archived);
+  const canCreate = S.mode !== 'db' || S.canWrite;
+  openPop(anchor, `<div class="ph eyebrow">Quadros</div>
+    ${act.map(b => `<button class="mi ${b.id === S.boardId ? 'cur' : ''}" data-act="pick-board" data-id="${b.id}"><span class="bkey">${esc(b.key)}</span><span style="flex:1;min-width:0">${esc(b.name)}</span></button>`).join('') || '<div class="ph hint">Nenhum quadro ativo.</div>'}
+    ${canCreate ? '<hr><button class="mi" data-act="new-board">+ Novo quadro</button>' : ''}
+    ${arch.length ? `<hr><div class="ph eyebrow">Arquivados</div>${arch.map(b => `<div class="mi"><span class="bkey">${esc(b.key)}</span><span style="flex:1;min-width:0;color:var(--muted)">${esc(b.name)}</span>${can(b, 'admin') ? `<button class="btn sm" data-act="restore-board" data-id="${b.id}">Restaurar</button>` : ''}</div>`).join('')}` : ''}`);
+}
+function listMenu(anchor, listId) {
+  const b = curBoard(); const l = b.lists.find(x => x.id === listId);
+  openPop(anchor, `<div class="ph eyebrow">${esc(l.name)}</div>
+    <button class="mi" data-act="list-cfg" data-id="${l.id}">Renomear, limite de WIP e definição de pronto</button>
+    <button class="mi" data-act="sort-list" data-id="${l.id}">Ordenar por prazo</button>
+    <button class="mi" data-act="move-list" data-id="${l.id}" data-d="-1">← Mover para a esquerda</button>
+    <button class="mi" data-act="move-list" data-id="${l.id}" data-d="1">→ Mover para a direita</button>
+    <hr><button class="mi" data-act="archive-list" data-id="${l.id}">Arquivar lista e seus cartões</button>`);
+}
+function savedMenu(anchor) {
+  const V = Object.fromEntries(VIEWS.map(v => [v[0], v[1]]));
+  openPop(anchor, `<div class="ph eyebrow">Atalhos</div>
+    <button class="mi" data-act="quick" data-q="attention">Atrasados ou bloqueados</button>
+    <button class="mi" data-act="quick" data-q="sprint">Sprint ativa no quadro</button>
+    <button class="mi" data-act="quick" data-q="bugs">Bugs em aberto</button>
+    <button class="mi" data-act="quick" data-q="stale">Parados há 7+ dias</button>
+    <hr><div class="ph eyebrow">Minhas visões</div>
+    ${S.saved.map((s, i) => `<div class="mi" style="padding:2px 4px"><button class="btn ghost sm" style="flex:1;justify-content:flex-start" data-act="apply-view" data-i="${i}">${esc(s.name)} <span class="hint">· ${esc(V[s.view] || '')}</span></button><button class="iconbtn" data-act="rm-view" data-i="${i}" aria-label="Excluir visão">${I.x}</button></div>`).join('') || '<div class="ph hint">Nenhuma visão salva ainda.</div>'}
+    <hr><button class="mi" data-act="save-view">+ Salvar a visão atual</button>`);
+}
+
+/* ---------- charts ---------- */
+function lineChart(o) {
+  const W = o.w || 640, H = o.h || 230, L = 34, R = 12, T = 12, B = 26;
+  const n = o.labels.length, iw = W - L - R, ih = H - T - B;
+  const nice = o.yMax <= 5 ? Math.max(1, Math.ceil(o.yMax)) : Math.ceil(o.yMax / 5) * 5;
+  const X = i => L + (n <= 1 ? iw / 2 : (i / (n - 1)) * iw), Y = v => T + ih - (v / nice) * ih;
+  let g = '';
+  const ticks = nice <= 5 ? Array.from({ length: nice + 1 }, (_, i) => i) : [0, .2, .4, .6, .8, 1].map(f => nice * f);
+  ticks.forEach(v => { g += `<line class="${v ? 'gl' : 'ax'}" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 6}" y="${Y(v) + 3}" text-anchor="end">${fmtNum(v, 0)}</text>`; });
+  const every = Math.ceil(n / 8);
+  o.labels.forEach((l, i) => { if ((i % every === 0 && (n - 1 - i >= every / 2 || i === n - 1)) || i === n - 1) g += `<text x="${X(i)}" y="${H - 8}" text-anchor="middle">${esc(l)}</text>`; });
+  if (o.areas) {
+    let base = o.labels.map(() => 0);
+    o.areas.forEach(a => {
+      const top = base.map((v, i) => v + a.values[i]);
+      const d = 'M' + top.map((v, i) => `${X(i)},${Y(v)}`).join('L') + 'L' + base.map((v, i) => `${X(i)},${Y(v)}`).reverse().join('L') + 'Z';
+      g += `<path d="${d}" fill="${a.color}" fill-opacity=".85" stroke="var(--card)" stroke-width="1.5"/>`;
+      base = top;
+    });
+  }
+  if (o.markX != null) g += `<line x1="${X(o.markX)}" x2="${X(o.markX)}" y1="${T}" y2="${T + ih}" stroke="var(--gold)" stroke-width="2"/>`;
+  (o.series || []).forEach(s => {
+    const pts = s.values.map((v, i) => v == null ? null : `${X(i)},${Y(v)}`).filter(Boolean);
+    if (!pts.length) return;
+    g += `<polyline points="${pts.join(' ')}" fill="none" stroke="${s.color}" stroke-width="2" ${s.dash ? 'stroke-dasharray="5 4"' : ''} stroke-linejoin="round" stroke-linecap="round"/>`;
+    const li = s.values.map((v, i) => v == null ? -1 : i).filter(i => i >= 0).pop();
+    if (!s.dash && li >= 0) g += `<circle cx="${X(li)}" cy="${Y(s.values[li])}" r="4" fill="${s.color}" stroke="var(--card)" stroke-width="2"/>`;
+  });
+  const cw = n > 1 ? iw / (n - 1) : iw;
+  o.labels.forEach((l, i) => { g += `<rect class="hit" x="${X(i) - cw / 2}" y="${T}" width="${cw}" height="${ih}" data-tip="${esc(o.tip(i))}"/>`; });
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.title || '')}">${g}</svg>`;
+}
+
+/* ---------- BI ---------- */
+function biRange() {
+  const t = today0(); const end = new Date(t.getTime() + DAY - 1);
+  if (S.bi.preset === 'custom' && S.bi.from && S.bi.to) { const f = parseYMD(S.bi.from), e = parseYMD(S.bi.to); if (f && e && f <= e) return [f, new Date(e.getTime() + DAY - 1)]; }
+  const n = S.bi.preset === 'custom' ? 30 : parseInt(S.bi.preset, 10) || 30;
+  return [addDays(t, -(n - 1)), end];
+}
+function catAt(c, t) {
+  if (new Date(c.createdAt) > t) return null;
+  const b = boardOf(c); const byName = n => { const s = (b.statuses || []).find(x => x.name === n); return s ? s.cat : null; };
+  let cat = null;
+  (c.history || []).forEach(h => { if (new Date(h.at) > t) return; if (h.field === 'created') cat = byName(h.to) || cat || 'todo'; if (h.field === 'status') cat = byName(h.to) || cat; });
+  if (!cat) cat = 'todo';
+  if (c.completedAt && new Date(c.completedAt) <= t) cat = 'done';
+  else if (cat === 'done' && !c.completedAt) cat = 'doing';
+  return cat;
+}
+function cycleStart(c) { const b = boardOf(c); const h = (c.history || []).find(x => x.field === 'status' && ((b.statuses || []).find(s => s.name === x.to) || {}).cat === 'doing'); return h ? new Date(h.at) : null; }
+function renderBI() {
+  const vis = visibleBoards().filter(b => !b.archived);
+  const sBoards = scopeBoards();
+  const ids = new Set(sBoards.map(b => b.id));
+  const multi = sBoards.length > 1;
+  const cards = [...S.cards.values()].filter(c => ids.has(c.boardId) && !c.archived && c.type !== 'epic' && passFilters(c, boardOf(c)));
+  const [from, to] = biRange();
+  const inP = iso => { if (!iso) return false; const d = new Date(iso); return d >= from && d <= to; };
+  const open = cards.filter(c => !isDone(c));
+  const overdue = open.filter(c => dueState(c) === 'overdue'), soon = open.filter(c => dueState(c) === 'soon'), blocked = open.filter(c => c.blocked);
+  const doneP = cards.filter(c => isDone(c) && inP(c.completedAt));
+  const avg = a => a.length ? a.reduce((p, z) => p + z, 0) / a.length : null;
+  const avgLead = avg(doneP.map(c => (new Date(c.completedAt) - new Date(c.createdAt)) / DAY).filter(x => x >= 0));
+  const avgCyc = avg(doneP.map(c => { const s = cycleStart(c); return s ? (new Date(c.completedAt) - s) / DAY : null; }).filter(x => x != null && x >= 0));
+  const effortSet = cards.filter(c => (c.spent || 0) > 0 && (!isDone(c) || inP(c.completedAt)));
+  const sumEst = effortSet.reduce((a, c) => a + (c.estimate || 0), 0), sumSpent = effortSet.reduce((a, c) => a + (c.spent || 0), 0);
+  const ratio = sumEst ? sumSpent / sumEst : null;
+
+  const stMap = new Map();
+  sBoards.forEach(b => b.statuses.forEach(s => { if (!stMap.has(s.name)) stMap.set(s.name, { name: s.name, color: s.color, n: 0 }); }));
+  cards.forEach(c => { const s = statusOf(boardOf(c), c.status); if (s && stMap.has(s.name)) stMap.get(s.name).n++; });
+  const stRows = [...stMap.values()], stMax = Math.max(1, ...stRows.map(r => r.n));
+
+  const cats = [['todo', 'A fazer', 1], ['doing', 'Em andamento', 2], ['done', 'Concluído', 6]];
+  const byA = new Map();
+  cards.forEach(c => { const k = c.assignee || 'Sem responsável'; if (!byA.has(k)) byA.set(k, { name: k, todo: 0, doing: 0, done: 0, overdue: 0, est: 0, spent: 0, blocked: 0, pts: 0 }); const r = byA.get(k); r[catOf(c)]++; if (dueState(c) === 'overdue') r.overdue++; if (c.blocked && !isDone(c)) r.blocked++; if (isDone(c) && inP(c.completedAt)) r.pts += c.points || 0; if ((c.spent || 0) > 0 && (!isDone(c) || inP(c.completedAt))) { r.est += c.estimate || 0; r.spent += c.spent || 0; } });
+  const aRows = [...byA.values()].sort((a, z) => (z.todo + z.doing + z.done) - (a.todo + a.doing + a.done));
+  const aMax = Math.max(1, ...aRows.map(r => r.todo + r.doing + r.done));
+
+  const spanDays = Math.round((to - from) / DAY);
+  const unit = spanDays <= 31 ? 'day' : spanDays <= 190 ? 'week' : 'month';
+  const buckets = []; let cur = new Date(from);
+  if (unit === 'week') cur = addDays(cur, -((cur.getDay() + 6) % 7));
+  if (unit === 'month') cur = new Date(cur.getFullYear(), cur.getMonth(), 1);
+  while (cur <= to) { const next = unit === 'day' ? addDays(cur, 1) : unit === 'week' ? addDays(cur, 7) : new Date(cur.getFullYear(), cur.getMonth() + 1, 1); buckets.push({ start: cur, end: next, n: 0 }); cur = next; }
+  doneP.forEach(c => { const d = new Date(c.completedAt); const bk = buckets.find(x => d >= x.start && d < x.end); if (bk) bk.n++; });
+  const bMax = Math.max(1, ...buckets.map(x => x.n)); const niceMax = bMax <= 2 ? 2 : bMax <= 4 ? 4 : Math.ceil(bMax / 2) * 2;
+  const blabel = bk => unit === 'month' ? bk.start.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '') : bk.start.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+  const labelEvery = Math.ceil(buckets.length / 8);
+
+  const stuck = new Map();
+  open.forEach(c => { const s = statusOf(boardOf(c), c.status); if (!s) return; const last = (c.history || []).filter(h => h.field === 'status' || h.field === 'created').pop(); const since = last ? new Date(last.at) : new Date(c.createdAt); const d = Math.max(0, (Date.now() - since) / DAY); if (!stuck.has(s.name)) stuck.set(s.name, { name: s.name, color: s.color, sum: 0, n: 0, blocked: 0 }); const r = stuck.get(s.name); r.sum += d; r.n++; if (c.blocked) r.blocked++; });
+  const stuckRows = [...stuck.values()].map(r => Object.assign(r, { avg: r.sum / r.n })).sort((a, z) => z.avg - a.avg);
+  const sMax = Math.max(1, ...stuckRows.map(r => r.avg));
+  const wipRows = []; sBoards.forEach(b => (b.lists || []).filter(l => !l.archived).sort((a, z) => a.order - z.order).forEach(l => { const n = [...S.cards.values()].filter(c => c.listId === l.id && !c.archived && c.type !== 'epic').length; wipRows.push({ name: (multi ? b.key + ' · ' : '') + l.name, n, wip: l.wip || 0 }); }));
+
+  const effRows = aRows.filter(r => r.est || r.spent), eMax = Math.max(1, ...effRows.map(r => Math.max(r.est, r.spent)));
+  const attention = open.filter(c => dueState(c) || c.blocked).sort((a, z) => (a.due || '9999') < (z.due || '9999') ? -1 : 1);
+
+  const step = Math.max(1, Math.ceil((spanDays + 1) / 90));
+  const cfdT = []; for (let d = new Date(from); d <= to; d = addDays(d, step)) cfdT.push(new Date(d.getTime() + DAY - 1));
+  const cfd = { todo: [], doing: [], done: [] };
+  cfdT.forEach(t => { const cnt = { todo: 0, doing: 0, done: 0 }; cards.forEach(c => { const k = catAt(c, t); if (k) cnt[k]++; }); ['todo', 'doing', 'done'].forEach(k => cfd[k].push(cnt[k])); });
+  const cfdMax = Math.max(1, ...cfdT.map((t, i) => cfd.todo[i] + cfd.doing[i] + cfd.done[i]));
+  const cfdLabels = cfdT.map(t => t.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }));
+
+  const allSprints = []; sBoards.forEach(b => (b.sprints || []).forEach(s => allSprints.push({ b, s })));
+  const selSp = allSprints.find(x => x.b.id + '|' + x.s.id === S.bi.sprint) || allSprints.find(x => x.s.state === 'active') || allSprints.filter(x => x.s.state === 'closed').pop();
+  let burn = '', burnNote = '';
+  if (selSp && selSp.s.start && selSp.s.end) {
+    const { b, s } = selSp; const st = parseYMD(s.start), en = parseYMD(s.end);
+    const n = Math.max(2, Math.round((en - st) / DAY) + 1);
+    const items = [...S.cards.values()].filter(c => c.boardId === b.id && c.sprintId === s.id && !c.archived && c.type !== 'epic');
+    const total = items.reduce((a, c) => a + (c.points || 0), 0);
+    const labels = [], ideal = [], actual = []; const td = today0();
+    for (let i = 0; i < n; i++) {
+      const d = addDays(st, i); labels.push(d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }));
+      ideal.push(Math.round(total * (1 - i / (n - 1)) * 10) / 10);
+      if (d > td) actual.push(null); else { const eod = new Date(d.getTime() + DAY - 1); actual.push(total - items.filter(c => c.completedAt && new Date(c.completedAt) <= eod).reduce((a, c) => a + (c.points || 0), 0)); }
+    }
+    const ti = Math.round((td - st) / DAY);
+    const lastA = actual.filter(v => v != null).pop();
+    burnNote = s.state === 'closed' ? `Sprint concluída com ${s.completedPts || 0} de ${s.committed || 0} pts.` : `${lastA == null ? total : lastA} de ${total} pts restantes.`;
+    burn = total ? lineChart({ labels, yMax: total, series: [{ color: 'var(--muted)', values: ideal, dash: true }, { color: 'var(--s1)', values: actual }], markX: ti >= 0 && ti < n ? ti : null, title: 'Burndown da sprint', tip: i => `${labels[i]}\nIdeal: ${fmtNum(ideal[i], 1)} pts\nRestante: ${actual[i] == null ? '—' : actual[i] + ' pts'}` }) : '';
+  }
+  const closedSp = allSprints.filter(x => x.s.state === 'closed').sort((a, z) => (a.s.end || '') < (z.s.end || '') ? -1 : 1).slice(-8);
+  const velMax = Math.max(1, ...closedSp.map(x => Math.max(x.s.committed || 0, x.s.completedPts || 0)));
+  const velAvg = closedSp.length ? closedSp.reduce((a, x) => a + (x.s.completedPts || 0), 0) / closedSp.length : null;
+
+  const kpi = (v, label, desc, cls, tag) => `<div class="kpi ${cls || ''}"><span class="eyebrow">${label}</span><span class="v">${v}</span>${tag ? `<span class="tag" style="color:var(--${cls}-ink)">${tag}</span>` : ''}<span class="d">${desc}</span></div>`;
+  const scopeOpts = `<option value="current" ${S.bi.scope === 'current' ? 'selected' : ''}>Quadro atual${curBoard() ? ' · ' + esc(curBoard().name) : ''}</option><option value="all" ${S.bi.scope === 'all' ? 'selected' : ''}>Todos os quadros (${vis.length})</option>${vis.filter(b => b.id !== S.boardId).map(b => `<option value="${b.id}" ${S.bi.scope === b.id ? 'selected' : ''}>${esc(b.name)}</option>`).join('')}`;
+  const presets = [['7', '7 dias'], ['30', '30 dias'], ['90', '90 dias'], ['365', '12 meses'], ['custom', 'Personalizado']];
+  const hbar = (rows, val, max, color, tip, valTxt) => `<div class="hb">${rows.map(r => `<span class="lab" title="${esc(r.name)}">${esc(r.name)}</span><span class="track"><span class="bar" style="width:${(val(r) / max) * 85}%"><span class="seg2" style="flex:1;background:${color(r)}" data-tip="${esc(tip(r))}"></span></span><span class="val">${valTxt(r)}</span></span>`).join('')}</div>`;
+  return `<div class="bi gut">
+    <div class="bi-ctl">
+      <label class="f"><span>Quadro</span><select class="field" id="bi-scope" data-bi="scope">${scopeOpts}</select></label>
+      <div class="f"><span>Período</span><div class="seg">${presets.map(([v, l]) => `<button data-act="bi-preset" data-v="${v}" aria-pressed="${S.bi.preset === v}">${l}</button>`).join('')}</div></div>
+      ${S.bi.preset === 'custom' ? `<label class="f"><span>De</span><input type="date" class="field" id="bi-from" data-bi="from" value="${esc(S.bi.from)}"></label><label class="f"><span>Até</span><input type="date" class="field" id="bi-to" data-bi="to" value="${esc(S.bi.to)}"></label>` : ''}
+      <span class="hint">${cards.length} itens considerados · ${from.toLocaleDateString('pt-BR')} a ${to.toLocaleDateString('pt-BR')}${activeFilterCount() ? ' · filtros da barra aplicados' : ''}</span>
+    </div>
+    <div class="kpis">
+      ${kpi(open.length, 'Em aberto', 'Situação atual')}
+      ${kpi(overdue.length, 'Atrasadas', 'Prazo já passou', overdue.length ? 'crit' : '', overdue.length ? I.warn + ' Atenção' : '')}
+      ${kpi(soon.length, 'Vencem em 3 dias', 'Incluindo hoje', soon.length ? 'warn' : '', soon.length ? I.clock + ' Em breve' : '')}
+      ${kpi(blocked.length, 'Bloqueadas', 'Com impedimento', blocked.length ? 'crit' : '', blocked.length ? I.lock + ' Impedidas' : '')}
+      ${kpi(doneP.length, 'Concluídas', 'No período')}
+      ${kpi(avgLead == null ? '—' : fmtNum(avgLead, 1) + '<small>dias</small>', 'Lead time', 'Da criação à conclusão')}
+      ${kpi(avgCyc == null ? '—' : fmtNum(avgCyc, 1) + '<small>dias</small>', 'Cycle time', 'Do início do trabalho à conclusão')}
+      ${kpi(velAvg == null ? '—' : fmtNum(velAvg, 1) + '<small>pts</small>', 'Velocidade média', closedSp.length ? `Últimas ${closedSp.length} sprints` : 'Sem sprints concluídas')}
+      ${kpi(ratio == null ? '—' : fmtNum(ratio * 100, 0) + '<small>%</small>', 'Realizado ÷ estimado', ratio == null ? 'Sem horas registradas' : `${fmtNum(sumSpent, 1)}h de ${fmtNum(sumEst, 1)}h`)}
+    </div>
+    <div class="panels">
+      <section class="panel"><div class="panel-h"><h3>Burndown da sprint</h3>${allSprints.length ? `<select class="field" id="bi-sprint" data-bi="sprint" style="font-size:12px" aria-label="Sprint">${allSprints.map(x => `<option value="${x.b.id}|${x.s.id}" ${selSp && selSp.s.id === x.s.id && selSp.b.id === x.b.id ? 'selected' : ''}>${esc((multi ? x.b.key + ' · ' : '') + x.s.name)}${x.s.state === 'active' ? ' (ativa)' : x.s.state === 'planned' ? ' (planejada)' : ''}</option>`).join('')}</select>` : ''}</div>
+        ${burn ? `<div class="legend"><span><i class="ln" style="background:var(--s1)"></i>Pontos restantes</span><span><i class="ln dash"></i>Ritmo ideal</span><span><i class="ln" style="background:var(--gold)"></i>Hoje</span></div>${burn}<span class="hint">${esc(burnNote)}</span>` : '<div class="nodata">Crie e inicie uma sprint com itens pontuados para acompanhar o burndown.</div>'}
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Velocidade</h3><span class="sub">pontos por sprint concluída</span></div>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Compromisso</span><span><i style="background:var(--s3)"></i>Entregue</span></div>
+        ${closedSp.length ? `<div class="hb">${closedSp.map(x => `<span class="lab">${esc((multi ? x.b.key + ' · ' : '') + x.s.name)}</span><span class="track"><span class="pair"><span class="bar" style="width:${(x.s.committed || 0) / velMax * 85}%"><span class="seg2" style="flex:1;background:var(--s1)" data-tip="${esc(x.s.name)} · compromisso ${x.s.committed || 0} pts"></span></span><span class="bar" style="width:${(x.s.completedPts || 0) / velMax * 85}%"><span class="seg2" style="flex:1;background:var(--s3)" data-tip="${esc(x.s.name)} · entregue ${x.s.completedPts || 0} pts"></span></span></span><span class="val">${x.s.completedPts || 0}/${x.s.committed || 0}</span></span>`).join('')}</div>` : '<div class="nodata">A velocidade aparece quando a primeira sprint for concluída.</div>'}
+      </section>
+      <section class="panel wide"><div class="panel-h"><h3>Fluxo cumulativo</h3><span class="sub">itens por etapa ao longo do período · uma faixa que engrossa indica acúmulo naquela etapa</span></div>
+        <div class="legend">${cats.slice().reverse().map(([, l, col]) => `<span><i style="background:${sc(col)}"></i>${l}</span>`).join('')}</div>
+        ${cfdT.length > 1 ? lineChart({ w: 1100, h: 250, labels: cfdLabels, yMax: cfdMax, areas: [{ color: sc(6), values: cfd.done }, { color: sc(2), values: cfd.doing }, { color: sc(1), values: cfd.todo }], title: 'Fluxo cumulativo', tip: i => `${cfdLabels[i]}\nA fazer: ${cfd.todo[i]}\nEm andamento: ${cfd.doing[i]}\nConcluído: ${cfd.done[i]}` }) : '<div class="nodata">Escolha um período maior que um dia.</div>'}
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Tarefas por status</h3><span class="sub">situação atual</span></div>
+        ${stRows.some(r => r.n) ? hbar(stRows, r => r.n, stMax, r => sc(r.color), r => `${r.name}: ${r.n} item(ns)`, r => r.n) : '<div class="nodata">Nenhum item com os filtros atuais.</div>'}
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Tarefas por responsável</h3><span class="sub">situação atual</span></div>
+        <div class="legend">${cats.map(([, l, col]) => `<span><i style="background:${sc(col)}"></i>${l}</span>`).join('')}</div>
+        ${aRows.length ? `<div class="hb">${aRows.map(r => { const tot = r.todo + r.doing + r.done; return `<span class="lab" title="${esc(r.name)}">${esc(r.name)}</span><span class="track"><span class="bar" style="width:${(tot / aMax) * 85}%">${cats.filter(([k]) => r[k]).map(([k, l, col]) => `<span class="seg2" style="flex:${r[k]};background:${sc(col)}" data-tip="${esc(r.name)} · ${l}: ${r[k]}"></span>`).join('')}</span><span class="val">${tot}</span></span>`; }).join('')}</div>` : '<div class="nodata">Nenhum item com os filtros atuais.</div>'}
+        <details class="tv"><summary>Ver tabela</summary><div class="tbl-wrap"><table class="t"><thead><tr><th>Responsável</th><th class="num">A fazer</th><th class="num">Andamento</th><th class="num">Concluído</th><th class="num">Atrasadas</th><th class="num">Bloqueadas</th><th class="num">Pts no período</th></tr></thead><tbody>${aRows.map(r => `<tr><td>${esc(r.name)}</td><td class="num">${r.todo}</td><td class="num">${r.doing}</td><td class="num">${r.done}</td><td class="num">${r.overdue}</td><td class="num">${r.blocked}</td><td class="num">${r.pts}</td></tr>`).join('')}</tbody></table></div></details>
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Vazão: concluídas no período</h3><span class="sub">por ${unit === 'day' ? 'dia' : unit === 'week' ? 'semana' : 'mês'} · ${doneP.length} no total</span></div>
+        <div class="cols">${[0.5, 1].map(f => `<div class="gl" style="bottom:${f * 100}%"><span>${fmtNum(niceMax * f, 0)}</span></div>`).join('')}${buckets.map(bk => `<div class="col" data-tip="${unit === 'week' ? 'Semana de ' : ''}${bk.start.toLocaleDateString('pt-BR')}: ${bk.n} concluída(s)"><div class="b" style="height:${(bk.n / niceMax) * 100}%"></div></div>`).join('')}</div>
+        <div class="xlabels">${buckets.map((bk, i) => `<span>${i % labelEvery === 0 ? blabel(bk) : ''}</span>`).join('')}</div>
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Estimado × realizado</h3><span class="sub">horas, itens com registro</span></div>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Estimado</span><span><i style="background:var(--s2)"></i>Realizado</span></div>
+        ${effRows.length ? `<div class="hb">${effRows.map(r => `<span class="lab" title="${esc(r.name)}">${esc(r.name)}</span><span class="track"><span class="pair"><span class="bar" style="width:${(r.est / eMax) * 85}%"><span class="seg2" style="flex:1;background:var(--s1)" data-tip="${esc(r.name)} · estimado ${fmtNum(r.est, 1)}h"></span></span><span class="bar" style="width:${(r.spent / eMax) * 85}%"><span class="seg2" style="flex:1;background:var(--s2)" data-tip="${esc(r.name)} · realizado ${fmtNum(r.spent, 1)}h"></span></span></span><span class="val">${fmtNum(r.spent, 1)}/${fmtNum(r.est, 1)}h</span></span>`).join('')}</div>` : '<div class="nodata">Nenhum item com horas registradas no período.</div>'}
+      </section>
+      <section class="panel"><div class="panel-h"><h3>Gargalos</h3><span class="sub">média de dias parado no status atual</span></div>
+        ${stuckRows.length ? hbar(stuckRows, r => r.avg, sMax, r => sc(r.color), r => `${r.name}: ${r.n} item(ns), ${fmtNum(r.avg, 1)} dias em média${r.blocked ? ', ' + r.blocked + ' bloqueado(s)' : ''}`, r => `${fmtNum(r.avg, 1)}d · ${r.n}`) : '<div class="nodata">Nenhum item em aberto.</div>'}
+        <details class="tv" ${wipRows.some(r => r.wip && r.n > r.wip) ? 'open' : ''}><summary>Trabalho em andamento por lista (WIP)</summary><div class="tbl-wrap"><table class="t"><thead><tr><th>Lista</th><th class="num">Itens</th><th class="num">Limite</th><th>Situação</th></tr></thead><tbody>${wipRows.map(r => `<tr><td>${esc(r.name)}</td><td class="num">${r.n}</td><td class="num">${r.wip || '—'}</td><td>${r.wip && r.n > r.wip ? `<span class="blk">${I.warn} Acima do limite</span>` : r.wip ? '<span class="hint">Dentro do limite</span>' : ''}</td></tr>`).join('')}</tbody></table></div></details>
+      </section>
+      <section class="panel wide"><div class="panel-h"><h3>Precisam de atenção</h3><span class="sub">atrasadas, vencendo em até 3 dias ou bloqueadas</span></div>
+        ${attention.length ? `<div class="tbl-wrap"><table class="t"><thead><tr><th>Código</th><th>Item</th>${multi ? '<th>Quadro</th>' : ''}<th>Responsável</th><th>Prazo</th><th>Situação</th></tr></thead><tbody>${attention.map(c => { const ds = dueState(c); const n = c.due ? daysUntil(c.due) : null; return `<tr class="click" data-act="open-card" data-id="${c.id}" tabindex="0"><td class="mono">${esc(cardKey(c))}</td><td>${esc(c.title)}</td>${multi ? `<td>${esc(boardOf(c).name)}</td>` : ''}<td>${esc(c.assignee || '—')}</td><td class="mono">${c.due ? fmtD(c.due) : '—'}</td><td>${ds === 'overdue' ? `<span class="due overdue">${I.warn} ${-n} dia(s) de atraso</span>` : ds === 'soon' ? `<span class="due soon">${I.clock} ${n === 0 ? 'Vence hoje' : 'Faltam ' + n + ' dia(s)'}</span>` : ''} ${c.blocked ? `<span class="blk">${I.lock} Bloqueada</span>` : ''}</td></tr>`; }).join('')}</tbody></table></div>` : '<div class="nodata">Nada atrasado, vencendo ou bloqueado.</div>'}
+      </section>
+    </div>
+  </div>`;
+}
+
+/* ---------- CSV ---------- */
+function buildCSV(b) {
+  const q = v => { const s = String(v == null ? '' : v); return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const head = ['Código', 'Tipo', 'Título', 'Status', 'Lista', 'Responsável', 'Prioridade', 'Pontos', 'Estimativa (h)', 'Realizado (h)', 'Início', 'Prazo', 'Sprint', 'Épico', 'Etiquetas', 'Bloqueado', 'Motivo do impedimento', 'Criado em', 'Concluído em'];
+  const rows = [...S.cards.values()].filter(c => c.boardId === b.id && !c.archived && passFilters(c, b)).sort((a, z) => (a.num || 0) - (z.num || 0)).map(c => [cardKey(c), TYPES[c.type].name, c.title, (statusOf(b, c.status) || {}).name, ((b.lists || []).find(l => l.id === c.listId) || {}).name, c.assignee, (prioOf(b, c.priority) || {}).name, c.points || '', String(c.estimate || '').replace('.', ','), String(c.spent || '').replace('.', ','), c.start, c.due, (sprintOf(c) || {}).name, (epicOf(c) || {}).title, (c.labels || []).map(id => ((b.labels || []).find(l => l.id === id) || {}).name).filter(Boolean).join(', '), c.blocked ? 'Sim' : 'Não', c.blockReason, isoDay(c.createdAt), isoDay(c.completedAt)]);
+  return '﻿' + [head].concat(rows).map(r => r.map(q).join(';')).join('\r\n');
+}
+
+/* ---------- toast & tooltip ---------- */
+let tt;
+function toast(msg) { let t = $('#toast'); if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); } t.textContent = msg; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => { t.hidden = true; }, 4200); }
+document.addEventListener('mouseover', e => { const el = e.target.closest && e.target.closest('[data-tip]'); const tip = $('#tip'); if (!el) { tip.hidden = true; return; } tip.textContent = el.getAttribute('data-tip'); tip.hidden = false; });
+document.addEventListener('mousemove', e => { const tip = $('#tip'); if (tip.hidden) return; const x = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8); tip.style.left = Math.max(4, x) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+
+/* ---------- events ---------- */
+let confirmFn = null;
+function askConfirm(title, text, yes, fn) { confirmFn = fn; openModal({ type: 'confirm', title, text, yes }); }
+function setFilters(f) { S.filters = Object.assign(EMPTY_F(), f); S.moreF = false; renderFilters(); render(); }
+document.addEventListener('click', e => {
+  const pop = $('#pop');
+  if (pop && !pop.contains(e.target) && !e.target.closest('[data-act="boards-menu"],[data-act="list-menu"],[data-act="saved-menu"]')) closePop();
+  if (e.target.closest('select, input, textarea')) return;
+  const t = e.target.closest('[data-act]');
+  if (!t) { const card = e.target.closest('[data-card]'); if (card) openDrawer(card.dataset.card); return; }
+  const a = t.dataset.act, id = t.dataset.id, b = curBoard();
+  switch (a) {
+    case 'boards-menu': boardsMenu(t); break;
+    case 'pick-board': S.boardId = id; closePop(); S.adding = null; S.filters = EMPTY_F(); S.bi.sprint = ''; saveUI(); renderFilters(); render(); break;
+    case 'new-board': closePop(); openModal({ type: 'new-board' }); setTimeout(() => $('#nb-name') && $('#nb-name').focus(), 30); break;
+    case 'restore-board': closePop(); mutateBoard(id, x => { x.archived = false; }); S.boardId = id; saveUI(); toast('Quadro restaurado.'); break;
+    case 'view': S.view = t.dataset.v; S.adding = null; saveUI(); renderFilters(); render(); window.scrollTo(0, 0); break;
+    case 'settings': openModal({ type: 'settings', boardId: b.id, tab: 'geral', rerender: true }); break;
+    case 'activity': openModal({ type: 'activity', boardId: b.id, rerender: true }); break;
+    case 'set-tab': S.modal.tab = t.dataset.t; S.modal.force = true; renderModal(); break;
+    case 'close-modal': closeModal(); break;
+    case 'confirm-yes': { const f = confirmFn; confirmFn = null; closeModal(); if (f) f(); break; }
+    case 'more-filters': S.moreF = true; renderFilters(); break;
+    case 'clear-filters': setFilters({}); break;
+    case 'filter-active': setFilters(Object.assign({}, S.filters, { sprint: S.filters.sprint === 'active' ? '' : 'active' })); break;
+    case 'saved-menu': savedMenu(t); break;
+    case 'save-view': closePop(); openModal({ type: 'save-view' }); setTimeout(() => $('#sv-name') && $('#sv-name').focus(), 30); break;
+    case 'apply-view': { const v = S.saved[Number(t.dataset.i)]; closePop(); if (v) { S.view = v.view || S.view; if (v.swim) S.swim = v.swim; saveUI(); setFilters(v.filters || {}); } break; }
+    case 'rm-view': S.saved.splice(Number(t.dataset.i), 1); saveUI(); closePop(); toast('Visão excluída.'); break;
+    case 'quick': { closePop(); const q = t.dataset.q; if (q === 'attention') setFilters({ due: 'attention' }); else if (q === 'sprint') { S.view = 'board'; saveUI(); setFilters({ sprint: 'active' }); } else if (q === 'bugs') setFilters({ type: 'bug', due: 'open' }); else if (q === 'stale') setFilters({ due: 'stale' }); break; }
+    case 'add-card': S.adding = { type: 'card', key: t.dataset.key }; render(); setTimeout(() => { const x = $('#new-card'); if (x) x.focus(); }, 0); break;
+    case 'add-list': S.adding = { type: 'list' }; render(); setTimeout(() => $('#new-list') && $('#new-list').focus(), 0); break;
+    case 'cancel-add': S.adding = null; render(); break;
+    case 'list-menu': listMenu(t, id); break;
+    case 'list-cfg': closePop(); openModal({ type: 'list', boardId: b.id, listId: id }); break;
+    case 'sort-list': { closePop(); const key = c => c.due || '9999-99-99'; const cs = [...S.cards.values()].filter(c => c.listId === id && !c.archived).sort((p, q) => key(p) < key(q) ? -1 : key(p) > key(q) ? 1 : 0); cs.forEach((c, i) => { if (c.order !== (i + 1) * 10) mutateCard(c.id, z => { z.order = (i + 1) * 10; }); }); toast('Lista ordenada por prazo.'); break; }
+    case 'move-list': mutateBoard(b.id, x => { const ls = x.lists.filter(l => !l.archived).sort((p, q) => p.order - q.order); const i = ls.findIndex(l => l.id === id), j = i + Number(t.dataset.d); if (j < 0 || j >= ls.length) return; [ls[i], ls[j]] = [ls[j], ls[i]]; ls.forEach((l, k) => { l.order = k + 1; }); }, 'edit'); closePop(); break;
+    case 'archive-list': closePop(); askConfirm('Arquivar lista', 'A lista e os cartões dela saem do quadro e dos indicadores. Você pode restaurar em Configurar → Arquivados.', 'Arquivar', () => { mutateBoard(b.id, x => { const l = x.lists.find(q => q.id === id); if (l) l.archived = true; }, 'edit'); S.cards.forEach(c => { if (c.listId === id && !c.archived && c.type !== 'epic') mutateCard(c.id, z => { z.archived = true; }); }); toast('Lista arquivada.'); }); break;
+    case 'restore-list': { const bid = S.modal.boardId; mutateBoard(bid, x => { const l = x.lists.find(q => q.id === id); if (l) { l.archived = false; l.order = Math.max(0, ...x.lists.filter(q => !q.archived && q.id !== id).map(q => q.order)) + 1; } }, 'edit'); S.cards.forEach(c => { if (c.listId === id && c.archived) mutateCard(c.id, z => { z.archived = false; }); }); S.modal.force = true; break; }
+    case 'restore-card': mutateCard(id, z => { z.archived = false; const bb = S.boards.get(z.boardId); if (!bb.lists.some(l => l.id === z.listId && !l.archived)) { const l = firstList(bb); if (l) z.listId = l.id; } }); S.modal.force = true; break;
+    case 'archive-board': { const bb = S.boards.get(S.modal.boardId); if (!bb.archived) askConfirm('Arquivar quadro', `“${bb.name}” sai da lista de quadros e dos indicadores. Você pode restaurar pelo seletor de quadros.`, 'Arquivar', () => { mutateBoard(bb.id, x => { x.archived = true; }); pickBoard(); saveUI(); toast('Quadro arquivado.'); }); else { mutateBoard(bb.id, x => { x.archived = false; }); S.modal.force = true; } break; }
+    case 'open-card': if (S.modal) S.modal = null; openDrawer(id); break;
+    case 'close-drawer': closeDrawer(); break;
+    case 'archive-card': { const c = S.cards.get(S.openCard); setCardField(c.id, 'archived', !c.archived); toast(c.archived ? 'Cartão restaurado.' : 'Cartão arquivado.'); if (!c.archived) closeDrawer(); else renderDrawer(true); break; }
+    case 'dup-card': { const n = duplicateCard(S.openCard); if (n) { toast('Cartão duplicado: ' + cardKey(n)); openDrawer(n.id); } break; }
+    case 'card-color': setCardField(S.openCard, 'color', t.dataset.c); renderDrawer(true); break;
+    case 'toggle-label': mutateCard(S.openCard, c => { c.labels = c.labels.includes(id) ? c.labels.filter(x => x !== id) : c.labels.concat(id); }); renderDrawer(true); break;
+    case 'add-link': { const v = $('#lk-card').value, ty = $('#lk-type').value; if (!v) { toast('Escolha o cartão a vincular.'); break; } const d = S.cards.get(v); if (!d || d.archived || !can(boardOf(d), 'view')) { toast('Esse cartão não existe ou você não tem acesso a ele.'); break; } mutateCard(S.openCard, c => { if (ty === 'dep') { if (!c.deps.includes(v)) c.deps = c.deps.concat(v); } else if (!c.links.some(l => l.id === v && l.type === ty)) c.links = c.links.concat({ type: ty, id: v }); }); renderDrawer(true); break; }
+    case 'rm-dep': mutateCard(S.openCard, c => { c.deps = c.deps.filter(x => x !== id); }); renderDrawer(true); break;
+    case 'rm-link': mutateCard(S.openCard, c => { c.links = c.links.filter(x => x.id !== id); }); renderDrawer(true); break;
+    case 'rm-att': mutateCard(S.openCard, c => { c.attachments = c.attachments.filter(x => x.id !== id); }); renderDrawer(true); break;
+    case 'rm-ck': mutateCard(S.openCard, c => { c.checklist = c.checklist.filter(x => x.id !== id); }); renderDrawer(true); break;
+    case 'rm-wl': mutateCard(S.openCard, c => { const w = c.worklog.find(x => x.id === id); if (w) c.spent = Math.max(0, Math.round(((c.spent || 0) - w.hours) * 10) / 10); c.worklog = c.worklog.filter(x => x.id !== id); }); renderDrawer(true); break;
+    case 'cfg-color': mutateBoard(S.modal.boardId, x => { const it = x[t.dataset.kind].find(q => q.id === id); if (it) it.color = Number(t.dataset.c); }); S.modal.force = true; break;
+    case 'cfg-move': mutateBoard(S.modal.boardId, x => { const arr = x[t.dataset.kind]; const i = arr.findIndex(q => q.id === id), j = i + Number(t.dataset.d); if (j < 0 || j >= arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; }); S.modal.force = true; break;
+    case 'cfg-del': mutateBoard(S.modal.boardId, x => { x[t.dataset.kind] = x[t.dataset.kind].filter(q => q.id !== id); if (t.dataset.kind === 'statuses') x.lists.forEach(l => { if (l.status === id) l.status = ''; }); }); S.modal.force = true; break;
+    case 'cfg-add': { const k = t.dataset.kind; mutateBoard(S.modal.boardId, x => { const n = x[k].length; if (k === 'statuses') x.statuses.push({ id: uid('st-'), name: 'Novo status', color: (n % 8) + 1, cat: 'doing' }); if (k === 'priorities') x.priorities.push({ id: uid('pr-'), name: 'Nova prioridade', color: (n % 8) + 1, icon: 'mid' }); if (k === 'labels') x.labels.push({ id: uid('lb-'), name: 'Nova etiqueta', color: (n % 8) + 1 }); }); S.modal.force = true; break; }
+    case 'rm-team': mutateBoard(S.modal.boardId, x => { x.team = x.team.filter(q => q !== t.dataset.name); }, 'edit'); S.modal.force = true; break;
+    case 'rm-member': mutateBoard(S.modal.boardId, x => { delete x.members[id]; }); S.modal.force = true; break;
+    case 'add-member': mutateBoard(S.modal.boardId, x => { x.members[id] = 'edit'; }); if (t.dataset.name) S.names[id] = t.dataset.name; S.modal.force = true; break;
+    case 'bi-preset': S.bi.preset = t.dataset.v; if (S.bi.preset === 'custom' && !S.bi.from) { const [f, to] = biRange(); S.bi.from = ymd(f); S.bi.to = ymd(to); } saveUI(); render(); break;
+    case 'tl-zoom': { S.tl.zoom = t.dataset.v; saveUI(); const w = $('.tl'); if (w) w.className = 'tl rezoom'; render(); break; }
+    case 'cal-nav': { const d = Number(t.dataset.d); if (!d) { const n = today0(); S.cal = { y: n.getFullYear(), m: n.getMonth() }; } else { const n = new Date(S.cal.y, S.cal.m + d, 1); S.cal = { y: n.getFullYear(), m: n.getMonth() }; } render(); break; }
+    case 'new-epic': { const c = createCard(b, (b.lists.find(l => !l.archived && !l.status) || firstList(b) || {}).id, 'Novo épico', { type: 'epic', color: 7 }); openDrawer(c.id); setTimeout(() => { const x = $('#cd-title'); if (x) x.select(); }, 40); break; }
+    case 'new-sprint': openModal({ type: 'sprint', boardId: b.id }); break;
+    case 'edit-sprint': openModal({ type: 'sprint', boardId: b.id, sprintId: id }); break;
+    case 'delete-sprint': { const m = S.modal; askConfirm('Excluir sprint', 'Os itens desta sprint voltam para o backlog.', 'Excluir', () => { mutateBoard(m.boardId, x => { x.sprints = x.sprints.filter(s => s.id !== m.sprintId); }, 'edit'); S.cards.forEach(c => { if (c.sprintId === m.sprintId) mutateCard(c.id, z => { z.sprintId = ''; }); }); toast('Sprint excluída.'); }); break; }
+    case 'start-sprint': { if (activeSprint(b)) { toast('Conclua a sprint ativa antes de iniciar outra.'); break; } const n = [...S.cards.values()].filter(c => c.sprintId === id && !c.archived && c.type !== 'epic').length; if (!n) { toast('Adicione itens à sprint antes de iniciar.'); break; } const pts = sprintPoints(b, id); mutateBoard(b.id, x => { const s = x.sprints.find(q => q.id === id); s.state = 'active'; s.committed = pts; if (!s.start || parseYMD(s.start) > today0()) { const len = s.start && s.end ? Math.round((parseYMD(s.end) - parseYMD(s.start)) / DAY) : 13; s.start = ymd(today0()); s.end = ymd(addDays(today0(), len)); } }, 'edit'); toast('Sprint iniciada com ' + pts + ' pontos de compromisso.'); break; }
+    case 'complete-sprint': openModal({ type: 'complete', boardId: b.id, sprintId: id }); break;
+    case 'do-complete': {
+      const m = S.modal, bb = S.boards.get(m.boardId); const dest = $('#cs-dest') ? $('#cs-dest').value : '';
+      const done = sprintPoints(bb, m.sprintId, true); const spName = (bb.sprints.find(s => s.id === m.sprintId) || {}).name; const dName = (bb.sprints.find(s => s.id === dest) || {}).name || 'Backlog';
+      S.cards.forEach(c => { if (c.boardId === bb.id && c.sprintId === m.sprintId && !c.archived && !isDone(c) && c.type !== 'epic') mutateCard(c.id, z => { histPush(z, 'sprint', spName, dName); z.sprintId = dest; }); });
+      mutateBoard(bb.id, x => { const s = x.sprints.find(q => q.id === m.sprintId); s.state = 'closed'; s.completedPts = done; s.closedAt = nowISO(); }, 'edit');
+      closeModal(); toast('Sprint concluída: ' + done + ' pontos entregues.'); break;
+    }
+    case 'export-csv': { const csv = buildCSV(b); const fn = (b.key || 'quadro') + '-' + ymd(today0()) + '.csv'; if (S.downloads) S.downloads.save({ filename: fn, data: csv }).then(r => { if (r && r.status === 'saved') toast('Arquivo salvo.'); }).catch(err => { if (err && err.code === 'unavailable') openModal({ type: 'csv', csv }); }); else openModal({ type: 'csv', csv }); break; }
+    case 'copy-csv': { const ta = $('#csv-out'); const sel = () => { ta.select(); toast('Texto selecionado. Use Ctrl+C para copiar.'); }; try { navigator.clipboard.writeText(ta.value).then(() => toast('CSV copiado.'), sel); } catch (err) { sel(); } break; }
+  }
+  if (S.modal && S.modal.force) setTimeout(renderModal, 0);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { if ($('#pop')) closePop(); else if (S.modal) closeModal(); else if (S.openCard) closeDrawer(); else if (S.adding) { S.adding = null; render(); } }
+  if (e.key === 'Enter' && e.target.matches && e.target.matches('[data-card], div[data-act="open-card"], tr[data-act="open-card"]')) { e.preventDefault(); openDrawer(e.target.dataset.card || e.target.dataset.id); }
+  if (e.key === 'Enter' && !e.shiftKey && e.target.id === 'new-card') { e.preventDefault(); e.target.form.requestSubmit(); }
+});
+document.addEventListener('submit', e => {
+  const f = e.target.closest('[data-form]'); if (!f) return; e.preventDefault();
+  const k = f.dataset.form, b = curBoard();
+  if (k === 'add-card') {
+    const v = $('#new-card').value.trim(); if (!v) return;
+    const extra = {}; const lane = f.dataset.lane;
+    if (lane && S.swim !== 'none') { const fld = LANE_FIELD[S.swim]; if (fld) extra[fld] = lane === '__none' ? '' : lane; }
+    const sp = S.filters.sprint === 'active' && activeSprint(b); if (sp) extra.sprintId = sp.id;
+    createCard(b, f.dataset.list, v, extra); render(); setTimeout(() => { const x = $('#new-card'); if (x) x.focus(); }, 0);
+  }
+  else if (k === 'add-list') { const v = $('#new-list').value.trim(); if (!v) return; mutateBoard(b.id, x => { x.lists.push({ id: uid('ls-'), name: v, order: Math.max(0, ...x.lists.filter(l => !l.archived).map(l => l.order)) + 1, archived: false, status: '', wip: 0, dod: '' }); }, 'edit'); S.adding = null; }
+  else if (k === 'list-cfg') { const m = S.modal; const name = $('#lc-name').value.trim(); if (!name) { toast('A lista precisa de um nome.'); return; } const wip = Math.max(0, parseInt($('#lc-wip').value, 10) || 0), dod = $('#lc-dod').value.trim(); mutateBoard(m.boardId, x => { const l = x.lists.find(q => q.id === m.listId); l.name = name; l.wip = wip; l.dod = dod; }, 'edit'); closeModal(); }
+  else if (k === 'new-board') {
+    const name = $('#nb-name').value.trim(); if (!name) return;
+    const key = ($('#nb-key').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '') || makeKey(name)).slice(0, 6);
+    const nb = defaultBoard(name, key);
+    if ($('#nb-lists').checked) nb.lists = nb.statuses.map((s, i) => ({ id: uid('ls-'), name: s.name, order: i + 1, archived: false, status: s.id, wip: 0, dod: '' }));
+    if ($('#nb-sprint').checked) nb.sprints = [{ id: uid('sp-'), name: 'Sprint 1', goal: '', start: ymd(today0()), end: ymd(addDays(today0(), 13)), state: 'planned', committed: 0, completedPts: 0, closedAt: '' }];
+    put('boards', nb); S.boardId = nb.id; S.view = 'board'; S.filters = EMPTY_F(); saveUI(); closeModal(); renderFilters(); toast('Quadro criado.');
+  }
+  else if (k === 'sprint') {
+    const m = S.modal; const name = $('#sp-name').value.trim(), goal = $('#sp-goal').value.trim(), st = $('#sp-start').value, en = $('#sp-end').value;
+    if (!name || !st || !en) return; if (en < st) { $('#sp-err').textContent = 'O fim precisa ser depois do início.'; return; }
+    mutateBoard(m.boardId, x => { if (m.sprintId) Object.assign(x.sprints.find(s => s.id === m.sprintId), { name, goal, start: st, end: en }); else x.sprints.push({ id: uid('sp-'), name, goal, start: st, end: en, state: 'planned', committed: 0, completedPts: 0, closedAt: '' }); }, 'edit');
+    closeModal(); toast(m.sprintId ? 'Sprint atualizada.' : 'Sprint criada.');
+  }
+  else if (k === 'bk-add') { const v = $('#bk-title').value.trim(); if (!v) return; createCard(b, null, v, { type: $('#bk-type').value }); setTimeout(() => { const x = $('#bk-title'); if (x) x.focus(); }, 30); }
+  else if (k === 'add-link-att') {
+    const url = $('#att-url').value.trim(); const name = $('#att-name').value.trim();
+    if (!/^https?:\/\//i.test(url)) { toast('Use um endereço que comece com https://'); return; }
+    mutateCard(S.openCard, c => { c.attachments = c.attachments.concat({ id: uid('at-'), name: name || url.replace(/^https?:\/\//, '').slice(0, 60), url, by: myId(), at: nowISO() }); }); renderDrawer(true);
+  }
+  else if (k === 'add-ck') { const v = $('#ck-new').value.trim(); if (!v) return; mutateCard(S.openCard, c => { c.checklist = c.checklist.concat({ id: uid('ck-'), text: v.slice(0, 300), done: false }); }); renderDrawer(true); setTimeout(() => $('#ck-new') && $('#ck-new').focus(), 0); }
+  else if (k === 'add-sub') {
+    const v = $('#sub-new').value.trim(); if (!v) return; const p = S.cards.get(S.openCard); const bb = boardOf(p);
+    const todo = (bb.statuses.find(s => s.cat === 'todo') || {}).id; const todoList = (bb.lists.find(l => !l.archived && l.status === todo) || {}).id;
+    createCard(bb, todoList || null, v, { type: 'subtask', parentId: p.id, sprintId: p.sprintId, assignee: p.assignee }); renderDrawer(true); setTimeout(() => $('#sub-new') && $('#sub-new').focus(), 0);
+  }
+  else if (k === 'add-wl') {
+    const h = parseFloat(String($('#wl-h').value).replace(',', '.')); if (!(h > 0)) { toast('Informe as horas trabalhadas.'); return; }
+    const d = $('#wl-d').value || ymd(today0()), n = $('#wl-n').value.trim();
+    mutateCard(S.openCard, c => { c.worklog = c.worklog.concat({ id: uid('wl-'), by: myId(), at: nowISO(), date: d, hours: Math.round(h * 100) / 100, note: n.slice(0, 200) }); c.spent = Math.round(((c.spent || 0) + h) * 10) / 10; });
+    renderDrawer(true);
+  }
+  else if (k === 'comment') { const v = $('#cd-comment').value.trim(); if (!v) return; mutateCard(S.openCard, c => { c.comments = c.comments.concat({ id: uid('cm-'), by: myId(), at: nowISO(), text: v.slice(0, 4000) }); }); renderDrawer(true); }
+  else if (k === 'add-team') { const v = $('#team-name').value.trim(); if (!v) return; mutateBoard(S.modal.boardId, x => { if (!x.team.includes(v)) x.team.push(v); }, 'edit'); S.modal.force = true; renderModal(); }
+  else if (k === 'person') {
+    const v = $('#person-name').value.trim(); if (!v) return; const cid = S.modal.cardId;
+    const c = S.cards.get(cid); mutateBoard(c.boardId, x => { if (!x.team.includes(v)) x.team.push(v); }, 'edit');
+    S.modal = null; $('#layer').innerHTML = ''; S.openCard = cid; setCardField(cid, 'assignee', v); renderDrawer(true);
+  }
+  else if (k === 'save-view') { const v = $('#sv-name').value.trim(); if (!v) return; S.saved.push({ name: v.slice(0, 60), view: S.view, swim: S.swim, filters: Object.assign({}, S.filters) }); saveUI(); closeModal(); toast('Visão salva.'); }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.dataset.filter) { S.filters[t.dataset.filter] = t.dataset.filter === 'q' ? t.value.trim() : t.value; renderFilters(); const el = document.getElementById(t.id); if (el) el.focus(); render(); return; }
+  if (t.dataset.swim) { S.swim = t.value; S.adding = null; saveUI(); render(); return; }
+  if (t.dataset.bi) { S.bi[t.dataset.bi] = t.value; if (t.dataset.bi === 'scope') S.bi.sprint = ''; saveUI(); renderFilters(); render(); return; }
+  if (t.dataset.bksprint) { setCardField(t.dataset.bksprint, 'sprintId', t.value); return; }
+  if (t.dataset.ck) { const id = t.dataset.ck; mutateCard(S.openCard, c => { const k = c.checklist.find(x => x.id === id); if (k) k.done = t.checked; }); renderDrawer(true); return; }
+  if (t.dataset.cf) {
+    const f = t.dataset.cf, id = S.openCard;
+    if (f === 'assignee' && t.value === '__add') { t.value = S.cards.get(id).assignee || ''; openModal({ type: 'person', cardId: id, backTo: id }); setTimeout(() => $('#person-name') && $('#person-name').focus(), 30); return; }
+    setCardField(id, f, t.type === 'checkbox' ? t.checked : t.value);
+    renderDrawer(true);
+    if (f === 'blocked' && t.checked) setTimeout(() => $('#cd-reason') && $('#cd-reason').focus(), 30);
+    return;
+  }
+  if (t.id === 'att-file' && t.files && t.files[0]) {
+    const file = t.files[0], cid = S.openCard;
+    toast('Enviando ' + file.name + '…');
+    S.assets.upload(file).then(r => { mutateCard(cid, c => { c.attachments = c.attachments.concat({ id: uid('at-'), name: file.name, assetId: r.id, url: '', by: myId(), at: nowISO() }); }); renderDrawer(true); toast('Arquivo anexado.'); }).catch(() => toast('Não foi possível enviar o arquivo. Tipos aceitos: imagem, PDF, vídeo ou texto, até 20 MB.'));
+    return;
+  }
+  const m = S.modal; if (!m || m.type !== 'settings') return;
+  if (t.dataset.cfg) {
+    const k = t.dataset.cfg; let v = t.value.trim();
+    if (k === 'name' && !v) { toast('O quadro precisa de um nome.'); t.value = S.boards.get(m.boardId).name; return; }
+    if (k === 'key') { v = v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6); if (!v) { t.value = S.boards.get(m.boardId).key; return; } }
+    mutateBoard(m.boardId, x => { x[k] = v; });
+  } else if (t.dataset.cfgarr) {
+    const v = t.value.trim(); if (!v) { toast('O nome não pode ficar vazio.'); m.force = true; renderModal(); return; }
+    mutateBoard(m.boardId, x => { const it = x[t.dataset.cfgarr].find(q => q.id === t.dataset.id); if (it) it[t.dataset.k] = v; });
+    if (t.dataset.k !== 'name') { m.force = true; setTimeout(renderModal, 0); }
+  } else if (t.dataset.listst !== undefined) {
+    mutateBoard(m.boardId, x => { const l = x.lists.find(q => q.id === t.dataset.listst); if (l) l.status = t.value; });
+  } else if (t.dataset.member) {
+    mutateBoard(m.boardId, x => { x.members[t.dataset.member] = t.value; });
+  }
+});
+let qT, sT;
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.filter === 'q') { clearTimeout(qT); qT = setTimeout(() => { S.filters.q = t.value.trim(); $('#main').innerHTML = renderMain(); }, 160); }
+  if (t.dataset.search) {
+    clearTimeout(sT); const q = t.value.trim();
+    sT = setTimeout(async () => {
+      const box = $('#mem-results'); if (!box || !S.user) return;
+      let hits = []; try { hits = await S.user.search(q); } catch (err) {}
+      const b = S.boards.get(S.modal.boardId);
+      hits = hits.filter(h => h.id && h.id !== b.createdBy && !(b.members || {})[h.id]);
+      box.innerHTML = hits.slice(0, 8).map(h => `<div class="item"><span class="grow"></span><button class="btn sm" data-act="add-member" data-id="${esc(h.id)}">Adicionar como editor</button></div>`).join('') || (q ? '<span class="hint">Ninguém encontrado.</span>' : '');
+      $$('.item .grow', box).forEach((el, i) => { el.textContent = hits[i].name || 'Pessoa sem nome'; el.nextElementSibling.dataset.name = hits[i].name || ''; });
+    }, 220);
+  }
+});
+document.addEventListener('focusin', e => { if (e.target.dataset && e.target.dataset.search && !e.target.value) e.target.dispatchEvent(new Event('input', { bubbles: true })); });
+document.addEventListener('focusout', () => { setTimeout(() => { if (S.drawerDirty && S.openCard) { const dr = $('#drawer'); const ae = document.activeElement; if (!dr || !dr.contains(ae) || !/INPUT|TEXTAREA|SELECT/.test(ae.tagName)) renderDrawer(); } }, 0); });
+
+/* drag & drop: board cards and backlog rows */
+let dragId = null;
+document.addEventListener('dragstart', e => { const c = e.target.closest && (e.target.closest('[data-card]') || e.target.closest('[data-bkcard]')); if (!c) return; dragId = c.dataset.card || c.dataset.bkcard; c.classList.add('dragging'); try { e.dataTransfer.setData('text/plain', dragId); e.dataTransfer.effectAllowed = 'move'; } catch (x) {} });
+document.addEventListener('dragend', () => { dragId = null; $$('.dragging').forEach(x => x.classList.remove('dragging')); $$('.drop-mark').forEach(x => x.remove()); $$('.list-body.over').forEach(x => x.classList.remove('over')); $$('.bk-sec.drop').forEach(x => x.classList.remove('drop')); });
+function dropBody(t) { if (!t.closest) return null; return t.closest('[data-drop]') || (t.closest('.list') && $('[data-drop]', t.closest('.list'))); }
+function dropTarget(body, y) { const cs = $$('[data-card]', body).filter(x => x.dataset.card !== dragId); return cs.find(x => { const r = x.getBoundingClientRect(); return y < r.top + r.height / 2; }) || null; }
+document.addEventListener('dragover', e => {
+  if (!dragId) return;
+  const sec = e.target.closest && e.target.closest('[data-sprint-drop]');
+  if (sec) { e.preventDefault(); $$('.bk-sec.drop').forEach(x => { if (x !== sec) x.classList.remove('drop'); }); sec.classList.add('drop'); return; }
+  const body = dropBody(e.target); if (!body) return;
+  e.preventDefault();
+  $$('.list-body.over').forEach(x => { if (x !== body) x.classList.remove('over'); }); body.classList.add('over');
+  const before = dropTarget(body, e.clientY);
+  let mark = $('.drop-mark'); if (!mark) { mark = document.createElement('div'); mark.className = 'drop-mark'; }
+  if (before) body.insertBefore(mark, before); else body.appendChild(mark);
+});
+document.addEventListener('drop', e => {
+  if (!dragId) return;
+  const sec = e.target.closest && e.target.closest('[data-sprint-drop]');
+  if (sec) { e.preventDefault(); const id = dragId; dragId = null; setCardField(id, 'sprintId', sec.dataset.sprintDrop); return; }
+  const body = dropBody(e.target); if (!body) return;
+  e.preventDefault(); const before = dropTarget(body, e.clientY); const id = dragId; dragId = null;
+  const lane = body.dataset.lane != null && S.swim !== 'none' ? { by: S.swim, val: body.dataset.lane } : null;
+  moveCard(id, body.dataset.drop, before ? before.dataset.card : null, lane);
+});
+
+boot();
+})();
+
+</script>
+
+</body></html>

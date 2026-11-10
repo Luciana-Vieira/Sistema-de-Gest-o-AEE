@@ -1,0 +1,4977 @@
+{
+ "_dataBase": "2026-11-08",
+ "_sobre": "Dados fictícios para demonstração. As datas são deslocadas para perto da data em que o seed roda. 'u_1' é trocado pelo id da pessoa gestora da demonstração.",
+ "docs": {
+  "alunos/a1": {
+   "nome": "Sofia Ramos",
+   "responsavelNome": "Patrícia Ramos",
+   "responsavelParentesco": "Mãe",
+   "responsavelCpf": "52998224725",
+   "telefone": "31991234567",
+   "email": "patrícia@email.com",
+   "endereco": "Belo Horizonte/MG",
+   "escola": "Colégio Horizonte",
+   "anoEscolar": "4º ano",
+   "horarios": [
+    {
+     "dia": 1,
+     "inicio": "14:00",
+     "fim": "15:00"
+    },
+    {
+     "dia": 3,
+     "inicio": "14:00",
+     "fim": "15:00"
+    }
+   ],
+   "dataMatricula": "2026-08-10",
+   "foco": "Português e Matemática",
+   "formaPagamento": "Pix",
+   "vigenciaMeses": "12",
+   "situacao": "ativa",
+   "curso": "Apoio semanal",
+   "modalidade": "Presencial",
+   "dataNascimento": "2016-11-11",
+   "responsavelNascimento": "1987-11-20",
+   "mensalidade": 38000,
+   "diaVencimento": "10",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou",
+     "detalhe": ""
+    }
+   ]
+  },
+  "alunos/a2": {
+   "nome": "Pedro Almeida",
+   "responsavelNome": "Marcos Almeida",
+   "responsavelParentesco": "Pai",
+   "responsavelCpf": "52998224725",
+   "telefone": "31991234568",
+   "email": "marcos@email.com",
+   "endereco": "Belo Horizonte/MG",
+   "escola": "Escola Estadual Santos Dumont",
+   "anoEscolar": "5º ano",
+   "horarios": [
+    {
+     "dia": 2,
+     "inicio": "15:30",
+     "fim": "16:30"
+    }
+   ],
+   "dataMatricula": "2026-08-17",
+   "foco": "Matemática",
+   "formaPagamento": "Pix",
+   "vigenciaMeses": "12",
+   "situacao": "ativa",
+   "curso": "Reforço por disciplina",
+   "modalidade": "Presencial",
+   "dataNascimento": "2015-12-01",
+   "responsavelNascimento": "1987-11-29",
+   "mensalidade": 26000,
+   "diaVencimento": "10",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou",
+     "detalhe": ""
+    }
+   ]
+  },
+  "alunos/a3": {
+   "nome": "Helena Costa",
+   "responsavelNome": "Juliana Costa",
+   "responsavelParentesco": "Mãe",
+   "responsavelCpf": "52998224725",
+   "telefone": "31991234569",
+   "email": "juliana@email.com",
+   "endereco": "Belo Horizonte/MG",
+   "escola": "Colégio Horizonte",
+   "anoEscolar": "3º ano",
+   "horarios": [
+    {
+     "dia": 1,
+     "inicio": "16:00",
+     "fim": "17:00"
+    },
+    {
+     "dia": 4,
+     "inicio": "16:00",
+     "fim": "17:00"
+    }
+   ],
+   "dataMatricula": "2026-08-24",
+   "foco": "Alfabetização e leitura",
+   "formaPagamento": "Pix",
+   "vigenciaMeses": "12",
+   "situacao": "ativa",
+   "curso": "Acompanhamento contínuo",
+   "modalidade": "Presencial",
+   "dataNascimento": "2014-11-08",
+   "responsavelNascimento": "1987-12-08",
+   "mensalidade": 42000,
+   "diaVencimento": "10",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou",
+     "detalhe": ""
+    }
+   ]
+  },
+  "alunos/a4": {
+   "nome": "Lucas Ferreira",
+   "responsavelNome": "Renata Ferreira",
+   "responsavelParentesco": "Mãe",
+   "responsavelCpf": "52998224725",
+   "telefone": "31991234570",
+   "email": "renata@email.com",
+   "endereco": "Belo Horizonte/MG",
+   "escola": "Escola Municipal Ouro Preto",
+   "anoEscolar": "9º ano",
+   "horarios": [
+    {
+     "dia": 5,
+     "inicio": "10:00",
+     "fim": "11:30"
+    }
+   ],
+   "dataMatricula": "2026-08-31",
+   "foco": "Seleção IF",
+   "formaPagamento": "Pix",
+   "vigenciaMeses": "12",
+   "situacao": "ativa",
+   "curso": "Preparação para provas",
+   "modalidade": "Presencial",
+   "dataNascimento": "2013-01-10",
+   "responsavelNascimento": "1987-12-17",
+   "mensalidade": 32000,
+   "diaVencimento": "10",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou",
+     "detalhe": ""
+    }
+   ]
+  },
+  "alunos/a5": {
+   "nome": "Davi Moreira",
+   "responsavelNome": "Carla Moreira",
+   "responsavelParentesco": "Mãe",
+   "responsavelCpf": "52998224725",
+   "telefone": "31991234571",
+   "email": "carla@email.com",
+   "endereco": "Belo Horizonte/MG",
+   "escola": "Colégio Horizonte",
+   "anoEscolar": "2º ano",
+   "horarios": [
+    {
+     "dia": 2,
+     "inicio": "14:00",
+     "fim": "15:00"
+    },
+    {
+     "dia": 4,
+     "inicio": "14:00",
+     "fim": "15:00"
+    }
+   ],
+   "dataMatricula": "2026-09-07",
+   "foco": "Alfabetização",
+   "formaPagamento": "Pix",
+   "vigenciaMeses": "12",
+   "situacao": "ativa",
+   "curso": "Apoio semanal",
+   "modalidade": "Presencial",
+   "dataNascimento": "2012-01-30",
+   "responsavelNascimento": "1987-12-26",
+   "mensalidade": 38000,
+   "diaVencimento": "10",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou",
+     "detalhe": ""
+    }
+   ]
+  },
+  "aulas/x001": {
+   "alunoId": "a1",
+   "data": "2026-08-31",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x002": {
+   "alunoId": "a1",
+   "data": "2026-09-02",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x003": {
+   "alunoId": "a1",
+   "data": "2026-09-07",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x004": {
+   "alunoId": "a1",
+   "data": "2026-09-09",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x005": {
+   "alunoId": "a1",
+   "data": "2026-09-14",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x006": {
+   "alunoId": "a1",
+   "data": "2026-09-16",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x007": {
+   "alunoId": "a1",
+   "data": "2026-09-21",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "falta"
+  },
+  "aulas/x008": {
+   "alunoId": "a1",
+   "data": "2026-09-23",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x009": {
+   "alunoId": "a1",
+   "data": "2026-09-28",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x010": {
+   "alunoId": "a1",
+   "data": "2026-09-30",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x011": {
+   "alunoId": "a1",
+   "data": "2026-10-05",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x012": {
+   "alunoId": "a1",
+   "data": "2026-10-07",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x013": {
+   "alunoId": "a1",
+   "data": "2026-10-12",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x014": {
+   "alunoId": "a1",
+   "data": "2026-10-14",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x015": {
+   "alunoId": "a1",
+   "data": "2026-10-19",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x016": {
+   "alunoId": "a1",
+   "data": "2026-10-21",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x017": {
+   "alunoId": "a1",
+   "data": "2026-10-26",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x018": {
+   "alunoId": "a1",
+   "data": "2026-10-28",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x019": {
+   "alunoId": "a1",
+   "data": "2026-11-02",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x020": {
+   "alunoId": "a1",
+   "data": "2026-11-04",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "falta"
+  },
+  "aulas/x021": {
+   "alunoId": "a1",
+   "data": "2026-11-09",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x022": {
+   "alunoId": "a1",
+   "data": "2026-11-11",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x023": {
+   "alunoId": "a2",
+   "data": "2026-09-01",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x024": {
+   "alunoId": "a2",
+   "data": "2026-09-08",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x025": {
+   "alunoId": "a2",
+   "data": "2026-09-15",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "falta"
+  },
+  "aulas/x026": {
+   "alunoId": "a2",
+   "data": "2026-09-22",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x027": {
+   "alunoId": "a2",
+   "data": "2026-09-29",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x028": {
+   "alunoId": "a2",
+   "data": "2026-10-06",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x029": {
+   "alunoId": "a2",
+   "data": "2026-10-13",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x030": {
+   "alunoId": "a2",
+   "data": "2026-10-20",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 4,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x031": {
+   "alunoId": "a2",
+   "data": "2026-10-27",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x032": {
+   "alunoId": "a2",
+   "data": "2026-11-03",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "",
+   "aval": {
+    "eng": 4,
+    "comp": 4,
+    "aut": 3
+   }
+  },
+  "aulas/x033": {
+   "alunoId": "a2",
+   "data": "2026-11-10",
+   "inicio": "15:30",
+   "fim": "16:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x034": {
+   "alunoId": "a3",
+   "data": "2026-08-31",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x035": {
+   "alunoId": "a3",
+   "data": "2026-09-03",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x036": {
+   "alunoId": "a3",
+   "data": "2026-09-07",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x037": {
+   "alunoId": "a3",
+   "data": "2026-09-10",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x038": {
+   "alunoId": "a3",
+   "data": "2026-09-14",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x039": {
+   "alunoId": "a3",
+   "data": "2026-09-17",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x040": {
+   "alunoId": "a3",
+   "data": "2026-09-21",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x041": {
+   "alunoId": "a3",
+   "data": "2026-09-24",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x042": {
+   "alunoId": "a3",
+   "data": "2026-09-28",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x043": {
+   "alunoId": "a3",
+   "data": "2026-10-01",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x044": {
+   "alunoId": "a3",
+   "data": "2026-10-05",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x045": {
+   "alunoId": "a3",
+   "data": "2026-10-08",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x046": {
+   "alunoId": "a3",
+   "data": "2026-10-12",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 4,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x047": {
+   "alunoId": "a3",
+   "data": "2026-10-15",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x048": {
+   "alunoId": "a3",
+   "data": "2026-10-19",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x049": {
+   "alunoId": "a3",
+   "data": "2026-10-22",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x050": {
+   "alunoId": "a3",
+   "data": "2026-10-26",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x051": {
+   "alunoId": "a3",
+   "data": "2026-10-29",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x052": {
+   "alunoId": "a3",
+   "data": "2026-11-02",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x053": {
+   "alunoId": "a3",
+   "data": "2026-11-05",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x054": {
+   "alunoId": "a3",
+   "data": "2026-11-09",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x055": {
+   "alunoId": "a3",
+   "data": "2026-11-12",
+   "inicio": "16:00",
+   "fim": "17:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x056": {
+   "alunoId": "a4",
+   "data": "2026-09-04",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x057": {
+   "alunoId": "a4",
+   "data": "2026-09-11",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x058": {
+   "alunoId": "a4",
+   "data": "2026-09-18",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 1,
+    "aut": 2
+   }
+  },
+  "aulas/x059": {
+   "alunoId": "a4",
+   "data": "2026-09-25",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x060": {
+   "alunoId": "a4",
+   "data": "2026-10-02",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x061": {
+   "alunoId": "a4",
+   "data": "2026-10-09",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x062": {
+   "alunoId": "a4",
+   "data": "2026-10-16",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x063": {
+   "alunoId": "a4",
+   "data": "2026-10-23",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Ortografia: R e RR",
+   "observacoes": "Acertou 9 de 12 palavras no ditado.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x064": {
+   "alunoId": "a4",
+   "data": "2026-10-30",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x065": {
+   "alunoId": "a4",
+   "data": "2026-11-06",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x066": {
+   "alunoId": "a4",
+   "data": "2026-11-13",
+   "inicio": "10:00",
+   "fim": "11:30",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x067": {
+   "alunoId": "a5",
+   "data": "2026-09-01",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "falta"
+  },
+  "aulas/x068": {
+   "alunoId": "a5",
+   "data": "2026-09-03",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x069": {
+   "alunoId": "a5",
+   "data": "2026-09-08",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x070": {
+   "alunoId": "a5",
+   "data": "2026-09-10",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 2,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x071": {
+   "alunoId": "a5",
+   "data": "2026-09-15",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "",
+   "aval": {
+    "eng": 2,
+    "comp": 1,
+    "aut": 1
+   }
+  },
+  "aulas/x072": {
+   "alunoId": "a5",
+   "data": "2026-09-17",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 1,
+    "aut": 2
+   }
+  },
+  "aulas/x073": {
+   "alunoId": "a5",
+   "data": "2026-09-22",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x074": {
+   "alunoId": "a5",
+   "data": "2026-09-24",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x075": {
+   "alunoId": "a5",
+   "data": "2026-09-29",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x076": {
+   "alunoId": "a5",
+   "data": "2026-10-01",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 1
+   }
+  },
+  "aulas/x077": {
+   "alunoId": "a5",
+   "data": "2026-10-06",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x078": {
+   "alunoId": "a5",
+   "data": "2026-10-08",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Leitura do conto e ideia principal",
+   "observacoes": "Leu o texto com mais fluência e identificou a ideia principal sem ajuda.",
+   "casa": "",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x079": {
+   "alunoId": "a5",
+   "data": "2026-10-13",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Interpretação de tirinhas",
+   "observacoes": "Participou bastante e explicou o humor da tirinha.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 2
+   }
+  },
+  "aulas/x080": {
+   "alunoId": "a5",
+   "data": "2026-10-15",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 2,
+    "aut": 2
+   }
+  },
+  "aulas/x081": {
+   "alunoId": "a5",
+   "data": "2026-10-20",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Problemas com as quatro operações",
+   "observacoes": "Resolveu 8 de 10 problemas; ainda confunde quando usar a divisão.",
+   "casa": "Lista de 5 problemas.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x082": {
+   "alunoId": "a5",
+   "data": "2026-10-22",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Tabuada com jogos",
+   "observacoes": "Memorizou a tabuada do 7 com o jogo de cartas.",
+   "casa": "Treinar a tabuada do 7.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x083": {
+   "alunoId": "a5",
+   "data": "2026-10-27",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "falta"
+  },
+  "aulas/x084": {
+   "alunoId": "a5",
+   "data": "2026-10-29",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Produção de texto: narrativa",
+   "observacoes": "Escreveu uma narrativa com começo, meio e fim. Melhorar a pontuação.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x085": {
+   "alunoId": "a5",
+   "data": "2026-11-03",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Frações no dia a dia",
+   "observacoes": "Compreendeu metades e quartos com material concreto.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 3,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x086": {
+   "alunoId": "a5",
+   "data": "2026-11-05",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "realizada",
+   "tema": "Revisão para a prova de Ciências",
+   "observacoes": "Fez o mapa mental do ciclo da água sozinha.",
+   "casa": "Ler 15 minutos por dia.",
+   "aval": {
+    "eng": 4,
+    "comp": 3,
+    "aut": 3
+   }
+  },
+  "aulas/x087": {
+   "alunoId": "a5",
+   "data": "2026-11-10",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "aulas/x088": {
+   "alunoId": "a5",
+   "data": "2026-11-12",
+   "inicio": "14:00",
+   "fim": "15:00",
+   "profissional": "Helena Duarte",
+   "modalidade": "Presencial",
+   "situacao": "agendada"
+  },
+  "avaliacoes/v0": {
+   "alunoId": "a1",
+   "data": "2026-08-20",
+   "tipo": "Diagnóstica inicial",
+   "periodo": "Agosto 2026",
+   "referenciaTipo": "Curso",
+   "referencia": "Apoio semanal",
+   "professor": "Helena Duarte",
+   "niveis": {
+    "Leitura e compreensão de textos": 1,
+    "Produção de texto": 1,
+    "Ortografia e gramática": 2,
+    "Raciocínio lógico-matemático": 2,
+    "Atenção e concentração": 2,
+    "Motivação e interesse pelos estudos": 2,
+    "Autoestima e segurança para aprender": 1
+   },
+   "avancos": "Gosta de histórias e participa das conversas.",
+   "atencao": "Insegurança para ler em voz alta e para escrever.",
+   "descritivo": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "avaliacoes/v1": {
+   "alunoId": "a1",
+   "data": "2026-11-05",
+   "tipo": "Bimestral",
+   "periodo": "4º bimestre 2026",
+   "referenciaTipo": "Curso",
+   "referencia": "Apoio semanal",
+   "professor": "Helena Duarte",
+   "niveis": {
+    "Leitura e compreensão de textos": 3,
+    "Produção de texto": 2,
+    "Ortografia e gramática": 3,
+    "Raciocínio lógico-matemático": 3,
+    "Atenção e concentração": 3,
+    "Motivação e interesse pelos estudos": 4,
+    "Autoestima e segurança para aprender": 3
+   },
+   "avancos": "Lê com fluência e já identifica a ideia principal sozinha. Ganhou confiança para participar.",
+   "atencao": "Organizar as ideias antes de escrever e revisar a pontuação.",
+   "descritivo": "Sofia teve uma evolução muito bonita neste bimestre: chega animada e já pede para ler em voz alta.",
+   "proximos": "Produção de textos curtos com roteiro e revisão em dupla.",
+   "familia": "Ler junto 15 minutos por dia e conversar sobre a história.",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "boletins/b0": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 1,
+   "periodo": "1º semestre",
+   "ordem": 0.25,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Língua Portuguesa",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 7.5
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 5
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 2.5
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 8
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 5.5
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 3
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": 3.5
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": 1.5
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/c0": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 2,
+   "periodo": "2º semestre",
+   "ordem": 0.75,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Língua Portuguesa",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 8.7
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": null
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": null
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": null
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": null
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/b1": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 1,
+   "periodo": "1º semestre",
+   "ordem": 0.25,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Matemática",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 5.5
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 4
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 2
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 6.5
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 4.5
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 2.5
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": 3
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": 1
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/c1": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 2,
+   "periodo": "2º semestre",
+   "ordem": 0.75,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Matemática",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 7.5
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": null
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": null
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": null
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": null
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/b2": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 1,
+   "periodo": "1º semestre",
+   "ordem": 0.25,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Ciências",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 9
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 3
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 9.5
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6.5
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 3
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": 4
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": 1.5
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/c2": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 2,
+   "periodo": "2º semestre",
+   "ordem": 0.75,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Ciências",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 10.2
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 7
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": null
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": null
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": null
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": null
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/b3": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 1,
+   "periodo": "1º semestre",
+   "ordem": 0.25,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "História",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 8
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 5.5
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 3
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 8.5
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 2.5
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": 4
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": 1.5
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/c3": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 2,
+   "periodo": "2º semestre",
+   "ordem": 0.75,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "História",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 9.2
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6.5
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": null
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": null
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": null
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": null
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/b4": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 1,
+   "periodo": "1º semestre",
+   "ordem": 0.25,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Geografia",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 8.5
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 2.5
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 9
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 6
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": 3
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": 4.5
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": 1.5
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "boletins/c4": {
+   "alunoId": "a1",
+   "escola": "Colégio Horizonte",
+   "anoLetivo": 2026,
+   "periodoTipo": "Semestre",
+   "periodoNum": 2,
+   "periodo": "2º semestre",
+   "ordem": 0.75,
+   "serie": "4º ano",
+   "turma": "4º A - Tarde",
+   "disciplina": "Geografia",
+   "professor": "",
+   "media": 60,
+   "atividades": [
+    {
+     "id": "t0",
+     "nome": "P1",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": 9.7
+    },
+    {
+     "id": "t1",
+     "nome": "PM1",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": 7
+    },
+    {
+     "id": "t2",
+     "nome": "AD1",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t3",
+     "nome": "P2",
+     "tipo": "Prova",
+     "data": "",
+     "valor": 12,
+     "nota": null
+    },
+    {
+     "id": "t4",
+     "nome": "PM2",
+     "tipo": "Teste",
+     "data": "",
+     "valor": 7.5,
+     "nota": null
+    },
+    {
+     "id": "t5",
+     "nome": "AD2",
+     "tipo": "Atividade",
+     "data": "",
+     "valor": 3,
+     "nota": null
+    },
+    {
+     "id": "t6",
+     "nome": "AQ1",
+     "tipo": "Simulado",
+     "data": "",
+     "valor": 5,
+     "nota": null
+    },
+    {
+     "id": "t7",
+     "nome": "Bônus",
+     "tipo": "Bônus (ponto extra)",
+     "data": "",
+     "valor": 2,
+     "nota": null
+    }
+   ],
+   "pontosFortes": "",
+   "aDesenvolver": "",
+   "anotacoes": "",
+   "notaGeral": null,
+   "comentarioGeral": "",
+   "interno": "",
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Registrou o boletim",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "pdis/p1": {
+   "alunoId": "a1",
+   "serie": "4º ano · Colégio Horizonte",
+   "periodoDe": "2026-09-09",
+   "periodoAte": "2027-03-08",
+   "dataElaboracao": "2026-09-09",
+   "profissional": "Helena Duarte",
+   "motivo": "Dificuldade em leitura e produção de texto, com insegurança para participar em sala.",
+   "perfil": "Aprende melhor com apoio visual e materiais concretos. Estuda à tarde.",
+   "potencialidades": "Boa oralidade, memória visual, gosta de histórias.",
+   "necessidades": "Interpretação de texto, organização das ideias na escrita, autoconfiança.",
+   "objetivos": [
+    {
+     "id": "o1",
+     "objetivo": "Interpretar textos curtos com autonomia.",
+     "estrategias": "Leitura compartilhada, perguntas guiadas e mapas visuais.",
+     "responsavel": "Helena Duarte",
+     "prazo": "2026-12-08",
+     "indicador": "Responde 4 de 5 perguntas sobre o texto.",
+     "progresso": "ok",
+     "progressoObs": "Atingido no bimestre.",
+     "progressoEm": "2026-11-08T20:24:38.992713Z",
+     "progressoPor": "u_1"
+    },
+    {
+     "id": "o2",
+     "objetivo": "Produzir parágrafos com começo, meio e fim.",
+     "estrategias": "Roteiro de escrita e banco de palavras.",
+     "responsavel": "Helena Duarte",
+     "prazo": "2027-02-06",
+     "indicador": "Escreve 1 parágrafo coeso por semana.",
+     "progresso": "and",
+     "progressoObs": "Já usa o roteiro sem ajuda.",
+     "progressoEm": "2026-11-08T20:24:38.992713Z",
+     "progressoPor": "u_1"
+    },
+    {
+     "id": "o3",
+     "objetivo": "Ler em voz alta com segurança para a turma.",
+     "estrategias": "Leitura em dupla e ensaio antes da apresentação.",
+     "responsavel": "Família e escola",
+     "prazo": "2027-02-26",
+     "indicador": "Lê um texto curto para a turma uma vez por semana.",
+     "progresso": "parc",
+     "progressoObs": "",
+     "progressoEm": "",
+     "progressoPor": ""
+    }
+   ],
+   "acompanhamento": "Helena Duarte (psicopedagoga) · Patrícia (mãe) · professora regente",
+   "observacoes": "",
+   "revisaoEm": "2026-11-13",
+   "status": "rascunho",
+   "versao": 0,
+   "versoes": [],
+   "publicacao": null,
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Iniciou o PDI",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1",
+   "editadoEm": "2026-11-08T20:24:38.992713Z",
+   "editadoPor": "u_1"
+  },
+  "lancamentos/m00": {
+   "tipo": "receita",
+   "descricao": "Mensalidade setembro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-09-10",
+   "competencia": "2026-09",
+   "situacao": "pago",
+   "dataPagamento": "2026-09-10",
+   "forma": "Pix",
+   "alunoId": "a1",
+   "historico": []
+  },
+  "lancamentos/m01": {
+   "tipo": "receita",
+   "descricao": "Mensalidade outubro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-10-10",
+   "competencia": "2026-10",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-10",
+   "forma": "Pix",
+   "alunoId": "a1",
+   "historico": []
+  },
+  "lancamentos/m02": {
+   "tipo": "receita",
+   "descricao": "Mensalidade novembro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-11-10",
+   "competencia": "2026-11",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a1",
+   "historico": []
+  },
+  "lancamentos/m10": {
+   "tipo": "receita",
+   "descricao": "Mensalidade setembro/2026",
+   "valor": 26000,
+   "categoria": "Mensalidade",
+   "data": "2026-09-10",
+   "competencia": "2026-09",
+   "situacao": "pago",
+   "dataPagamento": "2026-09-10",
+   "forma": "Pix",
+   "alunoId": "a2",
+   "historico": []
+  },
+  "lancamentos/m11": {
+   "tipo": "receita",
+   "descricao": "Mensalidade outubro/2026",
+   "valor": 26000,
+   "categoria": "Mensalidade",
+   "data": "2026-10-10",
+   "competencia": "2026-10",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-10",
+   "forma": "Pix",
+   "alunoId": "a2",
+   "historico": []
+  },
+  "lancamentos/m12": {
+   "tipo": "receita",
+   "descricao": "Mensalidade novembro/2026",
+   "valor": 26000,
+   "categoria": "Mensalidade",
+   "data": "2026-11-10",
+   "competencia": "2026-11",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a2",
+   "historico": []
+  },
+  "lancamentos/m20": {
+   "tipo": "receita",
+   "descricao": "Mensalidade setembro/2026",
+   "valor": 42000,
+   "categoria": "Mensalidade",
+   "data": "2026-09-10",
+   "competencia": "2026-09",
+   "situacao": "pago",
+   "dataPagamento": "2026-09-10",
+   "forma": "Pix",
+   "alunoId": "a3",
+   "historico": []
+  },
+  "lancamentos/m21": {
+   "tipo": "receita",
+   "descricao": "Mensalidade outubro/2026",
+   "valor": 42000,
+   "categoria": "Mensalidade",
+   "data": "2026-10-10",
+   "competencia": "2026-10",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-10",
+   "forma": "Pix",
+   "alunoId": "a3",
+   "historico": []
+  },
+  "lancamentos/m22": {
+   "tipo": "receita",
+   "descricao": "Mensalidade novembro/2026",
+   "valor": 42000,
+   "categoria": "Mensalidade",
+   "data": "2026-11-10",
+   "competencia": "2026-11",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a3",
+   "historico": []
+  },
+  "lancamentos/m30": {
+   "tipo": "receita",
+   "descricao": "Mensalidade setembro/2026",
+   "valor": 32000,
+   "categoria": "Mensalidade",
+   "data": "2026-09-10",
+   "competencia": "2026-09",
+   "situacao": "pago",
+   "dataPagamento": "2026-09-10",
+   "forma": "Pix",
+   "alunoId": "a4",
+   "historico": []
+  },
+  "lancamentos/m31": {
+   "tipo": "receita",
+   "descricao": "Mensalidade outubro/2026",
+   "valor": 32000,
+   "categoria": "Mensalidade",
+   "data": "2026-10-10",
+   "competencia": "2026-10",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a4",
+   "historico": []
+  },
+  "lancamentos/m32": {
+   "tipo": "receita",
+   "descricao": "Mensalidade novembro/2026",
+   "valor": 32000,
+   "categoria": "Mensalidade",
+   "data": "2026-11-10",
+   "competencia": "2026-11",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a4",
+   "historico": []
+  },
+  "lancamentos/m40": {
+   "tipo": "receita",
+   "descricao": "Mensalidade setembro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-09-10",
+   "competencia": "2026-09",
+   "situacao": "pago",
+   "dataPagamento": "2026-09-10",
+   "forma": "Pix",
+   "alunoId": "a5",
+   "historico": []
+  },
+  "lancamentos/m41": {
+   "tipo": "receita",
+   "descricao": "Mensalidade outubro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-10-10",
+   "competencia": "2026-10",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-10",
+   "forma": "Pix",
+   "alunoId": "a5",
+   "historico": []
+  },
+  "lancamentos/m42": {
+   "tipo": "receita",
+   "descricao": "Mensalidade novembro/2026",
+   "valor": 38000,
+   "categoria": "Mensalidade",
+   "data": "2026-11-10",
+   "competencia": "2026-11",
+   "situacao": "aberto",
+   "dataPagamento": "",
+   "forma": "Pix",
+   "alunoId": "a5",
+   "historico": []
+  },
+  "lancamentos/d0": {
+   "tipo": "despesa",
+   "descricao": "Aluguel da sala",
+   "valor": 90000,
+   "categoria": "Aluguel",
+   "data": "2026-10-19",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-19",
+   "historico": []
+  },
+  "lancamentos/d1": {
+   "tipo": "despesa",
+   "descricao": "Material pedagógico",
+   "valor": 18500,
+   "categoria": "Material",
+   "data": "2026-10-25",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-25",
+   "historico": []
+  },
+  "lancamentos/d2": {
+   "tipo": "despesa",
+   "descricao": "Internet",
+   "valor": 11000,
+   "categoria": "Contas",
+   "data": "2026-10-31",
+   "situacao": "pago",
+   "dataPagamento": "2026-10-31",
+   "historico": []
+  },
+  "familias/f1": {
+   "nome": "Patrícia Ramos",
+   "parentesco": "Mãe",
+   "alunoIds": [
+    "a1"
+   ],
+   "token": "ABCDEFGHJKMNPQRS",
+   "ativo": true,
+   "incluirAulas": true
+  },
+  "leads/z1": {
+   "nome": "Beatriz Nunes",
+   "telefone": "31988880001",
+   "status": "novo",
+   "dataEntrada": "2026-11-07",
+   "origem": "Instagram",
+   "interesse": "Reforço de Matemática · 6º ano"
+  },
+  "leads/z2": {
+   "nome": "Rafael Lima",
+   "telefone": "31988880002",
+   "status": "em_contato",
+   "dataEntrada": "2026-11-03",
+   "origem": "Indicação",
+   "interesse": "Alfabetização · 1º ano"
+  },
+  "leads/z3": {
+   "nome": "Clara Souza",
+   "telefone": "31988880003",
+   "status": "em_contato",
+   "dataEntrada": "2026-10-30",
+   "origem": "Indicação",
+   "interesse": "Preparação para provas"
+  },
+  "acervo/i0": {
+   "registro": "INF08001",
+   "titulo": "O Pequeno Príncipe",
+   "autor": "Antoine de Saint-Exupéry",
+   "tema": "Clássicos",
+   "idade": 8,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": {
+    "id": "e1",
+    "pessoaTipo": "aluno",
+    "alunoId": "a1",
+    "nome": "Sofia Ramos",
+    "contato": "31991234567",
+    "data": "2026-11-01",
+    "devolucao": "2026-11-08",
+    "observacoes": "",
+    "reemprestimos": [],
+    "por": "u_1",
+    "em": "2026-11-08T20:24:38.992713Z"
+   },
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "acervo/i1": {
+   "registro": "INF05002",
+   "titulo": "Menina Bonita do Laço de Fita",
+   "autor": "Ana Maria Machado",
+   "tema": "Literatura infantil",
+   "idade": 5,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": null,
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "acervo/i2": {
+   "registro": "INF10003",
+   "titulo": "A Bolsa Amarela",
+   "autor": "Lygia Bojunga",
+   "tema": "Literatura juvenil",
+   "idade": 10,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": {
+    "id": "e2",
+    "pessoaTipo": "aluno",
+    "alunoId": "a3",
+    "nome": "Helena Costa",
+    "contato": "31991234569",
+    "data": "2026-11-05",
+    "devolucao": "2026-11-12",
+    "observacoes": "",
+    "reemprestimos": [],
+    "por": "u_1",
+    "em": "2026-11-08T20:24:38.992713Z"
+   },
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "acervo/i3": {
+   "registro": "INF09004",
+   "titulo": "Diário de um Banana",
+   "autor": "Jeff Kinney",
+   "tema": "Humor",
+   "idade": 9,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": null,
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "acervo/i4": {
+   "registro": "INF06005",
+   "titulo": "O Menino Maluquinho",
+   "autor": "Ziraldo",
+   "tema": "Literatura infantil",
+   "idade": 6,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": null,
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "acervo/i5": {
+   "registro": "INF09006",
+   "titulo": "Atlas Geográfico Escolar",
+   "autor": "IBGE",
+   "tema": "Referência",
+   "idade": 9,
+   "resumo": "",
+   "observacoes": "",
+   "emprestimo": null,
+   "emprestimos": [],
+   "historico": [
+    {
+     "em": "2026-11-08T20:24:38.992713Z",
+     "por": "u_1",
+     "acao": "Cadastrou o item",
+     "detalhe": ""
+    }
+   ],
+   "criadoEm": "2026-11-08T20:24:38.992713Z",
+   "criadoPor": "u_1"
+  },
+  "pl_boards/ex-planejamento": {
+   "archived": false,
+   "createdAt": "2026-09-04T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "id": "ex-planejamento",
+   "key": "PLN",
+   "labels": [
+    {
+     "color": 1,
+     "id": "lb-ped",
+     "name": "Pedagógico"
+    },
+    {
+     "color": 5,
+     "id": "lb-adm",
+     "name": "Administrativo"
+    },
+    {
+     "color": 4,
+     "id": "lb-fin",
+     "name": "Financeiro"
+    },
+    {
+     "color": 3,
+     "id": "lb-com",
+     "name": "Comunicação"
+    }
+   ],
+   "lists": [
+    {
+     "archived": false,
+     "dod": "",
+     "id": "ls-backlog",
+     "name": "Backlog",
+     "order": 1,
+     "status": "",
+     "wip": 0
+    },
+    {
+     "archived": false,
+     "dod": "Responsável, prazo e estimativa definidos.",
+     "id": "ls-todo",
+     "name": "A fazer",
+     "order": 2,
+     "status": "st-todo",
+     "wip": 0
+    },
+    {
+     "archived": false,
+     "dod": "Trabalho iniciado e horas registradas.",
+     "id": "ls-doing",
+     "name": "Em andamento",
+     "order": 3,
+     "status": "st-doing",
+     "wip": 4
+    },
+    {
+     "archived": false,
+     "dod": "Revisado por outra pessoa da equipe.",
+     "id": "ls-review",
+     "name": "Em revisão",
+     "order": 4,
+     "status": "st-review",
+     "wip": 3
+    },
+    {
+     "archived": false,
+     "dod": "Entregue e comunicado aos envolvidos.",
+     "id": "ls-done",
+     "name": "Concluído",
+     "order": 5,
+     "status": "st-done",
+     "wip": 0
+    }
+   ],
+   "members": {},
+   "name": "Exemplo · Planejamento letivo 2027",
+   "othersRole": "edit",
+   "priorities": [
+    {
+     "color": 8,
+     "icon": "up3",
+     "id": "pr-crit",
+     "name": "Crítica"
+    },
+    {
+     "color": 2,
+     "icon": "up2",
+     "id": "pr-high",
+     "name": "Alta"
+    },
+    {
+     "color": 4,
+     "icon": "mid",
+     "id": "pr-med",
+     "name": "Média"
+    },
+    {
+     "color": 1,
+     "icon": "down1",
+     "id": "pr-low",
+     "name": "Baixa"
+    }
+   ],
+   "sprints": [
+    {
+     "closedAt": "2026-10-05T20:00:00.000Z",
+     "committed": 5,
+     "completedPts": 5,
+     "end": "2026-10-05",
+     "goal": "Fechar inventário e calendário no site",
+     "id": "sp-1",
+     "name": "Sprint 1",
+     "start": "2026-09-22",
+     "state": "closed"
+    },
+    {
+     "closedAt": "2026-10-19T20:00:00.000Z",
+     "committed": 11,
+     "completedPts": 8,
+     "end": "2026-10-19",
+     "goal": "Calendário de avaliações e orçamento de materiais",
+     "id": "sp-2",
+     "name": "Sprint 2",
+     "start": "2026-10-06",
+     "state": "closed"
+    },
+    {
+     "closedAt": "",
+     "committed": 44,
+     "completedPts": 0,
+     "end": "2026-11-06",
+     "goal": "Matrículas abertas e orçamento aprovado",
+     "id": "sp-3",
+     "name": "Sprint 3",
+     "start": "2026-10-20",
+     "state": "active"
+    },
+    {
+     "closedAt": "",
+     "committed": 0,
+     "completedPts": 0,
+     "end": "2026-11-20",
+     "goal": "Preparar o início do ano letivo",
+     "id": "sp-4",
+     "name": "Sprint 4",
+     "start": "2026-11-07",
+     "state": "planned"
+    }
+   ],
+   "statuses": [
+    {
+     "cat": "todo",
+     "color": 1,
+     "id": "st-todo",
+     "name": "A fazer"
+    },
+    {
+     "cat": "doing",
+     "color": 2,
+     "id": "st-doing",
+     "name": "Em andamento"
+    },
+    {
+     "cat": "doing",
+     "color": 7,
+     "id": "st-review",
+     "name": "Em revisão"
+    },
+    {
+     "cat": "done",
+     "color": 6,
+     "id": "st-done",
+     "name": "Concluído"
+    }
+   ],
+   "team": [
+    "Ana",
+    "Bruno",
+    "Carla",
+    "Rafael"
+   ]
+  },
+  "pl_cards/ex-c18": {
+   "archived": false,
+   "assignee": "Bruno",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-04T17:00:00.000Z",
+   "createdAt": "2026-09-14T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-06",
+   "estimate": 2,
+   "history": [
+    {
+     "at": "2026-09-14T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-20T14:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-04T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c18",
+   "labels": [
+    "lb-com"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 18,
+   "order": 210,
+   "parentId": "ex-e1",
+   "points": 2,
+   "priority": "pr-med",
+   "spent": 3,
+   "sprintId": "sp-1",
+   "start": "",
+   "status": "st-done",
+   "title": "Atualizar site com o calendário",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-09-15T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-15",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c23": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-25T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-05",
+   "estimate": 3,
+   "history": [
+    {
+     "at": "2026-10-25T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c23",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-todo",
+   "num": 23,
+   "order": 260,
+   "parentId": "ex-c6",
+   "points": 0,
+   "priority": "pr-med",
+   "spent": 0,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-todo",
+   "title": "Revisar plano de Geografia",
+   "type": "subtask",
+   "worklog": []
+  },
+  "pl_cards/ex-c5": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-11-01T17:00:00.000Z",
+   "createdAt": "2026-10-09T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-31",
+   "estimate": 5,
+   "history": [
+    {
+     "at": "2026-10-09T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-16T11:36:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-11-01T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c5",
+   "labels": [
+    "lb-com",
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 5,
+   "order": 80,
+   "parentId": "ex-e1",
+   "points": 3,
+   "priority": "pr-crit",
+   "spent": 4,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-done",
+   "title": "Publicar edital de matrícula",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-10-10T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-10",
+     "hours": 2,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-12T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-12",
+     "hours": 2,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c4": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-30T17:00:00.000Z",
+   "createdAt": "2026-10-04T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-28",
+   "estimate": 8,
+   "history": [
+    {
+     "at": "2026-10-04T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-12T09:12:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-30T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c4",
+   "labels": [
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 4,
+   "order": 70,
+   "parentId": "ex-e3",
+   "points": 5,
+   "priority": "pr-low",
+   "spent": 10,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-done",
+   "title": "Revisar regimento interno",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-10-05T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-05",
+     "hours": 5,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-07T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-07",
+     "hours": 5,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c13": {
+   "archived": false,
+   "assignee": "",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-29T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "",
+   "estimate": 16,
+   "history": [
+    {
+     "at": "2026-10-29T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c13",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-backlog",
+   "num": 13,
+   "order": 160,
+   "parentId": "ex-e2",
+   "points": 13,
+   "priority": "pr-med",
+   "spent": 0,
+   "sprintId": "",
+   "start": "",
+   "status": "st-todo",
+   "title": "Criar trilha de recuperação paralela",
+   "type": "story",
+   "worklog": []
+  },
+  "pl_cards/ex-c3": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-25T17:00:00.000Z",
+   "createdAt": "2026-09-29T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-24",
+   "estimate": 3,
+   "history": [
+    {
+     "at": "2026-09-29T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-07T09:12:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-25T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c3",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 3,
+   "order": 60,
+   "parentId": "ex-e2",
+   "points": 2,
+   "priority": "pr-med",
+   "spent": 5,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-done",
+   "title": "Montar cronograma de reuniões pedagógicas",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-09-30T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-30",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-02T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-02",
+     "hours": 2,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c11": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [
+    {
+     "done": true,
+     "id": "ck0",
+     "text": "Reservar o auditório"
+    },
+    {
+     "done": true,
+     "id": "ck1",
+     "text": "Enviar convite às famílias"
+    },
+    {
+     "done": false,
+     "id": "ck2",
+     "text": "Preparar apresentação"
+    },
+    {
+     "done": false,
+     "id": "ck3",
+     "text": "Imprimir lista de presença"
+    }
+   ],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-27T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-06",
+   "estimate": 4,
+   "history": [
+    {
+     "at": "2026-10-27T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c11",
+   "labels": [
+    "lb-com"
+   ],
+   "links": [],
+   "listId": "ls-todo",
+   "num": 11,
+   "order": 140,
+   "parentId": "ex-e1",
+   "points": 2,
+   "priority": "pr-high",
+   "spent": 0,
+   "sprintId": "sp-3",
+   "start": "2026-11-03",
+   "status": "st-todo",
+   "title": "Organizar reunião de pais",
+   "type": "task",
+   "worklog": []
+  },
+  "pl_cards/ex-c17": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-09-26T17:00:00.000Z",
+   "createdAt": "2026-09-09T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-09-28",
+   "estimate": 4,
+   "history": [
+    {
+     "at": "2026-09-09T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-14T16:24:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-09-26T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c17",
+   "labels": [
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 17,
+   "order": 200,
+   "parentId": "ex-e3",
+   "points": 3,
+   "priority": "pr-low",
+   "spent": 4,
+   "sprintId": "sp-1",
+   "start": "",
+   "status": "st-done",
+   "title": "Inventariar laboratório de ciências",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-09-10T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-10",
+     "hours": 2,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-09-12T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-12",
+     "hours": 2,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-e2": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 1,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-09-16T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Planos de aula, formação docente e trilhas de aprendizagem.",
+   "due": "2026-12-03",
+   "estimate": 0,
+   "history": [
+    {
+     "at": "2026-09-16T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-21T13:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-e2",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-backlog",
+   "num": 102,
+   "order": 20,
+   "parentId": "",
+   "points": 0,
+   "priority": "pr-med",
+   "spent": 0,
+   "sprintId": "",
+   "start": "2026-09-28",
+   "status": "st-doing",
+   "title": "Formação e currículo",
+   "type": "epic",
+   "worklog": []
+  },
+  "pl_cards/ex-c21": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-30T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-04",
+   "estimate": 3,
+   "history": [
+    {
+     "at": "2026-10-30T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-31T18:48:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-c21",
+   "labels": [
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-doing",
+   "num": 21,
+   "order": 240,
+   "parentId": "ex-e3",
+   "points": 2,
+   "priority": "pr-high",
+   "spent": 2,
+   "sprintId": "sp-3",
+   "start": "2026-10-31",
+   "status": "st-doing",
+   "title": "Corrigir notas duplicadas no boletim",
+   "type": "bug",
+   "worklog": [
+    {
+     "at": "2026-10-31T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-31",
+     "hours": 2,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c1": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [
+    {
+     "at": "2026-10-04T12:00:00.000Z",
+     "by": "exemplo",
+     "id": "at1",
+     "name": "Calendário escolar (link de exemplo)",
+     "url": "https://www.gov.br/mec/pt-br"
+    }
+   ],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-12T17:00:00.000Z",
+   "createdAt": "2026-09-19T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Fechar as datas de provas, simulados e recuperações dos quatro bimestres.",
+   "due": "2026-10-14",
+   "estimate": 6,
+   "history": [
+    {
+     "at": "2026-09-19T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-26T11:36:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-12T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c1",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 1,
+   "order": 40,
+   "parentId": "ex-e1",
+   "points": 5,
+   "priority": "pr-high",
+   "spent": 7,
+   "sprintId": "sp-2",
+   "start": "",
+   "status": "st-done",
+   "title": "Definir calendário de avaliações",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-09-20T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-20",
+     "hours": 4,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-09-22T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-22",
+     "hours": 3,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c22": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-25T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-04",
+   "estimate": 3,
+   "history": [
+    {
+     "at": "2026-10-25T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-28T06:48:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-c22",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-doing",
+   "num": 22,
+   "order": 250,
+   "parentId": "ex-c6",
+   "points": 0,
+   "priority": "pr-high",
+   "spent": 2,
+   "sprintId": "sp-3",
+   "start": "2026-10-29",
+   "status": "st-doing",
+   "title": "Revisar plano de Ciências",
+   "type": "subtask",
+   "worklog": [
+    {
+     "at": "2026-10-29T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-29",
+     "hours": 2,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c14": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-30T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-28",
+   "estimate": 6,
+   "history": [
+    {
+     "at": "2026-10-30T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c14",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-backlog",
+   "num": 14,
+   "order": 170,
+   "parentId": "ex-e2",
+   "points": 5,
+   "priority": "pr-high",
+   "spent": 0,
+   "sprintId": "",
+   "start": "2026-11-18",
+   "status": "st-todo",
+   "title": "Mapear necessidades de AEE",
+   "type": "story",
+   "worklog": []
+  },
+  "pl_cards/ex-c6": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [
+    {
+     "at": "2026-11-01T13:00:00.000Z",
+     "by": "exemplo",
+     "id": "cm2",
+     "text": "Faltam os planos de Ciências e Geografia para revisão."
+    }
+   ],
+   "completedAt": "",
+   "createdAt": "2026-10-14T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Ajustar os planos ao novo calendário e à matriz de habilidades.",
+   "due": "2026-11-05",
+   "estimate": 10,
+   "history": [
+    {
+     "at": "2026-10-14T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-20T14:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-29T15:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Em revisão"
+    }
+   ],
+   "id": "ex-c6",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-review",
+   "num": 6,
+   "order": 90,
+   "parentId": "ex-e2",
+   "points": 8,
+   "priority": "pr-high",
+   "spent": 8,
+   "sprintId": "sp-3",
+   "start": "2026-10-22",
+   "status": "st-review",
+   "title": "Atualizar planos de aula do 1º bimestre",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-10-22T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-22",
+     "hours": 4,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-24T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-24",
+     "hours": 4,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c20": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-11-02T17:00:00.000Z",
+   "createdAt": "2026-10-26T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-03",
+   "estimate": 1,
+   "history": [
+    {
+     "at": "2026-10-26T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-28T16:24:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-11-02T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c20",
+   "labels": [
+    "lb-com"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 20,
+   "order": 230,
+   "parentId": "ex-e1",
+   "points": 1,
+   "priority": "pr-med",
+   "spent": 1,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-done",
+   "title": "Enviar comunicado de início das aulas",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-10-27T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-27",
+     "hours": 1,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-e3": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 2,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-09-08T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Orçamento, contratos, compras e sistemas administrativos.",
+   "due": "2026-11-25",
+   "estimate": 0,
+   "history": [
+    {
+     "at": "2026-09-08T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-13T13:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-e3",
+   "labels": [
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-backlog",
+   "num": 103,
+   "order": 30,
+   "parentId": "",
+   "points": 0,
+   "priority": "pr-high",
+   "spent": 0,
+   "sprintId": "",
+   "start": "2026-09-09",
+   "status": "st-doing",
+   "title": "Infraestrutura e contratos",
+   "type": "epic",
+   "worklog": []
+  },
+  "pl_cards/ex-c12": {
+   "archived": false,
+   "assignee": "Bruno",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-28T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [
+    "ex-c9"
+   ],
+   "description": "",
+   "due": "2026-11-23",
+   "estimate": 2,
+   "history": [
+    {
+     "at": "2026-10-28T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c12",
+   "labels": [
+    "lb-fin",
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-todo",
+   "num": 12,
+   "order": 150,
+   "parentId": "ex-e3",
+   "points": 1,
+   "priority": "pr-low",
+   "spent": 0,
+   "sprintId": "sp-4",
+   "start": "2026-11-11",
+   "status": "st-todo",
+   "title": "Comprar livros paradidáticos",
+   "type": "task",
+   "worklog": []
+  },
+  "pl_cards/ex-c9": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-18T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Consolidar as despesas previstas e levar para aprovação da direção.",
+   "due": "2026-11-02",
+   "estimate": 3,
+   "history": [
+    {
+     "at": "2026-10-18T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-23T09:12:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-29T13:00:00.000Z",
+     "by": "exemplo",
+     "field": "due",
+     "from": "2026-10-26",
+     "to": "2026-11-02"
+    }
+   ],
+   "id": "ex-c9",
+   "labels": [
+    "lb-fin"
+   ],
+   "links": [],
+   "listId": "ls-doing",
+   "num": 9,
+   "order": 120,
+   "parentId": "ex-e3",
+   "points": 2,
+   "priority": "pr-crit",
+   "spent": 1,
+   "sprintId": "sp-3",
+   "start": "2026-10-26",
+   "status": "st-doing",
+   "title": "Aprovar orçamento anual",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-10-26T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-26",
+     "hours": 1,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c19": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-22T17:00:00.000Z",
+   "createdAt": "2026-10-06T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-22",
+   "estimate": 8,
+   "history": [
+    {
+     "at": "2026-10-06T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-11T09:12:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-22T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c19",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 19,
+   "order": 220,
+   "parentId": "ex-e1",
+   "points": 5,
+   "priority": "pr-high",
+   "spent": 9,
+   "sprintId": "sp-3",
+   "start": "",
+   "status": "st-done",
+   "title": "Definir turmas e horários",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-10-07T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-07",
+     "hours": 5,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-09T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-09",
+     "hours": 4,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-e1": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 3,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-09-14T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "Tudo o que envolve calendário escolar, matrículas e comunicação com as famílias.",
+   "due": "2026-11-23",
+   "estimate": 0,
+   "history": [
+    {
+     "at": "2026-09-14T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-09-19T13:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-e1",
+   "labels": [
+    "lb-com"
+   ],
+   "links": [],
+   "listId": "ls-backlog",
+   "num": 101,
+   "order": 10,
+   "parentId": "",
+   "points": 0,
+   "priority": "pr-high",
+   "spent": 0,
+   "sprintId": "",
+   "start": "2026-09-19",
+   "status": "st-doing",
+   "title": "Calendário e matrículas 2027",
+   "type": "epic",
+   "worklog": []
+  },
+  "pl_cards/ex-c15": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-12T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-30",
+   "estimate": 5,
+   "history": [
+    {
+     "at": "2026-10-12T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-19T04:24:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-25T14:00:00.000Z",
+     "by": "exemplo",
+     "field": "priority",
+     "from": "Baixa",
+     "to": "Média"
+    },
+    {
+     "at": "2026-10-29T03:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Em revisão"
+    }
+   ],
+   "id": "ex-c15",
+   "labels": [
+    "lb-adm",
+    "lb-fin"
+   ],
+   "links": [],
+   "listId": "ls-review",
+   "num": 15,
+   "order": 180,
+   "parentId": "ex-e3",
+   "points": 3,
+   "priority": "pr-med",
+   "spent": 6,
+   "sprintId": "sp-3",
+   "start": "2026-10-23",
+   "status": "st-review",
+   "title": "Revisar contratos de prestadores",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-10-23T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-23",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-25T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-25",
+     "hours": 3,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c16": {
+   "archived": false,
+   "assignee": "Ana",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-31T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-12",
+   "estimate": 6,
+   "history": [
+    {
+     "at": "2026-10-31T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c16",
+   "labels": [
+    "lb-ped",
+    "lb-com"
+   ],
+   "links": [],
+   "listId": "ls-todo",
+   "num": 16,
+   "order": 190,
+   "parentId": "ex-e1",
+   "points": 5,
+   "priority": "pr-med",
+   "spent": 0,
+   "sprintId": "sp-4",
+   "start": "2026-11-07",
+   "status": "st-todo",
+   "title": "Planejar semana de acolhimento",
+   "type": "story",
+   "worklog": []
+  },
+  "pl_cards/ex-c7": {
+   "archived": false,
+   "assignee": "Bruno",
+   "attachments": [],
+   "blockReason": "Aguardando a aprovação do orçamento anual pela direção.",
+   "blocked": true,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [
+    {
+     "at": "2026-10-31T17:00:00.000Z",
+     "by": "exemplo",
+     "id": "cm1",
+     "text": "Já temos duas cotações. Falta a liberação do orçamento para fechar."
+    }
+   ],
+   "completedAt": "",
+   "createdAt": "2026-10-16T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [
+    "ex-c9"
+   ],
+   "description": "Cotar com três fornecedores e fechar contrato antes do início das aulas.",
+   "due": "2026-11-01",
+   "estimate": 6,
+   "history": [
+    {
+     "at": "2026-10-16T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-21T23:36:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-31T16:00:00.000Z",
+     "by": "exemplo",
+     "field": "blocked",
+     "from": "Não",
+     "to": "Sim"
+    }
+   ],
+   "id": "ex-c7",
+   "labels": [
+    "lb-fin",
+    "lb-adm"
+   ],
+   "links": [],
+   "listId": "ls-doing",
+   "num": 7,
+   "order": 100,
+   "parentId": "ex-e3",
+   "points": 3,
+   "priority": "pr-high",
+   "spent": 3,
+   "sprintId": "sp-3",
+   "start": "2026-10-25",
+   "status": "st-doing",
+   "title": "Contratar fornecedor de uniformes",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-10-25T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-25",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c8": {
+   "archived": false,
+   "assignee": "Rafael",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-20T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-09",
+   "estimate": 12,
+   "history": [
+    {
+     "at": "2026-10-20T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-24T18:48:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    }
+   ],
+   "id": "ex-c8",
+   "labels": [
+    "lb-adm"
+   ],
+   "links": [
+    {
+     "id": "ex-c21",
+     "type": "relates"
+    }
+   ],
+   "listId": "ls-doing",
+   "num": 8,
+   "order": 110,
+   "parentId": "ex-e3",
+   "points": 8,
+   "priority": "pr-med",
+   "spent": 5,
+   "sprintId": "sp-3",
+   "start": "2026-10-28",
+   "status": "st-doing",
+   "title": "Configurar sistema de notas",
+   "type": "story",
+   "worklog": [
+    {
+     "at": "2026-10-28T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-28",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    },
+    {
+     "at": "2026-10-30T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-10-30",
+     "hours": 2,
+     "id": "wl1",
+     "note": "Continuação"
+    }
+   ]
+  },
+  "pl_cards/ex-c2": {
+   "archived": false,
+   "assignee": "Bruno",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "2026-10-18T17:00:00.000Z",
+   "createdAt": "2026-09-24T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-10-19",
+   "estimate": 4,
+   "history": [
+    {
+     "at": "2026-09-24T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    },
+    {
+     "at": "2026-10-01T18:48:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "A fazer",
+     "to": "Em andamento"
+    },
+    {
+     "at": "2026-10-18T17:00:00.000Z",
+     "by": "exemplo",
+     "field": "status",
+     "from": "Em andamento",
+     "to": "Concluído"
+    }
+   ],
+   "id": "ex-c2",
+   "labels": [
+    "lb-fin"
+   ],
+   "links": [],
+   "listId": "ls-done",
+   "num": 2,
+   "order": 50,
+   "parentId": "ex-e3",
+   "points": 3,
+   "priority": "pr-med",
+   "spent": 3,
+   "sprintId": "sp-2",
+   "start": "",
+   "status": "st-done",
+   "title": "Levantar orçamento de materiais",
+   "type": "task",
+   "worklog": [
+    {
+     "at": "2026-09-25T18:00:00.000Z",
+     "by": "exemplo",
+     "date": "2026-09-25",
+     "hours": 3,
+     "id": "wl0",
+     "note": "Início do trabalho"
+    }
+   ]
+  },
+  "pl_cards/ex-c10": {
+   "archived": false,
+   "assignee": "Carla",
+   "attachments": [],
+   "blockReason": "",
+   "blocked": false,
+   "boardId": "ex-planejamento",
+   "checklist": [],
+   "color": 0,
+   "comments": [],
+   "completedAt": "",
+   "createdAt": "2026-10-24T12:00:00.000Z",
+   "createdBy": "exemplo",
+   "deps": [],
+   "description": "",
+   "due": "2026-11-15",
+   "estimate": 8,
+   "history": [
+    {
+     "at": "2026-10-24T12:00:00.000Z",
+     "by": "exemplo",
+     "field": "created",
+     "from": "",
+     "to": "A fazer"
+    }
+   ],
+   "id": "ex-c10",
+   "labels": [
+    "lb-ped"
+   ],
+   "links": [],
+   "listId": "ls-todo",
+   "num": 10,
+   "order": 130,
+   "parentId": "ex-e2",
+   "points": 5,
+   "priority": "pr-med",
+   "spent": 0,
+   "sprintId": "sp-4",
+   "start": "2026-11-08",
+   "status": "st-todo",
+   "title": "Preparar formação de professores",
+   "type": "story",
+   "worklog": []
+  }
+ }
+}

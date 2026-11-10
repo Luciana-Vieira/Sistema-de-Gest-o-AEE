@@ -1,0 +1,30 @@
+{
+  "name": "vertice-gestao-saas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vértice Gestão: sistema de gestão para aulas particulares e centros de apoio escolar (versão SaaS, fora do Claude).",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "node client/build.js",
+    "migrate": "node --disable-warning=ExperimentalWarning scripts/migrate.js",
+    "seed": "node --disable-warning=ExperimentalWarning scripts/seed.js",
+    "create-owner": "node --disable-warning=ExperimentalWarning scripts/create-owner.js",
+    "reset-password": "node --disable-warning=ExperimentalWarning scripts/reset-password.js",
+    "import-claude": "node --disable-warning=ExperimentalWarning scripts/import-claude.js",
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "pretest": "node client/build.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/api.test.js",
+    "backup": "node --disable-warning=ExperimentalWarning scripts/backup.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.3.0",
+    "jszip": "^3.10.1",
+    "postcss": "^8.5.32",
+    "ws": "^8.22.2"
+  }
+}
