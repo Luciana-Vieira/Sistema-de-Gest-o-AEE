@@ -10,12 +10,12 @@ A versão original roda como artefato no claude.ai e usa recursos do ambiente do
 | `use("user")` — conta do claude.ai e botão **Compartilhar** (Editor, Colaborador, Leitor) | Saber quem está logado, quem é dono, nomes e avatares | Contas próprias (e-mail e senha), papéis **Gestão / Equipe / Aluno(a) / Família**, página **Conta e equipe** | `server/auth.js`, `server/pages.js`, `public/static/conta.js` |
 | Famílias precisavam de conta no claude.ai (Leitor) | Entrar no Portal da Família | Portal **sem conta**: só o link e o código de acesso pessoal | rota `/w/<org>/familia`, regra `publicGet` em `portal/` |
 | `use("room")` — sala em tempo real | Traço ao vivo, laser, “chamar a turma”, presença na Lousa | WebSocket próprio com `emit`, `on`, `presence`, `onPeers`, `onConnection` | `server/realtime.js` |
-| `use("assets")` — arquivos do artefato (`/_blob/<id>`) | Anexos do aluno, imagens da Lousa, anexos do Planner | Upload para `DATA_DIR/assets`, mesmo caminho `/_blob/<id>`, acesso só para membros | `server/index.js` |
+| `use("assets")` — arquivos do artefato (`/_blob/<id>`) | Anexos do aluno (inclusive os liberados no Portal da Família), imagens da Lousa, anexos do Planner | Upload para `DATA_DIR/assets`, mesmo caminho `/_blob/<id>` para membros; famílias baixam pela rota do portal, que confere o código de acesso | `server/index.js` |
 | `use("downloads")` — salvar arquivo | Contrato, PDI e relatório Word, CSV do financeiro, PNG da Lousa | Download direto pelo navegador | `public/static/claude-compat.js` |
 | `use("mcp")` + conector **Google Calendar** do Claude | Criar evento com sala do Meet nas aulas e reuniões on-line | Integração OAuth própria com a API do Google Calendar (cada pessoa conecta a sua conta em Conta e equipe) | `server/google.js` |
 | Arquivo `modelo-contrato.txt` publicado junto com o artefato | Modelo Word do contrato, PDI e relatório | Modelo padrão em `server/templates/` ou modelo próprio enviado pela gestão (por organização) | rota `/w/<org>/modelo-contrato.txt` |
 | Marca fixa “Instituto Vértice”, dados e Pix da empresa no código | Barra lateral, mensagens, documentos | Marca e dados de cada organização (Conta e equipe › Dados da organização) e ajustes iniciais neutros | `VX_CONFIG.org`, campos `{{ORG_*}}` |
-| JSZip carregado do cdnjs | Gerar os arquivos Word | Servido pelo próprio servidor a partir do pacote npm `jszip` | `/static/jszip.min.js` |
+| JSZip e jsPDF carregados do cdnjs | Gerar os arquivos Word e o PDF do relatório | Servidos pelo próprio servidor a partir dos pacotes npm `jszip` e `jspdf` | `/static/jszip.min.js`, `/static/jspdf.umd.min.js` |
 
 ## Diferenças de comportamento que vale conhecer
 

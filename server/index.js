@@ -59,6 +59,7 @@ app.use((req, res, next) => {
 
 app.use('/static', express.static(path.join(PUBLIC, 'static'), { maxAge: config.production ? '1h' : 0 }));
 app.get('/static/jszip.min.js', (_req, res) => res.sendFile(require.resolve('jszip/dist/jszip.min.js')));
+app.get('/static/jspdf.umd.min.js', (_req, res) => res.sendFile(require.resolve('jspdf/dist/jspdf.umd.min.js')));
 app.get('/healthz', (_req, res) => res.json({ ok: true }));
 app.get('/favicon.ico', (_req, res) => res.sendFile(path.join(PUBLIC, 'static', 'favicon.svg'), { headers: { 'Content-Type': 'image/svg+xml' } }));
 
@@ -164,6 +165,20 @@ app.get('/w/:slug/', (req, res) => {
 app.get('/w/:slug/familia', (req, res) => {
   const ctx = auth.tenantCtx(req); if (!ctx) return res.status(404).send(pages.notFound());
   renderApp(req, res, ctx, 'familia');
+});
+// Documentos liberados no Portal da Família: sem conta, só com o código de acesso.
+// O arquivo precisa estar na lista "docs" do portal daquele código.
+app.get('/w/:slug/familia/arquivo/:token/:asset', (req, res) => {
+  const t = auth.tenantBySlug(req.params.slug); if (!t) return res.status(404).end();
+  if (!auth.rateLimit('pubfile:' + ip(req), 60, 60e3)) return res.status(429).end();
+  const tok = String(req.params.token || '');
+  if (!/^[A-Z0-9]{16}$/.test(tok)) return res.status(404).end();
+  const portal = store.getDoc(t.id, `portal/${tok}/pub/dados`);
+  const ok = portal && (portal.data.alunos || []).some(al => (al.docs || []).some(d => d && d.asset === req.params.asset));
+  const a = ok && db.q('SELECT * FROM assets WHERE id = ? AND tenant_id = ?').get(req.params.asset, t.id);
+  const file = a && path.join(config.assetsDir, t.id, a.id);
+  if (!a || !fs.existsSync(file)) return res.status(404).end();
+  sendAsset(res, a, file);
 });
 app.get('/w/:slug/conta', (req, res) => {
   const ctx = auth.tenantCtx(req); if (!ctx) return res.status(404).send(pages.notFound());
@@ -371,6 +386,9 @@ app.get('/_blob/:id', (req, res) => {
   if (!a || !req.user || !auth.roleIn(a.tenant_id, req.user.id)) return res.status(404).end();
   const file = path.join(config.assetsDir, a.tenant_id, a.id);
   if (!fs.existsSync(file)) return res.status(404).end();
+  sendAsset(res, a, file);
+});
+function sendAsset(res, a, file) {
   const inline = /^(image\/(png|jpe?g|gif|webp|svg\+xml)|application\/pdf|video\/|audio\/)/.test(a.content_type);
   res.setHeader('Content-Type', a.content_type);
   res.setHeader('Content-Security-Policy', 'sandbox');
@@ -378,7 +396,7 @@ app.get('/_blob/:id', (req, res) => {
   const fname = encodeURIComponent(a.filename || a.id);
   res.setHeader('Content-Disposition', `${inline ? 'inline' : 'attachment'}; filename*=UTF-8''${fname}`);
   fs.createReadStream(file).pipe(res);
-});
+}
 
 app.use((req, res) => res.status(404).send(pages.notFound()));
 app.use((err, req, res, _next) => {

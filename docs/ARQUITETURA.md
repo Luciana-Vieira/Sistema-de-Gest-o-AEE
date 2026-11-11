@@ -38,7 +38,7 @@ Com isso, as telas funcionam do mesmo jeito e você pode evoluir para um front-e
   - renomeia as coleções dos módulos (`pl_boards`, `pl_cards`, `lv_boards`, `lv_ink`, `lv_acesso`);
   - acrescenta o cabeçalho do documento, o ponto de injeção `<!--VX_CONFIG-->` e o `<script src="/static/claude-compat.js">`.
 - Ao servir a página, o servidor injeta `window.VX_CONFIG` (organização, marca, modo, pessoa logada, link do portal) e troca os campos `{{ORG_NOME}}`, `{{ORG_MARCA1}}`, `{{ORG_MARCA2}}` e `{{ORG_SUBTITULO}}` pela marca da organização.
-- Bibliotecas externas: **JSZip** (gera os arquivos Word; servido pelo próprio servidor a partir do pacote npm) e a fonte **Montserrat** (Google Fonts; pode ser hospedada localmente, ver DEPLOY).
+- Bibliotecas externas: **JSZip** (gera os arquivos Word) e **jsPDF** (gera o PDF do relatório), servidas pelo próprio servidor a partir dos pacotes npm, e a fonte **Montserrat** (Google Fonts; pode ser hospedada localmente, ver DEPLOY).
 - Modos da página (decididos no carregamento, como no Claude):
   - **equipe** (gestão e professores): todas as telas;
   - **aluno**: só a Lousa Viva, em tela cheia;
@@ -57,7 +57,7 @@ Com isso, as telas funcionam do mesmo jeito e você pode evoluir para um front-e
 | `server/pages.js` + `public/static/conta.js` | Páginas de login, cadastro, troca de senha e Conta e equipe |
 | `server/db.js` | Conexão SQLite (`node:sqlite`), migrações e transações |
 
-Dependências npm: `express`, `ws`, `bcryptjs`, `jszip`, `postcss`. Nenhuma tem código nativo.
+Dependências npm: `express`, `ws`, `bcryptjs`, `jszip`, `jspdf`, `postcss`. Nenhuma tem código nativo.
 
 ## Banco de dados
 
@@ -81,16 +81,17 @@ O sistema guarda os dados no mesmo formato de documentos do Claude: o caminho `c
 |---|---|---|
 | `leads` | Interessado | nome, responsavel, telefone, email, origem, interesse, status, dataEntrada, interacoes[], historico[] |
 | `alunos` | Aluno matriculado | nome, dataNascimento, escola, anoEscolar, curso, horarios[], mensalidade (centavos), diaVencimento, responsavelNome/Cpf/Rg/Parentesco, telefone, email, endereco, situacao, contratoNumero, historico[] |
-| `aulas` | Aula na agenda | alunoId, data, inicio, fim, profissional, modalidade, linkReuniao, googleEventId, situacao, tema, observacoes, casa, aval{eng,comp,aut}, naoCompartilhar |
+| `aulas` | Aula na agenda | alunoId, data, inicio, fim, profissional, modalidade, linkReuniao, googleEventId, situacao, tema, disciplinas[{nome, conteudo, aval?}], porDisc, aval{eng,comp,aut} (1 a 4; vazio = não avaliado), observacoes, conquistas, apoio, casa, interno, naoCompartilhar |
 | `reunioes` | Reunião com lead | leadId, data, inicio, fim, modalidade, linkReuniao, googleEventId, pauta, resumo, situacao |
 | `avaliacoes` | Avaliação de evolução | alunoId, data, tipo, periodo, niveis{indicador: 1–4}, avancos, atencao, proximos, publicacao |
 | `boletins` | Boletim escolar | alunoId, disciplina, periodo, atividades[{tipo,data,valor,nota}], media, notaGeral, pontosFortes, aDesenvolver, publicacao |
 | `pdis` | Plano de Desenvolvimento Individual | alunoId, status, objetivos[], versoes[] (cópias congeladas), revisaoEm |
 | `lancamentos` | Receita ou despesa | tipo, descricao, valor (centavos), categoria, data, competencia, situacao, alunoId, forma |
 | `acervo` | Livro/jogo/material | registro, titulo, autor, tema, idade, resumo, emprestimo{…}, emprestimos[] |
-| `anexos` | Documento do aluno | alunoId, categoria, titulo, assetId, arquivoNome, contentType, tamanho |
+| `anexos` | Documento do aluno | alunoId, categoria, titulo, assetId, arquivoNome, contentType, tamanho, portal (liberado para a família) |
 | `familias` | Acesso de um responsável ao portal | nome, parentesco, alunoIds[], token, ativo, incluirAulas, sincronizadoEm |
-| `portal/<token>/pub/dados` | O que a família vê (gerado pela equipe) | alunos[{avaliações publicadas, boletins, aulas, próximas aulas}] |
+| `portal/<token>/pub/dados` | O que a família vê (gerado pela equipe) | alunos[{avaliações publicadas, boletins, PDI, registros (aulas compartilhadas dos últimos 6 meses, sem campos internos), próximas aulas, docs (anexos liberados)}] |
+| `envios` | Envio de relatório à família | alunoId, tipo, canal (whatsapp/email), destinatario{nome, parentesco, contato, familiaId}, periodo{de, ate}, disciplina, aulas, status (enviado/nao_enviado), motivo, em, por |
 | `ajustes/geral` | Ajustes da organização | cursos, origens, categorias, equipe, indicadores, assinatura, contrato{…}, cobranca{…} |
 | `pl_boards`, `pl_cards` | Planner | quadros, listas, sprints, cartões, comentários, anexos |
 | `lv_boards`, `lv_ink/<pessoa>/boards/<tela>/els/<elemento>`, `lv_acesso/turma` | Lousa Viva | telas, tinta de cada pessoa, marcador de acesso da turma |
@@ -136,6 +137,7 @@ Todas as rotas `/api/*` exigem o cabeçalho `X-VX: 1` (impede chamadas de outros
 | `POST /api/t/:org/assets` | Envia arquivo (corpo binário; `Content-Type` e `X-Filename`) → `{id, url}` |
 | `DELETE /api/t/:org/assets/:id` | Exclui arquivo (quem enviou ou equipe) |
 | `GET /_blob/:id` | Baixa o arquivo (só membros da organização) |
+| `GET /w/:org/familia/arquivo/:codigo/:id` | Baixa, sem conta, um anexo liberado no portal daquele código de acesso |
 | `GET/POST/PATCH/DELETE /api/t/:org/team…` | Equipe e acessos (gestão) |
 | `PUT /api/t/:org/org` | Dados e marca da organização (gestão) |
 | `PUT/DELETE /api/t/:org/template`, `GET …/template/status` | Modelo Word próprio (gestão) |

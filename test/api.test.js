@@ -163,3 +163,14 @@ test('página do sistema injeta a configuração da organização', async () => 
   const m = await fetch(base + '/w/escola/modelo-contrato.txt', { headers: { Cookie: jar.p } });
   assert.ok((await m.text()).startsWith('UEsDB')); // .docx em base64
 });
+
+test('portal: família baixa só os documentos liberados para o seu código', async () => {
+  const up = async (txt) => (await http('p', 'POST', '/api/t/escola/assets', undefined, { raw: Buffer.from(txt), headers: { 'Content-Type': 'application/pdf', 'X-Filename': 'doc.pdf' } })).body.id;
+  const lib = await up('%PDF liberado'), priv = await up('%PDF interno');
+  await http('g', 'POST', '/api/t/escola/db/write', { op: 'set', path: 'portal/ZXCVBNMASDFGHJKL/pub/dados', data: { alunos: [{ nome: 'Ana', docs: [{ titulo: 'Atividades', asset: lib }] }] } });
+  const ok = await fetch(`${base}/w/escola/familia/arquivo/ZXCVBNMASDFGHJKL/${lib}`);
+  assert.equal(ok.status, 200); assert.equal(await ok.text(), '%PDF liberado');
+  assert.equal((await fetch(`${base}/w/escola/familia/arquivo/ZXCVBNMASDFGHJKL/${priv}`)).status, 404);
+  assert.equal((await fetch(`${base}/w/escola/familia/arquivo/AAAAAAAAAAAAAAAA/${lib}`)).status, 404);
+  assert.equal((await fetch(`${base}/w/outra/familia/arquivo/ZXCVBNMASDFGHJKL/${lib}`)).status, 404);
+});
